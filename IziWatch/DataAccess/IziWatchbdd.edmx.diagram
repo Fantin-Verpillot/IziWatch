@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="18193ee179524437a661c984587537ed" Name="Diagram1">
+        <EntityTypeShape EntityType="izi_watch_dbModel.Article" Width="1.5" PointX="3" PointY="4" IsExpanded="true" />
+        <EntityTypeShape EntityType="izi_watch_dbModel.Category" Width="1.5" PointX="0.75" PointY="4.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="izi_watch_dbModel.Comment" Width="1.5" PointX="5.25" PointY="4.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="izi_watch_dbModel.Popularity" Width="1.5" PointX="8.25" PointY="4.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="izi_watch_dbModel.Social" Width="1.5" PointX="3" PointY="1.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="izi_watch_dbModel.SocialArticle" Width="1.5" PointX="5.25" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="izi_watch_dbModel.User" Width="1.5" PointX="3" PointY="8.125" IsExpanded="true" />
+        <AssociationConnector Association="izi_watch_dbModel.FK_Article_Category" ManuallyRouted="false" />
+        <AssociationConnector Association="izi_watch_dbModel.FK_Comment_Article" ManuallyRouted="false" />
+        <AssociationConnector Association="izi_watch_dbModel.FK_Popularity_Article" ManuallyRouted="false" />
+        <AssociationConnector Association="izi_watch_dbModel.FK_SocialArticle_Article" ManuallyRouted="false" />
+        <AssociationConnector Association="izi_watch_dbModel.FK_Comment_User" ManuallyRouted="false" />
+        <AssociationConnector Association="izi_watch_dbModel.FK_Popularity_User" ManuallyRouted="false" />
+        <AssociationConnector Association="izi_watch_dbModel.FK_SocialArticle_Social" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
