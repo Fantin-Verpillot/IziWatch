@@ -1,4 +1,4 @@
-IziWatch/packages
-IziWatch/.vs
-IziWatch/IziWatch/obj
-IziWatch/IziWatch/bin
+packages
+.vs
+IziWatch/obj
+IziWatch/bin
