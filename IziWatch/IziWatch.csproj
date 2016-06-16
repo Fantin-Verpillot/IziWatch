@@ -200,6 +200,51 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="DataAccess\Article.cs">
+      <DependentUpon>IziWatch.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\Category.cs">
+      <DependentUpon>IziWatch.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\Comment.cs">
+      <DependentUpon>IziWatch.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\IziWatch.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>IziWatch.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\IziWatch.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>IziWatch.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\IziWatch.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>IziWatch.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\Popularity.cs">
+      <DependentUpon>IziWatch.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\Social.cs">
+      <DependentUpon>IziWatch.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\SocialArticle.cs">
+      <DependentUpon>IziWatch.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\sp_helpdiagramdefinition_Result.cs">
+      <DependentUpon>IziWatch.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\sp_helpdiagrams_Result.cs">
+      <DependentUpon>IziWatch.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\sysdiagrams.cs">
+      <DependentUpon>IziWatch.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\User.cs">
+      <DependentUpon>IziWatch.tt</DependentUpon>
+    </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -212,6 +257,16 @@
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="DataAccess\IziWatch.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>IziWatch.edmx</DependentUpon>
+      <LastGenOutput>IziWatch.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="DataAccess\IziWatch.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>IziWatch.edmx</DependentUpon>
+      <LastGenOutput>IziWatch.cs</LastGenOutput>
+    </Content>
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -222,6 +277,13 @@
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <EntityDeploy Include="DataAccess\IziWatch.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>IziWatch.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="DataAccess\IziWatch.edmx.diagram">
+      <DependentUpon>IziWatch.edmx</DependentUpon>
     </Content>
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
@@ -272,7 +334,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="DataAccess\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
