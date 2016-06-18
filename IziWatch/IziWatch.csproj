@@ -200,6 +200,9 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="DataAccess\Article.cs" />
+    <Compile Include="DataAccess\Category.cs" />
+    <Compile Include="DataAccess\Comment.cs" />
     <Compile Include="DataAccess\IziWatch.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -215,6 +218,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>IziWatch.edmx</DependentUpon>
     </Compile>
+    <Compile Include="DataAccess\Popularity.cs" />
+    <Compile Include="DataAccess\Social.cs" />
+    <Compile Include="DataAccess\SocialArticle.cs" />
     <Compile Include="DataAccess\T_Article.cs">
       <DependentUpon>IziWatch.tt</DependentUpon>
     </Compile>
@@ -236,6 +242,7 @@
     <Compile Include="DataAccess\T_User.cs">
       <DependentUpon>IziWatch.tt</DependentUpon>
     </Compile>
+    <Compile Include="DataAccess\User.cs" />
     <Compile Include="DBO\Article.cs" />
     <Compile Include="DBO\Category.cs" />
     <Compile Include="DBO\Comment.cs" />
