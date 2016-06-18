@@ -12,24 +12,27 @@ namespace IziWatch.DataAccess
     using System;
     using System.Collections.Generic;
     
-    public partial class User
+    public partial class T_Article
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public User()
+        public T_Article()
         {
-            this.Comment = new HashSet<Comment>();
-            this.Popularity = new HashSet<Popularity>();
+            this.T_Comment = new HashSet<T_Comment>();
+            this.T_Popularity = new HashSet<T_Popularity>();
+            this.T_SocialArticle = new HashSet<T_SocialArticle>();
         }
     
         public int id { get; set; }
-        public string login { get; set; }
-        public string password { get; set; }
-        public string email { get; set; }
-        public byte admin { get; set; }
+        public string title { get; set; }
+        public string image { get; set; }
+        public int category_id { get; set; }
     
+        public virtual T_Category T_Category { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Comment> Comment { get; set; }
+        public virtual ICollection<T_Comment> T_Comment { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Popularity> Popularity { get; set; }
+        public virtual ICollection<T_Popularity> T_Popularity { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<T_SocialArticle> T_SocialArticle { get; set; }
     }
 }

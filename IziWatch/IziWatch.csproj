@@ -200,15 +200,6 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
-    <Compile Include="DataAccess\Article.cs">
-      <DependentUpon>IziWatch.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DataAccess\Category.cs">
-      <DependentUpon>IziWatch.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DataAccess\Comment.cs">
-      <DependentUpon>IziWatch.tt</DependentUpon>
-    </Compile>
     <Compile Include="DataAccess\IziWatch.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -224,25 +215,25 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>IziWatch.edmx</DependentUpon>
     </Compile>
-    <Compile Include="DataAccess\Popularity.cs">
+    <Compile Include="DataAccess\T_Article.cs">
       <DependentUpon>IziWatch.tt</DependentUpon>
     </Compile>
-    <Compile Include="DataAccess\Social.cs">
+    <Compile Include="DataAccess\T_Category.cs">
       <DependentUpon>IziWatch.tt</DependentUpon>
     </Compile>
-    <Compile Include="DataAccess\SocialArticle.cs">
+    <Compile Include="DataAccess\T_Comment.cs">
       <DependentUpon>IziWatch.tt</DependentUpon>
     </Compile>
-    <Compile Include="DataAccess\sp_helpdiagramdefinition_Result.cs">
+    <Compile Include="DataAccess\T_Popularity.cs">
       <DependentUpon>IziWatch.tt</DependentUpon>
     </Compile>
-    <Compile Include="DataAccess\sp_helpdiagrams_Result.cs">
+    <Compile Include="DataAccess\T_Social.cs">
       <DependentUpon>IziWatch.tt</DependentUpon>
     </Compile>
-    <Compile Include="DataAccess\sysdiagrams.cs">
+    <Compile Include="DataAccess\T_SocialArticle.cs">
       <DependentUpon>IziWatch.tt</DependentUpon>
     </Compile>
-    <Compile Include="DataAccess\User.cs">
+    <Compile Include="DataAccess\T_User.cs">
       <DependentUpon>IziWatch.tt</DependentUpon>
     </Compile>
     <Compile Include="Global.asax.cs">

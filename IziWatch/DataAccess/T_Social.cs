@@ -12,13 +12,19 @@ namespace IziWatch.DataAccess
     using System;
     using System.Collections.Generic;
     
-    public partial class SocialArticle
+    public partial class T_Social
     {
-        public int id { get; set; }
-        public int article_id { get; set; }
-        public int social_id { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public T_Social()
+        {
+            this.T_SocialArticle = new HashSet<T_SocialArticle>();
+        }
     
-        public virtual Article Article { get; set; }
-        public virtual Social Social { get; set; }
+        public int id { get; set; }
+        public string type { get; set; }
+        public string account { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<T_SocialArticle> T_SocialArticle { get; set; }
     }
 }

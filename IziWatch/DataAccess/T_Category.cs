@@ -12,27 +12,18 @@ namespace IziWatch.DataAccess
     using System;
     using System.Collections.Generic;
     
-    public partial class Article
+    public partial class T_Category
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Article()
+        public T_Category()
         {
-            this.Comment = new HashSet<Comment>();
-            this.Popularity = new HashSet<Popularity>();
-            this.SocialArticle = new HashSet<SocialArticle>();
+            this.T_Article = new HashSet<T_Article>();
         }
     
         public int id { get; set; }
-        public string title { get; set; }
-        public string image { get; set; }
-        public int category_id { get; set; }
+        public string name { get; set; }
     
-        public virtual Category Category { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Comment> Comment { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Popularity> Popularity { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<SocialArticle> SocialArticle { get; set; }
+        public virtual ICollection<T_Article> T_Article { get; set; }
     }
 }

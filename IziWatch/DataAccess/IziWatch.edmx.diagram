@@ -4,15 +4,14 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="5c3b1e05e30342fbb61544ed328ead22" Name="Diagram1">
-        <EntityTypeShape EntityType="IziWatchModel.Article" Width="1.5" PointX="3" PointY="4" IsExpanded="true" />
-        <EntityTypeShape EntityType="IziWatchModel.Category" Width="1.5" PointX="0.75" PointY="4.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="IziWatchModel.Comment" Width="1.5" PointX="5.25" PointY="4.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="IziWatchModel.Popularity" Width="1.5" PointX="8.25" PointY="4.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="IziWatchModel.Social" Width="1.5" PointX="3" PointY="1.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="IziWatchModel.SocialArticle" Width="1.5" PointX="5.25" PointY="1.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="IziWatchModel.sysdiagrams" Width="1.5" PointX="7.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="IziWatchModel.User" Width="1.5" PointX="3" PointY="8.125" IsExpanded="true" />
+      <Diagram DiagramId="8a288f84d1eb42bdbc1c897973c1fe70" Name="Diagram1">
+        <EntityTypeShape EntityType="IziWatchModel.T_Article" Width="1.5" PointX="3" PointY="4" IsExpanded="true" />
+        <EntityTypeShape EntityType="IziWatchModel.T_Category" Width="1.5" PointX="0.75" PointY="4.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="IziWatchModel.T_Comment" Width="1.5" PointX="5.25" PointY="4.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="IziWatchModel.T_Popularity" Width="1.5" PointX="8.25" PointY="4.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="IziWatchModel.T_Social" Width="1.5" PointX="3" PointY="1.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="IziWatchModel.T_SocialArticle" Width="1.5" PointX="5.25" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="IziWatchModel.T_User" Width="1.5" PointX="3" PointY="8.125" IsExpanded="true" />
         <AssociationConnector Association="IziWatchModel.FK_Article_Category" ManuallyRouted="false" />
         <AssociationConnector Association="IziWatchModel.FK_Comment_Article" ManuallyRouted="false" />
         <AssociationConnector Association="IziWatchModel.FK_Popularity_Article" ManuallyRouted="false" />

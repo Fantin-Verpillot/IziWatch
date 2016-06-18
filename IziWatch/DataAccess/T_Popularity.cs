@@ -10,13 +10,17 @@
 namespace IziWatch.DataAccess
 {
     using System;
+    using System.Collections.Generic;
     
-    public partial class sp_helpdiagrams_Result
+    public partial class T_Popularity
     {
-        public string Database { get; set; }
-        public string Name { get; set; }
-        public int ID { get; set; }
-        public string Owner { get; set; }
-        public int OwnerID { get; set; }
+        public int id { get; set; }
+        public byte viewed { get; set; }
+        public byte liked { get; set; }
+        public int article_id { get; set; }
+        public int user_id { get; set; }
+    
+        public virtual T_Article T_Article { get; set; }
+        public virtual T_User T_User { get; set; }
     }
 }
