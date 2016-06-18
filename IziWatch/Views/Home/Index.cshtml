@@ -2,30 +2,107 @@
     ViewBag.Title = "Home Page";
 }
 
-<div class="jumbotron">
-    <h1>ASP.NET</h1>
-    <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
-    <p><a href="http://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
-</div>
+<div class="row" style="margin-top: 30px;">
+    <div class="col-md-3">
+        <div class="filter">
+            <div class="row">
+                <div class="col-md-12">
+                    <p class="title">Filtres</p>
+                </div>
+            </div>
 
-<div class="row">
-    <div class="col-md-4">
-        <h2>Getting started</h2>
-        <p>
-            ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
-            enables a clean separation of concerns and gives you full control over markup
-            for enjoyable, agile development.
-        </p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
+            <hr style="margin-top: 0;"/>
+
+            <div class="row">
+                <div class="col-md-12">
+                    <p class="subtitle">Date :</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-2 col-md-offset-1 date">
+                    From :
+                </div>
+                <div class="col-md-8">
+                    <input class="form-control" placeholder="JJ/MM/AAAA" />
+                </div>
+            </div>
+            <div class="row" style="margin-top: 5px;">
+                <div class="col-md-2 col-md-offset-1 date">
+                    To :
+                </div>
+                <div class="col-md-8">
+                    <input class="form-control" placeholder="JJ/MM/AAAA" />
+                </div>
+            </div>
+
+            <br />
+
+            <div class="row">
+                <div class="col-md-12">
+                    <p class="subtitle">Popularité :</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <p class="popularity">
+                        <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                        <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                        <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                        <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                        <span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span>
+                    </p>
+                </div>
+            </div>
+
+
+            <div class="row">
+                <div class="col-md-12">
+                    <p class="subtitle">Catégories :</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="well">
+                        @for (var i = 0; i < 5; i++)
+                        {
+                            <div class="row">
+                                <div class="col-md-12 category">
+                                    <input type="checkbox" value=""> Nom catégorie @i
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="text-center">
+                        <button type="button" class="btn btn-primary btn-block refresh" >Actualiser</button>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-    <div class="col-md-4">
-        <h2>Get more libraries</h2>
-        <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Web Hosting</h2>
-        <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
+
+    <div class="col-md-9">
+        <div class="row">
+            @for (var i = 0; i < 24; i++)
+            {
+
+                <div class="col-md-3" style="margin-bottom: 10px;">
+                    <div class="thumbnail" style="padding: 0;">
+                        <img src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9InllcyI/PjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB3aWR0aD0iMjQyIiBoZWlnaHQ9IjIwMCIgdmlld0JveD0iMCAwIDI0MiAyMDAiIHByZXNlcnZlQXNwZWN0UmF0aW89Im5vbmUiPjwhLS0KU291cmNlIFVSTDogaG9sZGVyLmpzLzEwMCV4MjAwCkNyZWF0ZWQgd2l0aCBIb2xkZXIuanMgMi42LjAuCkxlYXJuIG1vcmUgYXQgaHR0cDovL2hvbGRlcmpzLmNvbQooYykgMjAxMi0yMDE1IEl2YW4gTWFsb3BpbnNreSAtIGh0dHA6Ly9pbXNreS5jbwotLT48ZGVmcz48c3R5bGUgdHlwZT0idGV4dC9jc3MiPjwhW0NEQVRBWyNob2xkZXJfMTU1NjU3MjhjZDAgdGV4dCB7IGZpbGw6I0FBQUFBQTtmb250LXdlaWdodDpib2xkO2ZvbnQtZmFtaWx5OkFyaWFsLCBIZWx2ZXRpY2EsIE9wZW4gU2Fucywgc2Fucy1zZXJpZiwgbW9ub3NwYWNlO2ZvbnQtc2l6ZToxMnB0IH0gXV0+PC9zdHlsZT48L2RlZnM+PGcgaWQ9ImhvbGRlcl8xNTU2NTcyOGNkMCI+PHJlY3Qgd2lkdGg9IjI0MiIgaGVpZ2h0PSIyMDAiIGZpbGw9IiNFRUVFRUUiLz48Zz48dGV4dCB4PSI4OS44NTkzNzUiIHk9IjEwNS4xIj4yNDJ4MjAwPC90ZXh0PjwvZz48L2c+PC9zdmc+"
+                             alt="article photo">
+                        <div class="text-center">
+                            <h3>
+                                <a href="#">Title @i</a>
+                            </h3>
+                        </div>
+                    </div>
+                </div>
+
+            }
+        </div>
     </div>
 </div>
