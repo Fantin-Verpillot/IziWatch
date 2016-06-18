@@ -236,6 +236,13 @@
     <Compile Include="DataAccess\T_User.cs">
       <DependentUpon>IziWatch.tt</DependentUpon>
     </Compile>
+    <Compile Include="DBO\Article.cs" />
+    <Compile Include="DBO\Category.cs" />
+    <Compile Include="DBO\Comment.cs" />
+    <Compile Include="DBO\Popularity.cs" />
+    <Compile Include="DBO\Social.cs" />
+    <Compile Include="DBO\SocialArticle.cs" />
+    <Compile Include="DBO\User.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
