@@ -1,0 +1,56 @@
+﻿@model IziWatch.DBO.Popularity
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Popularity</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Viewed)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Viewed)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Liked)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Liked)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ArticleId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ArticleId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.UserId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UserId)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>
