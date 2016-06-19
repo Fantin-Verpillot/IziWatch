@@ -1,5 +1,5 @@
 ﻿@{
-    ViewBag.Title = "Home Page";
+    ViewBag.Title = "Accueil";
 }
 
 <div class="row" style="margin-top: 30px;">
@@ -13,75 +13,83 @@
 
             <hr style="margin-top: 0;" />
 
-            <div class="row">
-                <div class="col-md-12">
-                    <p class="subtitle">Date :</p>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-2 col-md-offset-1 date">
-                    From :
-                </div>
-                <div class="col-md-8">
-                    <input class="form-control" placeholder="JJ/MM/AAAA" />
-                </div>
-            </div>
-            <div class="row" style="margin-top: 5px;">
-                <div class="col-md-2 col-md-offset-1 date">
-                    To :
-                </div>
-                <div class="col-md-8">
-                    <input class="form-control" placeholder="JJ/MM/AAAA" />
-                </div>
-            </div>
+            <form method="GET" action="/Home/Index">
 
-            <br />
-
-            <div class="row">
-                <div class="col-md-12">
-                    <p class="subtitle">Popularité :</p>
+                <div class="row">
+                    <div class="col-md-12">
+                        <p class="subtitle">Date :</p>
+                    </div>
                 </div>
-            </div>
-            <div class="row">
-                <div class="col-md-12">
-                    <p class="popularity">
-                        <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
-                        <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
-                        <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
-                        <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
-                        <span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span>
-                    </p>
+                <div class="row">
+                    <div class="col-md-2 col-md-offset-1 date">
+                        From :
+                    </div>
+                    <div class="col-md-8">
+                        <input class="form-control" placeholder="JJ/MM/AAAA" />
+                    </div>
                 </div>
-            </div>
+                <div class="row" style="margin-top: 5px;">
+                    <div class="col-md-2 col-md-offset-1 date">
+                        To :
+                    </div>
+                    <div class="col-md-8">
+                        <input class="form-control" placeholder="JJ/MM/AAAA" />
+                    </div>
+                </div>
+
+                <br />
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <p class="subtitle">Popularité :</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <p class="popularity">
+                            <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                            <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                            <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                            <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                            <span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span>
+                        </p>
+                    </div>
+                </div>
 
 
-            <div class="row">
-                <div class="col-md-12">
-                    <p class="subtitle">Catégories :</p>
+                <div class="row">
+                    <div class="col-md-12">
+                        <p class="subtitle">Catégories :</p>
+                    </div>
                 </div>
-            </div>
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="well">
-                        @foreach (var category in ViewBag.categories)
-                        {
-                            <div class="row">
-                                <div class="col-md-12 category">
-                                    <input type="checkbox" value=""> @category.Name
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="well">
+                            @foreach (var category in ViewBag.categories)
+                            {
+                                <div class="row">
+                                    <div class="col-md-12 category">
+                                        @if (ViewBag.categoryChecks.Contains(category.Id)) {
+                                            <label><input type="checkbox" name="categories" value="@category.Id" checked> @category.Name</label>
+                                        } else {
+                                            <label><input type="checkbox" name="categories" value="@category.Id"> @category.Name</label>
+                                        }
+                                        
+                                    </div>
                                 </div>
-                            </div>
-                        }
+                            }
+                        </div>
                     </div>
                 </div>
-            </div>
 
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="text-center">
-                        <button type="button" class="btn btn-primary btn-block refresh">Actualiser</button>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="text-center">
+                            <input name="action" type="submit" class="btn btn-primary btn-block refresh" value="Actualiser">
+                        </div>
                     </div>
                 </div>
-            </div>
+            </form>
         </div>
     </div>
 
