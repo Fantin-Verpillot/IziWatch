@@ -98,14 +98,13 @@
             @foreach (var article in ViewBag.articles)
             {
 
-                <div class="col-md-3" style="margin-bottom: 10px;">
+                <div class="col-md-4" style="margin-bottom: 10px;">
                     <div class="thumbnail" style="padding: 0;">
-                        <img src="@article.Image"
-                             alt="article photo">
-                        <div class="text-center">
-                            <h3>
-                                <a href="/Article/Details/@article.Id">@article.Title</a>
-                            </h3>
+                        <img src="@article.Image" alt="article photo" class="img-responsive" style="height: 200px;"/>
+                        <div style="display:table; height: 110px; padding: 10px;">
+                            <div style="display:table-cell; vertical-align: middle; text-align: center;">
+                                <a style="font-size: 16px; color: black;" href="/Article/Details/@article.Id">@article.Title</a>
+                            </div>
                         </div>
                     </div>
                 </div>
