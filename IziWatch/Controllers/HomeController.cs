@@ -19,12 +19,15 @@ namespace IziWatch.Controllers
             List<int> categoryIds = new List<int>();
             if (filter != null)
             {
-                string[] categoryValues = Request["categories"].Split(',');
-                foreach (string categoryId in categoryValues)
+                if (Request["categories"] != null)
                 {
-                    categoryIds.Add(Convert.ToInt32(categoryId.Trim()));
+                    string[] categoryValues = Request["categories"].Split(',');
+                    foreach (string categoryId in categoryValues)
+                    {
+                        categoryIds.Add(Convert.ToInt32(categoryId.Trim()));
+                    }
+                    articles = BusinessManagement.Article.FilterCategories(articles, categoryIds);
                 }
-                articles = BusinessManagement.Article.FilterCategories(articles, categoryIds);
             }
 
             ViewBag.articles = articles;
