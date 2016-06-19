@@ -1,4 +1,6 @@
-﻿@{
+﻿@using IziWatch.DataAccess
+
+@{
     ViewBag.Title = "Home Page";
 }
 
@@ -93,7 +95,17 @@
                 <div class="col-md-4" style="margin-bottom: 10px;">
                     <div class="thumbnail" style="padding: 0;">
                         <img src="@article.Image" alt="article photo" class="img-responsive" style="height: 200px;"/>
-                        <div style="display:table; height: 110px; padding: 10px;">
+                        <div class="text-center" style="margin-top:5px; font-style:italic;">
+
+                            @{
+                                String categoryName = Category.GetCategory(article.CategoryId).Name;
+                                if (categoryName != null)
+                                {
+                                    @Category.GetCategory(article.CategoryId).Name
+                                }
+                            }
+                        </div>
+                        <div style="display:table; height: 11px; padding: 10px;">
                             <div style="display:table-cell; vertical-align: middle; text-align: center;">
                                 <a style="font-size: 16px; color: black;" href="/Article/Details/@article.Id">@article.Title</a>
                             </div>
