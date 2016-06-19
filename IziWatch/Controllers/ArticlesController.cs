@@ -28,8 +28,7 @@ namespace IziWatch.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            //DBO.Article article = db.Articles.Find(id);
-            DBO.Article article = DataAccess.Article.GetArticle((long)id);
+            DBO.Article article = DataAccess.Article.GetArticle(Convert.ToInt32(id));
             if (article == null)
             {
                 return HttpNotFound();
@@ -48,11 +47,10 @@ namespace IziWatch.Controllers
         // plus de détails, voir  http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Title,Image,CategoryId")] DBO.Article article)
+        public ActionResult Create([Bind(Include = "Id,Title,Image,CategoryId,Text")] DBO.Article article)
         {
             if (ModelState.IsValid)
             {
-                // Generated : db.Articles.Add(article);
                 DataAccess.Article.CreateArticle(article);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -68,8 +66,7 @@ namespace IziWatch.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            //Article article = db.Articles.Find(id);
-            DBO.Article article = DataAccess.Article.GetArticle((long)id);
+            DBO.Article article = DataAccess.Article.GetArticle(Convert.ToInt32(id));
             if (article == null)
             {
                 return HttpNotFound();
@@ -82,11 +79,10 @@ namespace IziWatch.Controllers
         // plus de détails, voir  http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Title,Image,CategoryId")] DBO.Article article)
+        public ActionResult Edit([Bind(Include = "Id,Title,Image,CategoryId,Text")] DBO.Article article)
         {
             if (ModelState.IsValid)
             {
-                // Generated : db.Entry(article).State = EntityState.Modified;
                 DataAccess.Article.UpdateArticle(article);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -101,9 +97,7 @@ namespace IziWatch.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            // Generated : Article article = db.Articles.Find(id);
-            DBO.Article article = DataAccess.Article.GetArticle((long)id);
-
+            DBO.Article article = DataAccess.Article.GetArticle(Convert.ToInt32(id));
             if (article == null)
             {
                 return HttpNotFound();
@@ -116,8 +110,6 @@ namespace IziWatch.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            //Generated : Article article = db.Articles.Find(id);
-            //Generated : db.Articles.Remove(article);
             DataAccess.Article.DeleteArticle(id);
             db.SaveChanges();
             return RedirectToAction("Index");

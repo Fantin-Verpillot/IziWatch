@@ -26,6 +26,7 @@ namespace IziWatch.DataAccess
         public string title { get; set; }
         public string image { get; set; }
         public int category_id { get; set; }
+        public string text { get; set; }
     
         public virtual T_Category T_Category { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

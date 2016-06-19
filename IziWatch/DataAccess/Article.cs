@@ -17,7 +17,8 @@ namespace IziWatch.DataAccess
                         id = article.Id,
                         title = article.Title,
                         image = article.Image,
-                        category_id = article.CategoryId
+                        category_id = article.CategoryId,
+                        text = article.Text
                     };
                     bdd.T_Article.Add(t_article);
                     bdd.SaveChanges();
@@ -60,6 +61,7 @@ namespace IziWatch.DataAccess
                         t_article.title = article.Title;
                         t_article.image = article.Image;
                         t_article.category_id = article.CategoryId;
+                        t_article.text = article.Text;
                         bdd.SaveChanges();
                         return true;
                     }
@@ -90,7 +92,8 @@ namespace IziWatch.DataAccess
                             Id = query.First().id,
                             Title = query.First().title,
                             Image = query.First().image,
-                            CategoryId = query.First().category_id
+                            CategoryId = query.First().category_id,
+                            Text = query.First().text
                         };
                     }
                     else
@@ -122,7 +125,8 @@ namespace IziWatch.DataAccess
                             Id = element.id,
                             Title = element.title,
                             Image = element.image,
-                            CategoryId = element.category_id
+                            CategoryId = element.category_id,
+                            Text = element.text
                         });
                     }
                     return listArticles;

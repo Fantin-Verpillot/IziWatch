@@ -10,6 +10,7 @@ namespace IziWatch.Controllers
     {
         public ActionResult Index()
         {
+            ViewBag.articles = DataAccess.Article.GetListArticle();
             return View();
         }
 
