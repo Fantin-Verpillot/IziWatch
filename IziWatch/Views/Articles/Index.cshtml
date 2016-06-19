@@ -23,6 +23,9 @@
         <th>
             @Html.DisplayNameFor(model => model.Text)
         </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Date)
+        </th>
         <th></th>
     </tr>
 
@@ -39,6 +42,9 @@
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Text)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Date)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |

@@ -28,7 +28,7 @@ namespace IziWatch.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            DBO.Article article = DataAccess.Article.GetArticle(Convert.ToInt32(id));
+            DBO.Article article = DataAccess.Article.GetArticle((long)id);
             if (article == null)
             {
                 return HttpNotFound();
@@ -47,7 +47,7 @@ namespace IziWatch.Controllers
         // plus de détails, voir  http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Title,Image,CategoryId,Text")] DBO.Article article)
+        public ActionResult Create([Bind(Include = "Id,Title,Image,CategoryId,Text,Date")] DBO.Article article)
         {
             if (ModelState.IsValid)
             {
@@ -66,7 +66,7 @@ namespace IziWatch.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            DBO.Article article = DataAccess.Article.GetArticle(Convert.ToInt32(id));
+            DBO.Article article = DataAccess.Article.GetArticle((long)id);
             if (article == null)
             {
                 return HttpNotFound();
@@ -79,7 +79,7 @@ namespace IziWatch.Controllers
         // plus de détails, voir  http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Title,Image,CategoryId,Text")] DBO.Article article)
+        public ActionResult Edit([Bind(Include = "Id,Title,Image,CategoryId,Text,Date")] DBO.Article article)
         {
             if (ModelState.IsValid)
             {
@@ -97,7 +97,7 @@ namespace IziWatch.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            DBO.Article article = DataAccess.Article.GetArticle(Convert.ToInt32(id));
+            DBO.Article article = DataAccess.Article.GetArticle((long)id);
             if (article == null)
             {
                 return HttpNotFound();

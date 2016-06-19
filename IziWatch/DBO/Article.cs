@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 
 namespace IziWatch.DBO
 {
@@ -12,5 +9,6 @@ namespace IziWatch.DBO
         public string Image { get; set; }
         public int CategoryId { get; set; }
         public string Text { get; set; }
+        public DateTime Date { get; set; }
     }
 }
