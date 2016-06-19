@@ -2,3 +2,4 @@ packages
 .vs
 IziWatch/obj
 IziWatch/bin
+IziWatch/Web.config
