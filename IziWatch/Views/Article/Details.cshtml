@@ -1,0 +1,87 @@
+﻿@using IziWatch.DBO
+
+@{
+    ViewBag.Title = "Details";
+    Article article = ViewBag.article;
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <h2>@article.Title</h2>
+    </div>
+</div>
+
+<hr />
+
+<div class="row">
+    <div class="col-md-12">
+        <img src="@article.Image" class="img-responsive img-responsive" />
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="pull-right">
+            Date de création : @article.Date
+        </div>
+    </div>
+</div>
+
+<br />
+
+<div class="row">
+    <div class="col-md-12">
+        @article.Text
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <h3>Commentaires (5)</h3>
+    </div>
+</div>
+
+<hr style="margin-top: 0 !important;" />
+
+<div class="row">
+
+    <div class="col-md-7">
+        <div class="well" style="padding: 10px !important;">
+            <form>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label for="comment">Déposer un commentaire : </label>
+                            <textarea class="form-control" rows="2" style="max-width: none !important;"></textarea>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <button type="button" class="btn btn-primary pull-right">
+                            Poster
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+@for (int i = 0; i < 5; ++i)
+{
+    <div class="row">
+        <div class="col-md-7">
+            <div class="comment">
+                <p class="username">Username :</p>
+                <p class="text">Ceci est un commentaire</p>
+            </div>
+        </div>
+    </div>
+
+}
+
+
+
