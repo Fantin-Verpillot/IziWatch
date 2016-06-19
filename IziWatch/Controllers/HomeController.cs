@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -8,10 +9,27 @@ namespace IziWatch.Controllers
 {
     public class HomeController : Controller
     {
+        [HttpGet]
         public ActionResult Index()
         {
-            ViewBag.articles = BusinessManagement.Article.GetListArticleByDate();
-            ViewBag.categories = DataAccess.Category.GetListCategory();
+            List<DBO.Article> articles = BusinessManagement.Article.GetListArticleByDate();
+            List<DBO.Category> categories = DataAccess.Category.GetListCategory();
+
+            string filter = Request["action"];
+            List<int> categoryIds = new List<int>();
+            if (filter != null)
+            {
+                string[] categoryValues = Request["categories"].Split(',');
+                foreach (string categoryId in categoryValues)
+                {
+                    categoryIds.Add(Convert.ToInt32(categoryId.Trim()));
+                }
+                articles = BusinessManagement.Article.FilterCategories(articles, categoryIds);
+            }
+
+            ViewBag.articles = articles;
+            ViewBag.categories = categories;
+            ViewBag.categoryChecks = categoryIds;
             return View();
         }
 
