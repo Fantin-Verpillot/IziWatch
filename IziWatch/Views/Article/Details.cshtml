@@ -1,51 +1,56 @@
-﻿@using IziWatch.DBO
-
+﻿
 @{
     ViewBag.Title = "Details";
-    Article article = ViewBag.article;
+    IziWatch.DBO.Article article = ViewBag.article;
 }
 
 <div class="row">
     <div class="col-md-12">
-        <h2>@article.Title</h2>
+        <h2 style="font-weight: 700;">@article.Title</h2>
+        <p style="font-size: 18px; font-style: italic;">
+            @{
+                String categoryName = IziWatch.DataAccess.Category.GetCategory(article.CategoryId).Name;
+                if (categoryName != null)
+                {
+                    @IziWatch.DataAccess.Category.GetCategory(article.CategoryId).Name;
+                }
+            }
+        </p>
     </div>
 </div>
 
-<hr />
-
-<div class="row">
-    <div class="col-md-12">
-        <img src="@article.Image" class="img-responsive img-responsive" />
-    </div>
-</div>
-
-<div class="row">
-    <div class="col-md-12">
-        <div class="pull-right">
-            Date de création : @article.Date
-        </div>
-    </div>
-</div>
+<hr style="margin-top: 5px;" />
 
 <div class="row">
     <div class="col-md-12">
-        <button type="button" class="btn btn-warning pull-right">
-            Favoris
-        </button>
+        <img src="@article.Image" class="img-responsive img-responsive" style="margin-left: auto; margin-right: auto;" />
     </div>
 </div>
+
+<div class="row" style="margin-top: 50px;">
+    <div class="col-md-12">
+        <p style="font-size: 15px;">
+            @article.Text
+        </p>
+    </div>
+</div>
+
 <br />
 
 <div class="row">
     <div class="col-md-12">
-        @article.Text
+        <div class="pull-right">
+            Date de création : @article.Date | 
+            <button type="button" class="btn btn-warning pull-right btn-xs" style="margin-left: 7px;">
+                Favoris
+            </button>
+        </div>
     </div>
 </div>
 
-
-<div class="row">
+<div class="row" style="margin-top: 50px;">
     <div class="col-md-12">
-        <h3>Commentaires (5)</h3>
+        <h3 style="font-weight:700">Commentaires (5)</h3>
     </div>
 </div>
 
@@ -53,13 +58,13 @@
 
 <div class="row">
 
-    <div class="col-md-7">
+    <div class="col-md-8 col-md-offset-2">
         <div class="well" style="padding: 10px !important;">
             <form>
                 <div class="row">
                     <div class="col-md-12">
                         <div class="form-group">
-                            <label for="comment">Déposer un commentaire : </label>
+                            <label for="comment" style="font-size: 18px;">Déposer un commentaire : </label>
                             <textarea class="form-control" rows="2" style="max-width: none !important;"></textarea>
                         </div>
                     </div>
@@ -77,6 +82,8 @@
     </div>
 </div>
 
+<br />
+
 
 @for (int i = 0; i < 5; ++i)
 {
@@ -88,6 +95,11 @@
             </div>
         </div>
     </div>
+
+    if (i != 4)
+    {
+        <hr style="margin-top: 5px; margin-bottom: 5px; width: 70%;"/>
+    }
 
 }
 
