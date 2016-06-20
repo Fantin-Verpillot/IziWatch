@@ -67,7 +67,7 @@
           <Property Name="login" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="password" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="email" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="admin" Type="tinyint" Nullable="false" />
+          <Property Name="role" Type="int" Nullable="false" />
         </EntityType>
         <Association Name="FK_Article_Category">
           <End Role="T_Category" Type="Self.T_Category" Multiplicity="1">
@@ -282,9 +282,9 @@
           <Property Name="login" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="admin" Type="Byte" Nullable="false" />
           <NavigationProperty Name="T_Comment" Relationship="Self.FK_Comment_User" FromRole="T_User" ToRole="T_Comment" />
           <NavigationProperty Name="T_Popularity" Relationship="Self.FK_Popularity_User" FromRole="T_User" ToRole="T_Popularity" />
+          <Property Name="role" Type="Int32" Nullable="false" />
         </EntityType>
         <Association Name="FK_Article_Category">
           <End Role="T_Category" Type="Self.T_Category" Multiplicity="1">
@@ -490,11 +490,11 @@
           <EntitySetMapping Name="T_User">
             <EntityTypeMapping TypeName="IziWatchModel.T_User">
               <MappingFragment StoreEntitySet="T_User">
+                <ScalarProperty Name="role" ColumnName="role" />
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="login" ColumnName="login" />
                 <ScalarProperty Name="password" ColumnName="password" />
                 <ScalarProperty Name="email" ColumnName="email" />
-                <ScalarProperty Name="admin" ColumnName="admin" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

@@ -18,7 +18,7 @@ namespace IziWatch.DataAccess
                         login = user.Login,
                         password = user.Password,
                         email = user.Email,
-                        admin = Convert.ToByte(user.Admin)
+                        role = user.Role
                     };
                     bdd.T_User.Add(t_user);
                     bdd.SaveChanges();
@@ -61,7 +61,7 @@ namespace IziWatch.DataAccess
                         t_user.login = user.Login;
                         t_user.password = user.Password;
                         t_user.email = user.Email;
-                        t_user.admin = Convert.ToByte(user.Admin);
+                        t_user.role = user.Role;
                         bdd.SaveChanges();
                         return true;
                     }
@@ -94,7 +94,7 @@ namespace IziWatch.DataAccess
                             Login = query.First().login,
                             Password = query.First().password,
                             Email = query.First().email,
-                            Admin = Convert.ToBoolean(query.First().admin)
+                            Role = query.First().role
                         };
                     }
                     else
@@ -128,7 +128,7 @@ namespace IziWatch.DataAccess
                             Login = element.login,
                             Password = element.password,
                             Email = element.email,
-                            Admin = Convert.ToBoolean(element.admin)
+                            Role = element.role
                         });
                     }
                     return listUsers;
