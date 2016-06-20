@@ -48,7 +48,7 @@ namespace IziWatch.Controllers
         // plus de détails, voir  http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Login,Password,Email,Admin")] DBO.User user)
+        public ActionResult Create([Bind(Include = "Id,Login,Password,Email,Role")] DBO.User user)
         {
             if (ModelState.IsValid)
             {
@@ -83,7 +83,7 @@ namespace IziWatch.Controllers
         // plus de détails, voir  http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Login,Password,Email,Admin")] DBO.User user)
+        public ActionResult Edit([Bind(Include = "Id,Login,Password,Email,Role")] DBO.User user)
         {
             if (ModelState.IsValid)
             {
