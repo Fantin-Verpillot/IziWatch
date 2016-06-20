@@ -14,7 +14,7 @@ namespace IziWatch.BusinessManagement
             return articles;
         }
 
-        public static List<DBO.Article> FilterCategories(List<DBO.Article> articles, List<int> categoryIds)
+        public static List<DBO.Article> FilterByCategories(List<DBO.Article> articles, List<int> categoryIds)
         {
             List<DBO.Article> filterArticles = new List<DBO.Article>();
             foreach (DBO.Article article in articles)
@@ -25,6 +25,31 @@ namespace IziWatch.BusinessManagement
                 }
             }
             return filterArticles;
+        }
+
+        public static bool CreateArticle(DBO.Article article)
+        {
+            return DataAccess.Article.CreateArticle(article);
+        }
+
+        public static bool DeleteArticle(long id)
+        {
+            return DataAccess.Article.DeleteArticle(id);
+        }
+
+        public static bool UpdateArticle(DBO.Article article)
+        {
+            return DataAccess.Article.UpdateArticle(article);
+        }
+
+        public static DBO.Article GetArticle(long id)
+        {
+            return DataAccess.Article.GetArticle(id);
+        }
+
+        public static List<DBO.Article> GetListArticle()
+        {
+            return DataAccess.Article.GetListArticle();
         }
     }
 }

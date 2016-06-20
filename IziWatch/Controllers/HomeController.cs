@@ -26,7 +26,7 @@ namespace IziWatch.Controllers
                     {
                         categoryIds.Add(Convert.ToInt32(categoryId.Trim()));
                     }
-                    articles = BusinessManagement.Article.FilterCategories(articles, categoryIds);
+                    articles = BusinessManagement.Article.FilterByCategories(articles, categoryIds);
                 }
             }
 
