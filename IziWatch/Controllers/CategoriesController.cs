@@ -1,12 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Data.Entity;
-using System.Linq;
-using System.Net;
-using System.Web;
+﻿using System.Net;
 using System.Web.Mvc;
-using IziWatch.DBO;
 using IziWatch.DataAccess;
 
 namespace IziWatch.Controllers
@@ -18,7 +11,7 @@ namespace IziWatch.Controllers
         // GET: Categories
         public ActionResult Index()
         {
-            return View(DataAccess.Category.GetListCategory());
+            return View(BusinessManagement.Category.GetListCategory());
         }
 
         // GET: Categories/Details/5
@@ -29,7 +22,7 @@ namespace IziWatch.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             // Generated : DBO.Category category = db.Categories.Find(id);
-            DBO.Category category = DataAccess.Category.GetCategory((long)id);
+            DBO.Category category = BusinessManagement.Category.GetCategory((int)id);
 
             if (category == null)
             {
@@ -54,7 +47,7 @@ namespace IziWatch.Controllers
             if (ModelState.IsValid)
             {
                 //Generated : db.Categories.Add(category);
-                DataAccess.Category.CreateCategory(category);
+                BusinessManagement.Category.CreateCategory(category);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
@@ -70,7 +63,7 @@ namespace IziWatch.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             //Generated : Category category = db.Categories.Find(id);
-            DBO.Category category = DataAccess.Category.GetCategory((long)id);
+            DBO.Category category = BusinessManagement.Category.GetCategory((int)id);
 
             if (category == null)
             {
@@ -89,7 +82,7 @@ namespace IziWatch.Controllers
             if (ModelState.IsValid)
             {
                 //Generated : db.Entry(category).State = EntityState.Modified;
-                DataAccess.Category.UpdateCategory(category);
+                BusinessManagement.Category.UpdateCategory(category);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
@@ -104,7 +97,7 @@ namespace IziWatch.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             //Generated : Category category = db.Categories.Find(id);
-            DBO.Category category = DataAccess.Category.GetCategory((long)id);
+            DBO.Category category = BusinessManagement.Category.GetCategory((int)id);
 
             if (category == null)
             {
@@ -120,7 +113,7 @@ namespace IziWatch.Controllers
         {
             //Generated : Category category = db.Categories.Find(id);
             //Generated : db.Categories.Remove(category);
-            DataAccess.Category.DeleteCategory((long)id);
+            BusinessManagement.Category.DeleteCategory((int)id);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

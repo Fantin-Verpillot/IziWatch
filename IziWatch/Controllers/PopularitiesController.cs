@@ -18,7 +18,7 @@ namespace IziWatch.Controllers
         // GET: Popularities
         public ActionResult Index()
         {
-            return View(DataAccess.Popularity.GetListPopularity());
+            return View(BusinessManagement.Popularity.GetListPopularity());
         }
 
         // GET: Popularities/Details/5
@@ -29,7 +29,7 @@ namespace IziWatch.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             //Generated : Popularity popularity = db.Popularities.Find(id);
-            DBO.Popularity popularity = DataAccess.Popularity.GetPopularity((long)id);
+            DBO.Popularity popularity = BusinessManagement.Popularity.GetPopularity((int)id);
              
             if (popularity == null)
             {
@@ -54,7 +54,7 @@ namespace IziWatch.Controllers
             if (ModelState.IsValid)
             {
                 //Generated : db.Popularities.Add(popularity);
-                DataAccess.Popularity.CreatePopularity(popularity);
+                BusinessManagement.Popularity.CreatePopularity(popularity);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
@@ -70,7 +70,7 @@ namespace IziWatch.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             //Generated : Popularity popularity = db.Popularities.Find(id);
-            DBO.Popularity popularity = DataAccess.Popularity.GetPopularity((long)id);
+            DBO.Popularity popularity = BusinessManagement.Popularity.GetPopularity((int)id);
 
             if (popularity == null)
             {
@@ -89,7 +89,7 @@ namespace IziWatch.Controllers
             if (ModelState.IsValid)
             {
                 //db.Entry(popularity).State = EntityState.Modified;
-                DataAccess.Popularity.UpdatePopularity(popularity);
+                BusinessManagement.Popularity.UpdatePopularity(popularity);
 
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -105,7 +105,7 @@ namespace IziWatch.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             //Generated : Popularity popularity = db.Popularities.Find(id);
-            DBO.Popularity popularity = DataAccess.Popularity.GetPopularity((long)id);
+            DBO.Popularity popularity = BusinessManagement.Popularity.GetPopularity((int)id);
 
             if (popularity == null)
             {
@@ -121,7 +121,7 @@ namespace IziWatch.Controllers
         {
             //Generated : Popularity popularity = db.Popularities.Find(id);
             //Generated : db.Popularities.Remove(popularity);
-            DataAccess.Popularity.DeletePopularity((long)id);
+            BusinessManagement.Popularity.DeletePopularity((int)id);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

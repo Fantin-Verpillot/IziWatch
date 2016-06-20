@@ -18,7 +18,7 @@ namespace IziWatch.Controllers
         // GET: SocialArticles
         public ActionResult Index()
         {
-            return View(DataAccess.SocialArticle.GetListSocialArticle());
+            return View(BusinessManagement.SocialArticle.GetListSocialArticle());
         }
 
         // GET: SocialArticles/Details/5
@@ -29,7 +29,7 @@ namespace IziWatch.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             //Generated : SocialArticle socialArticle = db.SocialArticles.Find(id);
-            DBO.SocialArticle socialArticle = DataAccess.SocialArticle.GetSocialArticle((long)id);
+            DBO.SocialArticle socialArticle = BusinessManagement.SocialArticle.GetSocialArticle((int)id);
 
             if (socialArticle == null)
             {
@@ -54,7 +54,7 @@ namespace IziWatch.Controllers
             if (ModelState.IsValid)
             {
                 //Generated : db.SocialArticles.Add(socialArticle);
-                DataAccess.SocialArticle.CreateSocialArticle(socialArticle);
+                BusinessManagement.SocialArticle.CreateSocialArticle(socialArticle);
 
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -71,7 +71,7 @@ namespace IziWatch.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             //Generated : SocialArticle socialArticle = db.SocialArticles.Find(id);
-            DBO.SocialArticle socialArticle = DataAccess.SocialArticle.GetSocialArticle((long)id);
+            DBO.SocialArticle socialArticle = BusinessManagement.SocialArticle.GetSocialArticle((int)id);
 
             if (socialArticle == null)
             {
@@ -90,7 +90,7 @@ namespace IziWatch.Controllers
             if (ModelState.IsValid)
             {
                 //Generated : db.Entry(socialArticle).State = EntityState.Modified;
-                DataAccess.SocialArticle.UpdateSocialArticle(socialArticle);
+                BusinessManagement.SocialArticle.UpdateSocialArticle(socialArticle);
 
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -106,7 +106,7 @@ namespace IziWatch.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             //Generated : SocialArticle socialArticle = db.SocialArticles.Find(id);
-            DBO.SocialArticle socialArticle = DataAccess.SocialArticle.GetSocialArticle((long)id);
+            DBO.SocialArticle socialArticle = BusinessManagement.SocialArticle.GetSocialArticle((int)id);
 
             if (socialArticle == null)
             {
@@ -122,7 +122,7 @@ namespace IziWatch.Controllers
         {
             //Generated : SocialArticle socialArticle = db.SocialArticles.Find(id);
             //Generated : db.SocialArticles.Remove(socialArticle);
-            DataAccess.SocialArticle.DeleteSocialArticle(id);
+            BusinessManagement.SocialArticle.DeleteSocialArticle(id);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

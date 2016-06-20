@@ -13,7 +13,7 @@ namespace IziWatch.Controllers
         public ActionResult Index()
         {
             List<DBO.Article> articles = BusinessManagement.Article.GetListArticleByDate();
-            List<DBO.Category> categories = DataAccess.Category.GetListCategory();
+            List<DBO.Category> categories = BusinessManagement.Category.GetListCategory();
 
             string filter = Request["action"];
             List<int> categoryIds = new List<int>();

@@ -18,7 +18,7 @@ namespace IziWatch.Controllers
         // GET: Users
         public ActionResult Index()
         {
-            return View(DataAccess.User.GetListUser());
+            return View(BusinessManagement.User.GetListUser());
         }
 
         // GET: Users/Details/5
@@ -29,7 +29,7 @@ namespace IziWatch.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             //  Generated :  DBO.User user = db.Users.Find(id);
-            DBO.User user = DataAccess.User.GetUser((long) id);
+            DBO.User user = BusinessManagement.User.GetUser((int) id);
             if (user == null)
             {
                 return HttpNotFound();
@@ -53,7 +53,7 @@ namespace IziWatch.Controllers
             if (ModelState.IsValid)
             {
                 // Generated : db.Users.Add(user);
-                DataAccess.User.CreateUser(user);
+                BusinessManagement.User.CreateUser(user);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
@@ -69,7 +69,7 @@ namespace IziWatch.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             // Generated : User user = db.Users.Find(id);
-            DBO.User user = DataAccess.User.GetUser((long)id);
+            DBO.User user = BusinessManagement.User.GetUser((int)id);
 
             if (user == null)
             {
@@ -88,7 +88,7 @@ namespace IziWatch.Controllers
             if (ModelState.IsValid)
             {
                 // Generated : db.Entry(user).State = EntityState.Modified;
-                DataAccess.User.UpdateUser(user);
+                BusinessManagement.User.UpdateUser(user);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
@@ -103,7 +103,7 @@ namespace IziWatch.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             // Generated : User user = db.Users.Find(id);
-            DBO.User user = DataAccess.User.GetUser((long)id);
+            DBO.User user = BusinessManagement.User.GetUser((int)id);
 
             if (user == null)
             {
@@ -121,7 +121,7 @@ namespace IziWatch.Controllers
             User user = db.Users.Find(id);
             db.Users.Remove(user);
             */
-            DataAccess.User.DeleteUser((long)id);
+            BusinessManagement.User.DeleteUser((int)id);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

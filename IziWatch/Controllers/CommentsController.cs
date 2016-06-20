@@ -18,7 +18,7 @@ namespace IziWatch.Controllers
         // GET: Comments
         public ActionResult Index()
         {
-            return View(DataAccess.Comment.GetListComment());
+            return View(BusinessManagement.Comment.GetListComment());
         }
 
         // GET: Comments/Details/5
@@ -29,7 +29,7 @@ namespace IziWatch.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             //Generated : Comment comment = db.Comments.Find(id);
-            DBO.Comment comment = DataAccess.Comment.GetComment((long)id);
+            DBO.Comment comment = BusinessManagement.Comment.GetComment((int)id);
 
             if (comment == null)
             {
@@ -54,7 +54,7 @@ namespace IziWatch.Controllers
             if (ModelState.IsValid)
             {
                 //Generated : db.Comments.Add(comment);
-                DataAccess.Comment.CreateComment(comment);
+                BusinessManagement.Comment.CreateComment(comment);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
@@ -70,7 +70,7 @@ namespace IziWatch.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             //Generated : Comment comment = db.Comments.Find(id);
-            DBO.Comment comment = DataAccess.Comment.GetComment((long)id);
+            DBO.Comment comment = BusinessManagement.Comment.GetComment((int)id);
 
             if (comment == null)
             {
@@ -89,7 +89,7 @@ namespace IziWatch.Controllers
             if (ModelState.IsValid)
             {
                 //Generated : db.Entry(comment).State = EntityState.Modified;
-                DataAccess.Comment.UpdateComment(comment);
+                BusinessManagement.Comment.UpdateComment(comment);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
@@ -104,7 +104,7 @@ namespace IziWatch.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             //Generated : Comment comment = db.Comments.Find(id);
-            DBO.Comment comment = DataAccess.Comment.GetComment((long)id);
+            DBO.Comment comment = BusinessManagement.Comment.GetComment((int)id);
 
             if (comment == null)
             {
@@ -120,7 +120,7 @@ namespace IziWatch.Controllers
         {
             //Generated : Comment comment = db.Comments.Find(id);
             //Generated : db.Comments.Remove(comment);
-            DataAccess.Comment.DeleteComment((long)id);
+            BusinessManagement.Comment.DeleteComment((int)id);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

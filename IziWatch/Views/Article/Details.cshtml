@@ -9,10 +9,10 @@
         <h2 style="font-weight: 700;">@article.Title</h2>
         <p style="font-size: 18px; font-style: italic;">
             @{
-                String categoryName = IziWatch.DataAccess.Category.GetCategory(article.CategoryId).Name;
+                String categoryName = IziWatch.BusinessManagement.Category.GetCategory(article.CategoryId).Name;
                 if (categoryName != null)
                 {
-                    @IziWatch.DataAccess.Category.GetCategory(article.CategoryId).Name;
+                    @IziWatch.BusinessManagement.Category.GetCategory(article.CategoryId).Name;
                 }
             }
         </p>

@@ -15,7 +15,7 @@ namespace IziWatch.Controllers
             if (id == null)
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
 
-            DBO.Article article = DataAccess.Article.GetArticle((long)id);
+            DBO.Article article = BusinessManagement.Article.GetArticle((int)id);
             ViewBag.article = article;
 
             if (article == null)

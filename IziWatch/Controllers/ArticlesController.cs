@@ -1,12 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Data.Entity;
-using System.Linq;
-using System.Net;
-using System.Web;
+﻿using System.Net;
 using System.Web.Mvc;
-using IziWatch.DBO;
 using IziWatch.DataAccess;
 
 namespace IziWatch.Controllers
@@ -18,7 +11,7 @@ namespace IziWatch.Controllers
         // GET: Articles
         public ActionResult Index()
         {
-            return View(DataAccess.Article.GetListArticle());
+            return View(BusinessManagement.Article.GetListArticle());
         }
 
         // GET: Articles/Details/5
@@ -28,7 +21,7 @@ namespace IziWatch.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            DBO.Article article = DataAccess.Article.GetArticle((long)id);
+            DBO.Article article = BusinessManagement.Article.GetArticle((int)id);
             if (article == null)
             {
                 return HttpNotFound();
@@ -51,7 +44,7 @@ namespace IziWatch.Controllers
         {
             if (ModelState.IsValid)
             {
-                DataAccess.Article.CreateArticle(article);
+                BusinessManagement.Article.CreateArticle(article);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
@@ -66,7 +59,7 @@ namespace IziWatch.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            DBO.Article article = DataAccess.Article.GetArticle((long)id);
+            DBO.Article article = BusinessManagement.Article.GetArticle((int)id);
             if (article == null)
             {
                 return HttpNotFound();
@@ -83,7 +76,7 @@ namespace IziWatch.Controllers
         {
             if (ModelState.IsValid)
             {
-                DataAccess.Article.UpdateArticle(article);
+                BusinessManagement.Article.UpdateArticle(article);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
@@ -97,7 +90,7 @@ namespace IziWatch.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            DBO.Article article = DataAccess.Article.GetArticle((long)id);
+            DBO.Article article = BusinessManagement.Article.GetArticle((int)id);
             if (article == null)
             {
                 return HttpNotFound();
@@ -110,7 +103,7 @@ namespace IziWatch.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            DataAccess.Article.DeleteArticle(id);
+            BusinessManagement.Article.DeleteArticle(id);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

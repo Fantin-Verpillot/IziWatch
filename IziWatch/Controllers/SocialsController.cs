@@ -18,7 +18,7 @@ namespace IziWatch.Controllers
         // GET: Socials
         public ActionResult Index()
         {
-            return View(DataAccess.Social.GetListSocial());
+            return View(BusinessManagement.Social.GetListSocial());
         }
 
         // GET: Socials/Details/5
@@ -29,7 +29,7 @@ namespace IziWatch.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             //Generated : Social social = db.Socials.Find(id);
-            DBO.Social social = DataAccess.Social.GetSocial((long)id);
+            DBO.Social social = BusinessManagement.Social.GetSocial((int)id);
 
             if (social == null)
             {
@@ -54,7 +54,7 @@ namespace IziWatch.Controllers
             if (ModelState.IsValid)
             {
                 //Generated : db.Socials.Add(social);
-                DataAccess.Social.CreateSocial(social);
+                BusinessManagement.Social.CreateSocial(social);
 
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -71,7 +71,7 @@ namespace IziWatch.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             //Generated : Social social = db.Socials.Find(id);
-            DBO.Social social = DataAccess.Social.GetSocial((long)id);
+            DBO.Social social = BusinessManagement.Social.GetSocial((int)id);
 
             if (social == null)
             {
@@ -90,7 +90,7 @@ namespace IziWatch.Controllers
             if (ModelState.IsValid)
             {
                 //Generated : db.Entry(social).State = EntityState.Modified;
-                DataAccess.Social.UpdateSocial(social);
+                BusinessManagement.Social.UpdateSocial(social);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
@@ -105,7 +105,7 @@ namespace IziWatch.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             //Generated : Social social = db.Socials.Find(id);
-            DBO.Social social = DataAccess.Social.GetSocial((long)id);
+            DBO.Social social = BusinessManagement.Social.GetSocial((int)id);
 
             if (social == null)
             {
@@ -121,7 +121,7 @@ namespace IziWatch.Controllers
         {
             //Generated : Social social = db.Socials.Find(id);
             //Generated : db.Socials.Remove(social);
-            DataAccess.Social.DeleteSocial(id);
+            BusinessManagement.Social.DeleteSocial(id);
             db.SaveChanges();
             return RedirectToAction("Index");
         }
