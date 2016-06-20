@@ -198,6 +198,12 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="BusinessManagement\Article.cs" />
+    <Compile Include="BusinessManagement\Category.cs" />
+    <Compile Include="BusinessManagement\Comment.cs" />
+    <Compile Include="BusinessManagement\Popularity.cs" />
+    <Compile Include="BusinessManagement\Social.cs" />
+    <Compile Include="BusinessManagement\SocialArticle.cs" />
+    <Compile Include="BusinessManagement\User.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\ArticleController.cs" />
