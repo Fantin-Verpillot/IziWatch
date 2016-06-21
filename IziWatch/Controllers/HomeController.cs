@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 
 namespace IziWatch.Controllers
@@ -28,11 +26,34 @@ namespace IziWatch.Controllers
                     }
                     articles = BusinessManagement.Article.FilterByCategories(articles, categoryIds);
                 }
+                DateTime beginDate;
+                DateTime endDate;
+                try
+                {
+                    if (Request["beginDate"] == "") {
+                        beginDate = DateTime.MinValue;
+                    } else {
+                        beginDate = DateTime.Parse(Request["beginDate"]);
+                    }
+                    if (Request["endDate"] == "") {
+                        endDate = DateTime.MaxValue;
+                    } else {
+                        endDate = DateTime.Parse(Request["endDate"]);
+                    }
+                    articles = BusinessManagement.Article.FilterByDates(articles, beginDate, endDate);
+                }
+                catch (Exception e)
+                {
+                    // TODO : handle error
+                    Debug.WriteLine("[DEBUG][HOME][INDEX] - Error in date format.");
+                }
             }
 
             ViewBag.articles = articles;
             ViewBag.categories = categories;
             ViewBag.categoryChecks = categoryIds;
+            ViewBag.beginDate = Request["beginDate"];
+            ViewBag.endDate = Request["endDate"];
             return View();
         }
 

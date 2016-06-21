@@ -27,6 +27,19 @@ namespace IziWatch.BusinessManagement
             return filterArticles;
         }
 
+        public static List<DBO.Article> FilterByDates(List<DBO.Article> articles, DateTime beginDate, DateTime endDate)
+        {
+            List<DBO.Article> filterArticles = new List<DBO.Article>();
+            foreach (DBO.Article article in articles)
+            {
+                if (article.Date >= beginDate && article.Date <= endDate)
+                {
+                    filterArticles.Add(article);
+                }
+            }
+            return filterArticles;
+        }
+
         public static bool CreateArticle(DBO.Article article)
         {
             return DataAccess.Article.CreateArticle(article);
