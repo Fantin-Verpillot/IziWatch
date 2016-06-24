@@ -7,6 +7,19 @@ namespace IziWatch.BusinessManagement
 {
     public class Popularity
     {
+        public static DBO.Popularity GetPopularityByUserAndArticle(DBO.Article article, DBO.User user)
+        {
+            List<DBO.Popularity> popularities = BusinessManagement.Popularity.GetListPopularity();
+            foreach (DBO.Popularity popularity in popularities)
+            {
+                if (popularity.UserId == user.Id && popularity.ArticleId == article.Id)
+                {
+                    return popularity;
+                }
+            }
+            return null;
+        }
+
         public static bool CreatePopularity(DBO.Popularity popularity)
         {
             return DataAccess.Popularity.CreatePopularity(popularity);

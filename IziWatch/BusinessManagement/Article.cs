@@ -36,12 +36,37 @@ namespace IziWatch.BusinessManagement
 
         public static bool LikeArticle(DBO.Article article, DBO.User user)
         {
-            List<DBO.Popularity> popularities = BusinessManagement.Popularity.GetListPopularity();
-            foreach (DBO.Popularity popularity in popularities)
+            DBO.Popularity popularity = BusinessManagement.Popularity.GetPopularityByUserAndArticle(article, user);
             {
-                if (popularity.UserId == user.Id && popularity.ArticleId == article.Id)
+                if (popularity != null)
                 {
                     popularity.Liked = true;
+                    return BusinessManagement.Popularity.UpdatePopularity(popularity);
+                }
+            }
+            return false;
+        }
+
+        public static bool UnlikeArticle(DBO.Article article, DBO.User user)
+        {
+            DBO.Popularity popularity = BusinessManagement.Popularity.GetPopularityByUserAndArticle(article, user);
+            {
+                if (popularity != null)
+                {
+                    popularity.Liked = false;
+                    return BusinessManagement.Popularity.UpdatePopularity(popularity);
+                }
+            }
+            return false;
+        }
+
+        public static bool ViewArticle(DBO.Article article, DBO.User user)
+        {
+            DBO.Popularity popularity = BusinessManagement.Popularity.GetPopularityByUserAndArticle(article, user);
+            {
+                if (popularity != null)
+                {
+                    popularity.Viewed = true;
                     return BusinessManagement.Popularity.UpdatePopularity(popularity);
                 }
             }
