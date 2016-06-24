@@ -2,11 +2,18 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using IziWatch.DBO;
 
 namespace IziWatch.BusinessManagement
 {
     public class Article
     {
+        public static bool IncrementArticleViews(DBO.Article article)
+        {
+            article.Views = article.Views + 1;
+            return DataAccess.Article.UpdateArticle(article);
+        }
+
         public static List<DBO.Article> GetListArticleByDate()
         {
             List<DBO.Article> articles = DataAccess.Article.GetListArticle();
@@ -25,6 +32,20 @@ namespace IziWatch.BusinessManagement
                 }
             }
             return filterArticles;
+        }
+
+        public static bool LikeArticle(DBO.Article article, DBO.User user)
+        {
+            List<DBO.Popularity> popularities = BusinessManagement.Popularity.GetListPopularity();
+            foreach (DBO.Popularity popularity in popularities)
+            {
+                if (popularity.UserId == user.Id && popularity.ArticleId == article.Id)
+                {
+                    popularity.Liked = true;
+                    return BusinessManagement.Popularity.UpdatePopularity(popularity);
+                }
+            }
+            return false;
         }
 
         public static List<DBO.Article> FilterByDates(List<DBO.Article> articles, DateTime beginDate, DateTime endDate)
