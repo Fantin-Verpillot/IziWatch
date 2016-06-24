@@ -40,7 +40,7 @@ namespace IziWatch.Controllers
         // plus de détails, voir  http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Title,Image,CategoryId,Text,Date")] DBO.Article article)
+        public ActionResult Create([Bind(Include = "Id,Title,Image,CategoryId,Text,Date,Views")] DBO.Article article)
         {
             if (ModelState.IsValid)
             {
@@ -72,7 +72,7 @@ namespace IziWatch.Controllers
         // plus de détails, voir  http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Title,Image,CategoryId,Text,Date")] DBO.Article article)
+        public ActionResult Edit([Bind(Include = "Id,Title,Image,CategoryId,Text,Date,Views")] DBO.Article article)
         {
             if (ModelState.IsValid)
             {

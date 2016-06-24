@@ -382,17 +382,17 @@
     <Content Include="Views\SocialArticles\Details.cshtml" />
     <Content Include="Views\SocialArticles\Edit.cshtml" />
     <Content Include="Views\SocialArticles\Index.cshtml" />
-    <Content Include="Views\Articles\Create.cshtml" />
-    <Content Include="Views\Articles\Delete.cshtml" />
-    <Content Include="Views\Articles\Details.cshtml" />
-    <Content Include="Views\Articles\Edit.cshtml" />
-    <Content Include="Views\Articles\Index.cshtml" />
     <Content Include="Views\Article\Details.cshtml" />
     <Content Include="Views\Admin\Index.cshtml" />
     <Content Include="Views\Admin\CreateArticle.cshtml" />
     <Content Include="Views\Admin\CreateArticleFB.cshtml" />
     <Content Include="Views\Admin\CreateArticleTwitter.cshtml" />
     <Content Include="Views\Admin\HandleAccounts.cshtml" />
+    <Content Include="Views\Articles\Create.cshtml" />
+    <Content Include="Views\Articles\Delete.cshtml" />
+    <Content Include="Views\Articles\Details.cshtml" />
+    <Content Include="Views\Articles\Edit.cshtml" />
+    <Content Include="Views\Articles\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
