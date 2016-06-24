@@ -7,6 +7,20 @@ namespace IziWatch.BusinessManagement
 {
     public class Comment
     {
+        public static List<DBO.Comment> GetCommentsByArticle(DBO.Article article)
+        {
+            List<DBO.Comment> comments = DataAccess.Comment.GetListComment();
+            List<DBO.Comment> formatedComments = new List<DBO.Comment>();
+            foreach (DBO.Comment comment in comments)
+            {
+                if (comment.ArticleId == article.Id)
+                {
+                    formatedComments.Add(comment);
+                }
+            }
+            return formatedComments;
+        }
+
         public static bool CreateComment(DBO.Comment comment)
         {
             return DataAccess.Comment.CreateComment(comment);

@@ -19,6 +19,7 @@ namespace IziWatch.Controllers
             // TODO : get connected user and test connection
             DBO.User user = BusinessManagement.User.GetListUser().First();
             DBO.Article article = BusinessManagement.Article.GetArticle((int)id);
+            List<DBO.Comment> comments = new List<DBO.Comment>();
             
             if (article == null)
             {
@@ -48,10 +49,12 @@ namespace IziWatch.Controllers
                     BusinessManagement.Article.ViewArticle(article, user);
                 }
                 BusinessManagement.Article.IncrementArticleViews(article);
+                comments = BusinessManagement.Comment.GetCommentsByArticle(article);
             }
 
             ViewBag.userConnected = user;
             ViewBag.article = article;
+            ViewBag.comments = comments;
             return View();
         }
     }
