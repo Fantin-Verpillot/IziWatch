@@ -6,94 +6,75 @@
 
 <div class="row" style="margin-top: 30px;">
     <div class="col-md-3">
-        <div class="filter">
-            <div class="row">
-                <div class="col-md-12">
-                    <p class="title">Filtres</p>
-                </div>
-            </div>
 
-            <hr style="margin-top: 0;" />
-
-            <form method="GET" action="/Home/Index">
-
-                <div class="row">
-                    <div class="col-md-12">
-                        <p class="subtitle">Date :</p>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-2 col-md-offset-1 date">
-                        From :
-                    </div>
-                    <div class="col-md-8">
+        <form method="GET" action="/Home/Index" class="form-horizontal" style="border : 1px solid #dddddd; padding: 15px;">
+            <fieldset>
+                <legend class="text-center">Filtres</legend>
+                <div class="form-group">
+                    <label class="col-lg-3 control-label">From : </label>
+                    <div class="col-lg-9">
                         <input type="text" id="datepickerBeginDate" value="@ViewBag.beginDate" class="form-control" name="beginDate">
                     </div>
                 </div>
-                <div class="row" style="margin-top: 5px;">
-                    <div class="col-md-2 col-md-offset-1 date">
-                        To :
-                    </div>
 
-                    <div class="col-md-8">
+                <div class="form-group">
+                    <label class="col-lg-3 control-label">To : </label>
+                    <div class="col-lg-9">
                         <input type="text" id="datepickerEndDate" value="@ViewBag.endDate" class="form-control" name="endDate">
                     </div>
                 </div>
 
                 <br />
 
-                <div class="row">
-                    <div class="col-md-12">
-                        <p class="subtitle">Popularité :</p>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-12">
-                        <p class="popularity">
-                            <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
-                            <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
-                            <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
-                            <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
-                            <span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span>
-                        </p>
+                <div class="form-group" style="margin-bottom: 0; font-weight: 700;">
+                    <div class="col-lg-12">
+                        Popularité :
                     </div>
                 </div>
 
-
-                <div class="row">
-                    <div class="col-md-12">
-                        <p class="subtitle">Catégories :</p>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="well">
-                            @foreach (var category in ViewBag.categories)
-                            {
-                                <div class="row">
-                                    <div class="col-md-12 category">
-                                        @if (ViewBag.categoryChecks.Contains(category.Id)) {
-                                            <label><input type="checkbox" name="categories" value="@category.Id" checked> @category.Name</label>
-                                        } else {
-                                            <label><input type="checkbox" name="categories" value="@category.Id"> @category.Name</label>
-                                        }
-                                        
-                                    </div>
-                                </div>
-                            }
+                <div class="form-group">
+                    <div class="col-lg-12">
+                        <div class="checkbox">
+                            <label>
+                                <input type="checkbox" name="popularity" value=""> Les plus populaires
+                            </label>
                         </div>
                     </div>
                 </div>
 
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="text-center">
-                            <input name="action" type="submit" class="btn btn-primary btn-block refresh" value="Actualiser">
-                        </div>
+                <br />
+
+                <div class="form-group" style="margin-bottom: 5px; font-weight: 700;">
+                    <div class="col-lg-12">
+                        Catégories :
                     </div>
                 </div>
-            </form>
-        </div>
+
+                <div class="form-group">
+                    <div class="col-lg-12">
+                        @foreach (var category in ViewBag.categories)
+                        {
+                            <div class="checkbox">
+                                @if (ViewBag.categoryChecks.Contains(category.Id))
+                                {
+                                    <label style="font-weight: normal;"><input type="checkbox" name="categories" value="@category.Id" checked> @category.Name</label>
+                                }
+                                else {
+                                    <label style="font-weight: normal;"><input type="checkbox" name="categories" value="@category.Id"> @category.Name</label>
+                                }
+                            </div>
+                        }
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-lg-10 col-lg-offset-1">
+                        <input name="action" type="submit" class="btn btn-primary btn-block refresh" value="Actualiser">
+                    </div>
+                </div>
+            </fieldset>
+        </form>
+     
     </div>
 
     <div class="col-md-9">
@@ -114,10 +95,10 @@
                                 }
                             }
                         </div>
-                        <div style="display:table; height: 110px; padding: 10px;">
+                        <div style="display:table; height: 100px; padding: 10px;">
 
                             <div style="display:table-cell; vertical-align: middle; text-align: center;">
-                                <a style="font-size: 16px; color: black;" href="/Article/Details/@article.Id">@article.Title</a>
+                                <a style="font-size: 15px; color: black;" href="/Article/Details/@article.Id">@article.Title</a>
                             </div>
                         </div>
                     </div>
