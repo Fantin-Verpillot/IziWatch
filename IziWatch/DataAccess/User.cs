@@ -109,6 +109,39 @@ namespace IziWatch.DataAccess
             }
         }
 
+        public static DBO.User GetUser(String login, String password)
+        {
+            using (IziWatchEntities bdd = new IziWatchEntities())
+            {
+                try
+                {
+                    var query = from user in bdd.T_User
+                                where user.login == login && user.password == password
+                                select user;
+
+                    if (query.Any())
+                    {
+                        return new DBO.User()
+                        {
+                            Id = query.First().id,
+                            Login = query.First().login,
+                            Password = query.First().password,
+                            Email = query.First().email,
+                            Role = query.First().role
+                        };
+                    }
+                    else
+                    {
+                        return null;
+                    }
+                }
+                catch (Exception e)
+                {
+                    return null;
+                }
+            }
+        }
+
         public static List<DBO.User> GetListUser()
         {
             using (IziWatchEntities bdd = new IziWatchEntities())
