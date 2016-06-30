@@ -8,6 +8,13 @@ namespace IziWatch.BusinessManagement
 {
     public class Article
     {
+        public static DBO.Article GetArticleByMaxId()
+        {
+            List<DBO.Article> articles = GetListArticle();
+            articles.Sort((x, y) => x.Id.CompareTo(y.Id));
+            return articles[articles.Count - 1];
+        }
+
         public static bool IncrementArticleViews(DBO.Article article)
         {
             article.Views = article.Views + 1;
@@ -112,7 +119,24 @@ namespace IziWatch.BusinessManagement
 
         public static bool CreateArticle(DBO.Article article)
         {
-            return DataAccess.Article.CreateArticle(article);
+            bool res = DataAccess.Article.CreateArticle(article);
+            if (res)
+            {
+                DBO.Article newArticle = GetArticleByMaxId();
+                List<DBO.User> users = BusinessManagement.User.GetListUser();
+                DBO.Popularity popularity;
+                foreach (DBO.User user in users)
+                {
+                    popularity = new DBO.Popularity();
+                    popularity.Liked = false;
+                    popularity.Viewed = false;
+                    popularity.ArticleId = newArticle.Id;
+                    popularity.UserId = user.Id;
+                    BusinessManagement.Popularity.CreatePopularity(popularity);
+                }
+                return true;
+            }
+            return false;
         }
 
         public static bool DeleteArticle(long id)

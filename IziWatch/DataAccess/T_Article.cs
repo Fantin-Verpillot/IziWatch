@@ -19,7 +19,6 @@ namespace IziWatch.DataAccess
         {
             this.T_Comment = new HashSet<T_Comment>();
             this.T_Popularity = new HashSet<T_Popularity>();
-            this.T_SocialArticle = new HashSet<T_SocialArticle>();
         }
     
         public int id { get; set; }
@@ -35,7 +34,5 @@ namespace IziWatch.DataAccess
         public virtual ICollection<T_Comment> T_Comment { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<T_Popularity> T_Popularity { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<T_SocialArticle> T_SocialArticle { get; set; }
     }
 }

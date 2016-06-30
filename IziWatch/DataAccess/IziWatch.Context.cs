@@ -30,9 +30,9 @@ namespace IziWatch.DataAccess
         public virtual DbSet<T_Comment> T_Comment { get; set; }
         public virtual DbSet<T_Popularity> T_Popularity { get; set; }
         public virtual DbSet<T_Social> T_Social { get; set; }
-        public virtual DbSet<T_SocialArticle> T_SocialArticle { get; set; }
         public virtual DbSet<T_User> T_User { get; set; }
+        public virtual DbSet<T_SocialArticle> T_SocialArticle { get; set; }
 
-        public System.Data.Entity.DbSet<IziWatch.DBO.Article> Articles { get; set; }
+        public System.Data.Entity.DbSet<IziWatch.DBO.SocialArticle> SocialArticles { get; set; }
     }
 }

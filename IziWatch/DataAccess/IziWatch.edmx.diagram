@@ -4,21 +4,20 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="8a288f84d1eb42bdbc1c897973c1fe70" Name="Diagram1" ZoomLevel="100">
+      <Diagram DiagramId="8a288f84d1eb42bdbc1c897973c1fe70" Name="Diagram1" ZoomLevel="74">
         <EntityTypeShape EntityType="IziWatchModel.T_Article" Width="1.5" PointX="3" PointY="4" IsExpanded="true" />
         <EntityTypeShape EntityType="IziWatchModel.T_Category" Width="1.5" PointX="0.75" PointY="4.5" IsExpanded="true" />
         <EntityTypeShape EntityType="IziWatchModel.T_Comment" Width="1.5" PointX="5.25" PointY="4.125" IsExpanded="true" />
         <EntityTypeShape EntityType="IziWatchModel.T_Popularity" Width="1.5" PointX="8.25" PointY="4.125" IsExpanded="true" />
         <EntityTypeShape EntityType="IziWatchModel.T_Social" Width="1.5" PointX="3" PointY="1.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="IziWatchModel.T_SocialArticle" Width="1.5" PointX="5.25" PointY="1.375" IsExpanded="true" />
         <EntityTypeShape EntityType="IziWatchModel.T_User" Width="1.5" PointX="3" PointY="8.125" IsExpanded="true" />
         <AssociationConnector Association="IziWatchModel.FK_Article_Category" ManuallyRouted="false" />
         <AssociationConnector Association="IziWatchModel.FK_Comment_Article" ManuallyRouted="false" />
         <AssociationConnector Association="IziWatchModel.FK_Popularity_Article" ManuallyRouted="false" />
-        <AssociationConnector Association="IziWatchModel.FK_SocialArticle_Article" ManuallyRouted="false" />
         <AssociationConnector Association="IziWatchModel.FK_Comment_User" ManuallyRouted="false" />
         <AssociationConnector Association="IziWatchModel.FK_Popularity_User" ManuallyRouted="false" />
-        <AssociationConnector Association="IziWatchModel.FK_SocialArticle_Social" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="IziWatchModel.T_SocialArticle" Width="1.5" PointX="5.25" PointY="0.75" />
+        <AssociationConnector Association="IziWatchModel.FK_SocialArticle_Social" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

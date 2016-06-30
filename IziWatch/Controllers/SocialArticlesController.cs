@@ -28,9 +28,7 @@ namespace IziWatch.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            //Generated : SocialArticle socialArticle = db.SocialArticles.Find(id);
             DBO.SocialArticle socialArticle = BusinessManagement.SocialArticle.GetSocialArticle((int)id);
-
             if (socialArticle == null)
             {
                 return HttpNotFound();
@@ -49,13 +47,11 @@ namespace IziWatch.Controllers
         // plus de détails, voir  http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,ArticleId,SocialId")] DBO.SocialArticle socialArticle)
+        public ActionResult Create([Bind(Include = "Id,Text,Image,SocialId")] DBO.SocialArticle socialArticle)
         {
             if (ModelState.IsValid)
             {
-                //Generated : db.SocialArticles.Add(socialArticle);
                 BusinessManagement.SocialArticle.CreateSocialArticle(socialArticle);
-
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
@@ -70,9 +66,7 @@ namespace IziWatch.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            //Generated : SocialArticle socialArticle = db.SocialArticles.Find(id);
             DBO.SocialArticle socialArticle = BusinessManagement.SocialArticle.GetSocialArticle((int)id);
-
             if (socialArticle == null)
             {
                 return HttpNotFound();
@@ -85,13 +79,11 @@ namespace IziWatch.Controllers
         // plus de détails, voir  http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,ArticleId,SocialId")] DBO.SocialArticle socialArticle)
+        public ActionResult Edit([Bind(Include = "Id,Text,Image,SocialId")] DBO.SocialArticle socialArticle)
         {
             if (ModelState.IsValid)
             {
-                //Generated : db.Entry(socialArticle).State = EntityState.Modified;
                 BusinessManagement.SocialArticle.UpdateSocialArticle(socialArticle);
-
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
@@ -105,9 +97,7 @@ namespace IziWatch.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            //Generated : SocialArticle socialArticle = db.SocialArticles.Find(id);
             DBO.SocialArticle socialArticle = BusinessManagement.SocialArticle.GetSocialArticle((int)id);
-
             if (socialArticle == null)
             {
                 return HttpNotFound();
@@ -120,8 +110,6 @@ namespace IziWatch.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            //Generated : SocialArticle socialArticle = db.SocialArticles.Find(id);
-            //Generated : db.SocialArticles.Remove(socialArticle);
             BusinessManagement.SocialArticle.DeleteSocialArticle(id);
             db.SaveChanges();
             return RedirectToAction("Index");
