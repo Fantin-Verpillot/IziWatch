@@ -39,8 +39,8 @@
 
 <div class="row">
     <div class="col-md-12">
-        <div class="pull-right">
-            Date de création : @article.Date.ToString().Split(' ')[0]
+        <div class="pull-right" style="font-size: 15px; font-weight: 700;">
+            Date de création : @article.Date.ToString().Split(' ')[0] | @article.Views Vues
 
             @if(ViewBag.userConnected != null)
             {
@@ -49,13 +49,13 @@
                 if (ViewBag.popularity.Liked)
                 {
                 <a href="/Article/Details/@article.Id?action=unlike" class="btn btn-warning pull-right btn-xs" style="margin-left: 7px;">
-                    <span class="glyphicon glyphicon-heart-empty" aria-hidden="true"></span> Unlike
+                    <span class="glyphicon glyphicon-heart-empty" aria-hidden="true"></span> Unlike (@ViewBag.countLikes)
                 </a>
                 }
                 else
                 {
                 <a href="/Article/Details/@article.Id?action=like" class="btn btn-danger pull-right btn-xs" style="margin-left: 7px;">
-                    <span class="glyphicon glyphicon-heart" aria-hidden="true"></span> Like
+                    <span class="glyphicon glyphicon-heart" aria-hidden="true"></span> Like (@ViewBag.countLikes)
                 </a>
                 }
             }
@@ -66,7 +66,7 @@
 
 <div class="row" style="margin-top: 50px;">
     <div class="col-md-12">
-        <h3 style="font-weight:700">Commentaires (@IziWatch.BusinessManagement.Comment.GetListComment().Count())</h3>
+        <h3 style="font-weight:700">Commentaires (@ViewBag.comments.Count)</h3>
     </div>
 </div>
 
@@ -93,7 +93,6 @@
                         <label for="textArea" class="col-lg-2 control-label">Texte :</label>
                         <div class="col-lg-10">
                             <textarea class="form-control" name="commentText" rows="2" style="max-width: none !important;"></textarea>
-                            <span class="help-block">A longer block of help text that breaks onto a new line and may extend beyond one line.</span>
                         </div>
                     </div>
 
@@ -117,8 +116,7 @@
     <div class="row">
         <div class="col-md-7">
             <div class="comment">
-                <p class="username">@IziWatch.BusinessManagement.User.GetUser(comment.UserId).Login</p>
-                <p class="title">@comment.Title</p>
+                <p class="username">@comment.Title (écrit par @IziWatch.BusinessManagement.User.GetUser(comment.UserId).Login)</p>
                 <p class="text">@comment.Text</p>
             </div>
         </div>
