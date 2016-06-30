@@ -22,11 +22,29 @@ namespace IziWatch.Controllers
 
         public ActionResult CreateArticleFB()
         {
+            List<DBO.Social> socialsFB = new List<DBO.Social>();
+            foreach (DBO.Social social in BusinessManagement.Social.GetListSocial())
+            {
+                if (social.Type == "facebook")
+                    socialsFB.Add(social);
+            }
+
+            ViewBag.socialsFB = socialsFB;
             return View();
         }
 
         public ActionResult CreateArticleTwitter()
         {
+            List<DBO.Social> socials = BusinessManagement.Social.GetListSocial();
+            List<DBO.Social> socialsTwitter = new List<DBO.Social>();
+
+            foreach (DBO.Social social in socials)
+            {
+                if (social.Type == "twitter")
+                    socialsTwitter.Add(social);
+            }
+
+            ViewBag.socialsTwitter = socialsTwitter;
             return View();
         }
 

@@ -3,7 +3,30 @@
     ViewBag.Title = "CreateArticleTwitter";
 }
 
-<h2>Liste des comptes Twitter</h2>
+<h2>Créer un article social avec Twitter</h2>
 
 <hr />
 
+<div class="row">
+    <div class="col-md-12">
+        <form class="form-inline" role="form">
+            <div class="form-group">
+                <label for="page">Choix de la page :</label>
+                <select class="form-control" id="page">
+                    @foreach (var social in ViewBag.socialsTwitter)
+                    {
+                        <option value="@social.Identifier">@social.Account</option>
+                    }
+                </select>
+            </div>
+            <button type="submit" class="btn btn-primary" style="margin-top: 28px">Valider</button>
+        </form>
+
+    </div>
+</div>
+
+<hr />
+
+<div class="row">
+
+</div>
