@@ -26,6 +26,10 @@ namespace IziWatch.Controllers
                     }
                     articles = BusinessManagement.Article.FilterByCategories(articles, categoryIds);
                 }
+                if (Request["popular"] != null)
+                {
+                    articles = BusinessManagement.Article.FilterByPopularity(articles);
+                }
                 DateTime beginDate;
                 DateTime endDate;
                 try
@@ -52,6 +56,7 @@ namespace IziWatch.Controllers
             ViewBag.articles = articles;
             ViewBag.categories = categories;
             ViewBag.categoryChecks = categoryIds;
+            ViewBag.popularityCheck = Request["popular"] != null;
             ViewBag.beginDate = Request["beginDate"];
             ViewBag.endDate = Request["endDate"];
             return View();

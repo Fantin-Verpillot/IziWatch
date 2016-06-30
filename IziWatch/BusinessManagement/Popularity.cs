@@ -20,6 +20,20 @@ namespace IziWatch.BusinessManagement
             return null;
         }
 
+        public static int countLikeArticle(DBO.Article article)
+        {
+            List<DBO.Popularity> popularities = BusinessManagement.Popularity.GetListPopularity();
+            int countLikes = 0;
+            foreach (DBO.Popularity popularity in popularities)
+            {
+                if (popularity.ArticleId == article.Id && popularity.Liked)
+                {
+                    ++countLikes;
+                }
+            }
+            return countLikes;
+        }
+
         public static bool CreatePopularity(DBO.Popularity popularity)
         {
             return DataAccess.Popularity.CreatePopularity(popularity);

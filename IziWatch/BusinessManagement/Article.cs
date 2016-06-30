@@ -34,6 +34,30 @@ namespace IziWatch.BusinessManagement
             return filterArticles;
         }
 
+        public static List<DBO.Article> FilterByPopularity(List<DBO.Article> articles)
+        {
+            List<DBO.Article> filterArticles = new List<DBO.Article>();
+            List<Tuple<DBO.Article, int>> articleMarks = new List<Tuple<DBO.Article, int>>();
+            int mark;
+            foreach (DBO.Article article in articles)
+            {
+                mark = article.Views + 5 * BusinessManagement.Popularity.countLikeArticle(article);
+                articleMarks.Add(new Tuple<DBO.Article, int>(article, mark));
+            }
+            articleMarks.Sort((x, y) => y.Item2.CompareTo(x.Item2));
+            int countOcc = 0;
+            foreach (Tuple<DBO.Article, int> articleMark in articleMarks)
+            {
+                filterArticles.Add(articleMark.Item1);
+                ++countOcc;
+                if (countOcc == 10)
+                {
+                    break;
+                }
+            }
+            return filterArticles;
+        }
+
         public static bool LikeArticle(DBO.Article article, DBO.User user)
         {
             DBO.Popularity popularity = BusinessManagement.Popularity.GetPopularityByUserAndArticle(article, user);
