@@ -57,8 +57,9 @@
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="article_id" Type="int" Nullable="false" />
           <Property Name="social_id" Type="int" Nullable="false" />
+          <Property Name="text" Type="text" Nullable="false" />
+          <Property Name="image" Type="text" Nullable="false" />
         </EntityType>
         <EntityType Name="T_User">
           <Key>
@@ -140,20 +141,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_SocialArticle_Article">
-          <End Role="T_Article" Type="Self.T_Article" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Role="T_SocialArticle" Type="Self.T_SocialArticle" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="T_Article">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="T_SocialArticle">
-              <PropertyRef Name="article_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_SocialArticle_Social">
           <End Role="T_Social" Type="Self.T_Social" Multiplicity="1">
             <OnDelete Action="Cascade" />
@@ -196,10 +183,6 @@
             <End Role="T_User" EntitySet="T_User" />
             <End Role="T_Popularity" EntitySet="T_Popularity" />
           </AssociationSet>
-          <AssociationSet Name="FK_SocialArticle_Article" Association="Self.FK_SocialArticle_Article">
-            <End Role="T_Article" EntitySet="T_Article" />
-            <End Role="T_SocialArticle" EntitySet="T_SocialArticle" />
-          </AssociationSet>
           <AssociationSet Name="FK_SocialArticle_Social" Association="Self.FK_SocialArticle_Social">
             <End Role="T_Social" EntitySet="T_Social" />
             <End Role="T_SocialArticle" EntitySet="T_SocialArticle" />
@@ -220,7 +203,6 @@
           <NavigationProperty Name="T_Category" Relationship="Self.FK_Article_Category" FromRole="T_Article" ToRole="T_Category" />
           <NavigationProperty Name="T_Comment" Relationship="Self.FK_Comment_Article" FromRole="T_Article" ToRole="T_Comment" />
           <NavigationProperty Name="T_Popularity" Relationship="Self.FK_Popularity_Article" FromRole="T_Article" ToRole="T_Popularity" />
-          <NavigationProperty Name="T_SocialArticle" Relationship="Self.FK_SocialArticle_Article" FromRole="T_Article" ToRole="T_SocialArticle" />
           <Property Name="text" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="date" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="views" Type="Int32" Nullable="false" />
@@ -264,17 +246,7 @@
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="type" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="account" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="T_SocialArticle" Relationship="Self.FK_SocialArticle_Social" FromRole="T_Social" ToRole="T_SocialArticle" />
-        </EntityType>
-        <EntityType Name="T_SocialArticle">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="article_id" Type="Int32" Nullable="false" />
-          <Property Name="social_id" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="T_Article" Relationship="Self.FK_SocialArticle_Article" FromRole="T_SocialArticle" ToRole="T_Article" />
-          <NavigationProperty Name="T_Social" Relationship="Self.FK_SocialArticle_Social" FromRole="T_SocialArticle" ToRole="T_Social" />
+          <NavigationProperty Name="T_SocialArticle" Relationship="IziWatchModel.FK_SocialArticle_Social" FromRole="T_Social" ToRole="T_SocialArticle" />
         </EntityType>
         <EntityType Name="T_User">
           <Key>
@@ -330,20 +302,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_SocialArticle_Article">
-          <End Role="T_Article" Type="Self.T_Article" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Role="T_SocialArticle" Type="Self.T_SocialArticle" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="T_Article">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="T_SocialArticle">
-              <PropertyRef Name="article_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Comment_User">
           <End Role="T_User" Type="Self.T_User" Multiplicity="1">
             <OnDelete Action="Cascade" />
@@ -372,27 +330,12 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_SocialArticle_Social">
-          <End Role="T_Social" Type="Self.T_Social" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Role="T_SocialArticle" Type="Self.T_SocialArticle" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="T_Social">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="T_SocialArticle">
-              <PropertyRef Name="social_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityContainer Name="IziWatchEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="T_Article" EntityType="Self.T_Article" />
           <EntitySet Name="T_Category" EntityType="Self.T_Category" />
           <EntitySet Name="T_Comment" EntityType="Self.T_Comment" />
           <EntitySet Name="T_Popularity" EntityType="Self.T_Popularity" />
           <EntitySet Name="T_Social" EntityType="Self.T_Social" />
-          <EntitySet Name="T_SocialArticle" EntityType="Self.T_SocialArticle" />
           <EntitySet Name="T_User" EntityType="Self.T_User" />
           <AssociationSet Name="FK_Article_Category" Association="Self.FK_Article_Category">
             <End Role="T_Category" EntitySet="T_Category" />
@@ -406,10 +349,6 @@
             <End Role="T_Article" EntitySet="T_Article" />
             <End Role="T_Popularity" EntitySet="T_Popularity" />
           </AssociationSet>
-          <AssociationSet Name="FK_SocialArticle_Article" Association="Self.FK_SocialArticle_Article">
-            <End Role="T_Article" EntitySet="T_Article" />
-            <End Role="T_SocialArticle" EntitySet="T_SocialArticle" />
-          </AssociationSet>
           <AssociationSet Name="FK_Comment_User" Association="Self.FK_Comment_User">
             <End Role="T_User" EntitySet="T_User" />
             <End Role="T_Comment" EntitySet="T_Comment" />
@@ -418,11 +357,36 @@
             <End Role="T_User" EntitySet="T_User" />
             <End Role="T_Popularity" EntitySet="T_Popularity" />
           </AssociationSet>
-          <AssociationSet Name="FK_SocialArticle_Social" Association="Self.FK_SocialArticle_Social">
+          <EntitySet Name="T_SocialArticle" EntityType="IziWatchModel.T_SocialArticle" />
+          <AssociationSet Name="FK_SocialArticle_Social" Association="IziWatchModel.FK_SocialArticle_Social">
             <End Role="T_Social" EntitySet="T_Social" />
             <End Role="T_SocialArticle" EntitySet="T_SocialArticle" />
           </AssociationSet>
         </EntityContainer>
+        <EntityType Name="T_SocialArticle">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="social_id" Type="Int32" Nullable="false" />
+          <Property Name="text" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="image" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="T_Social" Relationship="IziWatchModel.FK_SocialArticle_Social" FromRole="T_SocialArticle" ToRole="T_Social" />
+        </EntityType>
+        <Association Name="FK_SocialArticle_Social">
+          <End Type="IziWatchModel.T_Social" Role="T_Social" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="IziWatchModel.T_SocialArticle" Role="T_SocialArticle" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="T_Social">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="T_SocialArticle">
+              <PropertyRef Name="social_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -481,15 +445,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="T_SocialArticle">
-            <EntityTypeMapping TypeName="IziWatchModel.T_SocialArticle">
-              <MappingFragment StoreEntitySet="T_SocialArticle">
-                <ScalarProperty Name="id" ColumnName="id" />
-                <ScalarProperty Name="article_id" ColumnName="article_id" />
-                <ScalarProperty Name="social_id" ColumnName="social_id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="T_User">
             <EntityTypeMapping TypeName="IziWatchModel.T_User">
               <MappingFragment StoreEntitySet="T_User">
@@ -498,6 +453,16 @@
                 <ScalarProperty Name="login" ColumnName="login" />
                 <ScalarProperty Name="password" ColumnName="password" />
                 <ScalarProperty Name="email" ColumnName="email" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="T_SocialArticle">
+            <EntityTypeMapping TypeName="IziWatchModel.T_SocialArticle">
+              <MappingFragment StoreEntitySet="T_SocialArticle">
+                <ScalarProperty Name="image" ColumnName="image" />
+                <ScalarProperty Name="text" ColumnName="text" />
+                <ScalarProperty Name="social_id" ColumnName="social_id" />
+                <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

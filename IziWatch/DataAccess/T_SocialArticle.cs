@@ -15,10 +15,10 @@ namespace IziWatch.DataAccess
     public partial class T_SocialArticle
     {
         public int id { get; set; }
-        public int article_id { get; set; }
         public int social_id { get; set; }
+        public string text { get; set; }
+        public string image { get; set; }
     
-        public virtual T_Article T_Article { get; set; }
         public virtual T_Social T_Social { get; set; }
     }
 }

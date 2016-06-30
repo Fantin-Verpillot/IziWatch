@@ -15,7 +15,8 @@ namespace IziWatch.DataAccess
                     T_SocialArticle t_socialArticle = new T_SocialArticle()
                     {
                         id = socialArticle.Id,
-                        article_id = socialArticle.ArticleId,
+                        text = socialArticle.Text,
+                        image = socialArticle.Image,
                         social_id = socialArticle.SocialId
                     };
                     bdd.T_SocialArticle.Add(t_socialArticle);
@@ -56,7 +57,8 @@ namespace IziWatch.DataAccess
                     if (t_socialArticle != null)
                     {
                         t_socialArticle.id = socialArticle.Id;
-                        t_socialArticle.article_id = socialArticle.ArticleId;
+                        t_socialArticle.text = socialArticle.Text;
+                        t_socialArticle.image = socialArticle.Image;
                         t_socialArticle.social_id = socialArticle.SocialId;
                         bdd.SaveChanges();
                         return true;
@@ -87,7 +89,8 @@ namespace IziWatch.DataAccess
                         return new DBO.SocialArticle()
                         {
                             Id = query.First().id,
-                            ArticleId = query.First().article_id,
+                            Text = query.First().text,
+                            Image = query.First().image,
                             SocialId = query.First().social_id
                         };
                     }
@@ -119,7 +122,8 @@ namespace IziWatch.DataAccess
                         listSocialArticles.Add(new DBO.SocialArticle()
                         {
                             Id = element.id,
-                            ArticleId = element.article_id,
+                            Text = element.text,
+                            Image = element.image,
                             SocialId = element.social_id
                         });
                     }
