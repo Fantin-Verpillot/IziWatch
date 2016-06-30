@@ -45,18 +45,21 @@
             @if(ViewBag.userConnected != null)
             {
             <span>|</span>
-            <a href="/Article/Details/@article.Id?action=like">
-                <button type="button" class="btn btn-danger pull-right btn-xs" style="margin-left: 7px;">
-                    <span class="glyphicon glyphicon-heart" aria-hidden="true"></span> Like
-                </button>
-            </a>
 
-
-            <a href="/Article/Details/@article.Id?action=unlike">
-                <button type="button" class="btn btn-warning pull-right btn-xs" style="margin-left: 7px;">
+                if (ViewBag.popularity.Liked)
+                {
+                <a href="/Article/Details/@article.Id?action=unlike" class="btn btn-warning pull-right btn-xs" style="margin-left: 7px;">
                     <span class="glyphicon glyphicon-heart-empty" aria-hidden="true"></span> Unlike
-                </button>
-            </a>
+                </a>
+                }
+                else
+                {
+                <a href="/Article/Details/@article.Id?action=like" class="btn btn-danger pull-right btn-xs" style="margin-left: 7px;">
+                    <span class="glyphicon glyphicon-heart" aria-hidden="true"></span> Like
+                </a>
+                }
+
+
             }
 
         </div>
@@ -65,7 +68,7 @@
 
 <div class="row" style="margin-top: 50px;">
     <div class="col-md-12">
-        <h3 style="font-weight:700">Commentaires (5)</h3>
+        <h3 style="font-weight:700">Commentaires (@IziWatch.BusinessManagement.Comment.GetListComment().Count())</h3>
     </div>
 </div>
 
@@ -75,33 +78,31 @@
 
     <div class="col-md-8 col-md-offset-2">
         <div class="well" style="padding: 10px !important;">
-            <form class="form-horizontal">
+            <form class="form-horizontal" method="get" action="/Article/Details/@article.Id">
                 <fieldset>
 
                     <div class="form-group">
                         <label class="col-lg-2 control-label">Titre :</label>
                         <div class="col-lg-9">
-                            <input type="text" value="" class="form-control" name="">
+                            <input type="text" name="commentTitle" class="form-control">
                         </div>
                     </div>
 
                     <div class="form-group">
                         <label for="textArea" class="col-lg-2 control-label">Texte :</label>
                         <div class="col-lg-10">
-                            <textarea class="form-control" rows="2" style="max-width: none !important;"></textarea>
+                            <textarea class="form-control" name="commentText" rows="2" style="max-width: none !important;"></textarea>
                             <span class="help-block">A longer block of help text that breaks onto a new line and may extend beyond one line.</span>
                         </div>
                     </div>
 
                     <div class="row">
                         <div class="col-md-12">
-                            <button type="button" class="btn btn-primary pull-right">
-                                Poster
-                            </button>
+                            <input type="submit" name="action" value="Commenter" class="btn btn-primary pull-right">
                         </div>
                     </div>
                 </fieldset>
-</form>
+            </form>
         </div>
     </div>
 </div>
@@ -114,7 +115,7 @@
     <div class="row">
         <div class="col-md-7">
             <div class="comment">
-                <p class="username">@IziWatch.DataAccess.User.GetUser(comment.id).Login</p>
+                <p class="username">@IziWatch.BusinessManagement.User.GetUser(comment.UserId).Login</p>
                 <p class="title">comment.Title</p>
                 <p class="text">comment.Text</p>
             </div>
