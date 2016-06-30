@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -31,6 +32,44 @@ namespace IziWatch.Controllers
 
         public ActionResult HandleAccounts()
         {
+            if (Request["action"] == "delete" && Request["id"] != null)
+            {
+                int id;
+                if (int.TryParse(Request["id"], out id))
+                {
+                    BusinessManagement.Social.DeleteSocial(id);
+                }
+
+            }
+            else if (Request["action"] == "Ajouter")
+            {
+                if (Request["pageName"] != null && Request["social"] != null && Request["pageIdentifier"] != null)
+                {
+                    DBO.Social newSocial = new DBO.Social()
+                    {
+                        Account = Request["pageName"],
+                        Identifier = Request["pageIdentifier"],
+                        Type = Request["social"]
+                    };
+                    BusinessManagement.Social.CreateSocial(newSocial);
+                }
+            }
+
+            List<DBO.Social> socials = BusinessManagement.Social.GetListSocial();
+
+            List<DBO.Social> socialsFB = new List<DBO.Social>();
+            List<DBO.Social> socialsTwitter = new List<DBO.Social>();
+
+            foreach(DBO.Social social in socials)
+            {
+                if (social.Type == "facebook")
+                    socialsFB.Add(social);
+                if (social.Type == "twitter")
+                    socialsTwitter.Add(social);
+            }
+
+            ViewBag.socialsFB = socialsFB;
+            ViewBag.socialsTwitter = socialsTwitter;
             return View();
         }
     }
