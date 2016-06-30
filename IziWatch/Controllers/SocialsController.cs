@@ -49,7 +49,7 @@ namespace IziWatch.Controllers
         // plus de détails, voir  http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Type,Account")] DBO.Social social)
+        public ActionResult Create([Bind(Include = "Id,Type,Account,Identifier")] DBO.Social social)
         {
             if (ModelState.IsValid)
             {
@@ -85,7 +85,7 @@ namespace IziWatch.Controllers
         // plus de détails, voir  http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Type,Account")] DBO.Social social)
+        public ActionResult Edit([Bind(Include = "Id,Type,Account,Identifier")] DBO.Social social)
         {
             if (ModelState.IsValid)
             {

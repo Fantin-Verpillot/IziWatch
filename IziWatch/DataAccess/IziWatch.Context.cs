@@ -33,6 +33,6 @@ namespace IziWatch.DataAccess
         public virtual DbSet<T_User> T_User { get; set; }
         public virtual DbSet<T_SocialArticle> T_SocialArticle { get; set; }
 
-        public System.Data.Entity.DbSet<IziWatch.DBO.SocialArticle> SocialArticles { get; set; }
+        public System.Data.Entity.DbSet<IziWatch.DBO.Social> Socials { get; set; }
     }
 }

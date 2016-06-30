@@ -23,6 +23,7 @@ namespace IziWatch.DataAccess
         public int id { get; set; }
         public string type { get; set; }
         public string account { get; set; }
+        public string identifier { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<T_SocialArticle> T_SocialArticle { get; set; }

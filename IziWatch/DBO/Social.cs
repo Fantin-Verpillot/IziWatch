@@ -10,5 +10,6 @@ namespace IziWatch.DBO
         public int Id { get; set; }
         public string Type { get; set; }
         public string Account { get; set; }
+        public string Identifier { get; set; }
     }
 }

@@ -51,6 +51,7 @@
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="type" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="account" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="identifier" Type="varchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <EntityType Name="T_SocialArticle">
           <Key>
@@ -59,7 +60,7 @@
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="social_id" Type="int" Nullable="false" />
           <Property Name="text" Type="text" Nullable="false" />
-          <Property Name="image" Type="text" Nullable="false" />
+          <Property Name="image" Type="text" />
         </EntityType>
         <EntityType Name="T_User">
           <Key>
@@ -247,6 +248,7 @@
           <Property Name="type" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="account" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="T_SocialArticle" Relationship="IziWatchModel.FK_SocialArticle_Social" FromRole="T_Social" ToRole="T_SocialArticle" />
+          <Property Name="identifier" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="T_User">
           <Key>
@@ -370,7 +372,7 @@
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="social_id" Type="Int32" Nullable="false" />
           <Property Name="text" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="image" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="image" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="T_Social" Relationship="IziWatchModel.FK_SocialArticle_Social" FromRole="T_SocialArticle" ToRole="T_Social" />
         </EntityType>
         <Association Name="FK_SocialArticle_Social">
@@ -439,6 +441,7 @@
           <EntitySetMapping Name="T_Social">
             <EntityTypeMapping TypeName="IziWatchModel.T_Social">
               <MappingFragment StoreEntitySet="T_Social">
+                <ScalarProperty Name="identifier" ColumnName="identifier" />
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="type" ColumnName="type" />
                 <ScalarProperty Name="account" ColumnName="account" />

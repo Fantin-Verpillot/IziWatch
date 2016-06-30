@@ -16,7 +16,8 @@ namespace IziWatch.DataAccess
                     {
                         id = social.Id,
                         type = social.Type,
-                        account = social.Account
+                        account = social.Account,
+                        identifier = social.Identifier
                     };
                     bdd.T_Social.Add(t_social);
                     bdd.SaveChanges();
@@ -58,6 +59,7 @@ namespace IziWatch.DataAccess
                         t_social.id = social.Id;
                         t_social.type = social.Type;
                         t_social.account = social.Account;
+                        t_social.identifier = social.Identifier;
                         bdd.SaveChanges();
                         return true;
                     }
@@ -88,7 +90,8 @@ namespace IziWatch.DataAccess
                         {
                             Id = query.First().id,
                             Type = query.First().type,
-                            Account = query.First().account
+                            Account = query.First().account,
+                            Identifier = query.First().identifier
                         };
                     }
                     else
@@ -120,7 +123,8 @@ namespace IziWatch.DataAccess
                         {
                             Id = element.id,
                             Type = element.type,
-                            Account = element.account
+                            Account = element.account,
+                            Identifier = element.identifier
                         });
                     }
                     return listSocials;
