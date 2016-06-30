@@ -58,8 +58,6 @@
                     <span class="glyphicon glyphicon-heart" aria-hidden="true"></span> Like
                 </a>
                 }
-
-
             }
 
         </div>
@@ -74,6 +72,9 @@
 
 <hr style="margin-top: 0 !important;" />
 
+
+@if(ViewBag.userConnected != null)
+{
 <div class="row">
 
     <div class="col-md-8 col-md-offset-2">
@@ -106,9 +107,10 @@
         </div>
     </div>
 </div>
+}
+
 
 <br />
-
 
 @foreach(var comment in ViewBag.comments)
 {
@@ -116,14 +118,13 @@
         <div class="col-md-7">
             <div class="comment">
                 <p class="username">@IziWatch.BusinessManagement.User.GetUser(comment.UserId).Login</p>
-                <p class="title">comment.Title</p>
-                <p class="text">comment.Text</p>
+                <p class="title">@comment.Title</p>
+                <p class="text">@comment.Text</p>
             </div>
         </div>
     </div>
 
     <hr style="margin-top: 5px; margin-bottom: 5px; width: 70%;" />
-
 }
 
 
