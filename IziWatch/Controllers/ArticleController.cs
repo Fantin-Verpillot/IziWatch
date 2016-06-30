@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Net;
-using System.Web;
 using System.Web.Mvc;
 
 namespace IziWatch.Controllers
@@ -19,6 +16,7 @@ namespace IziWatch.Controllers
             // TODO : get connected user and test connection
             DBO.User user = BusinessManagement.User.GetListUser().First();
             DBO.Article article = BusinessManagement.Article.GetArticle((int)id);
+            DBO.Popularity popularity = null;
             List<DBO.Comment> comments = new List<DBO.Comment>();
             
             if (article == null)
@@ -47,6 +45,7 @@ namespace IziWatch.Controllers
                         BusinessManagement.Comment.CreateComment(comment);
                     }
                     BusinessManagement.Article.ViewArticle(article, user);
+                    popularity = BusinessManagement.Popularity.GetPopularityByUserAndArticle(article, user);
                 }
                 BusinessManagement.Article.IncrementArticleViews(article);
                 comments = BusinessManagement.Comment.GetCommentsByArticle(article);
@@ -55,6 +54,7 @@ namespace IziWatch.Controllers
             ViewBag.userConnected = user;
             ViewBag.article = article;
             ViewBag.comments = comments;
+            ViewBag.popularity = popularity;
             return View();
         }
     }
