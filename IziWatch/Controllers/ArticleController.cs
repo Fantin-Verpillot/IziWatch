@@ -18,7 +18,8 @@ namespace IziWatch.Controllers
             DBO.Article article = BusinessManagement.Article.GetArticle((int)id);
             DBO.Popularity popularity = null;
             List<DBO.Comment> comments = new List<DBO.Comment>();
-            
+            int countLikes = 0;
+
             if (article == null)
             {
                 return HttpNotFound();
@@ -49,12 +50,14 @@ namespace IziWatch.Controllers
                 }
                 BusinessManagement.Article.IncrementArticleViews(article);
                 comments = BusinessManagement.Comment.GetCommentsByArticle(article);
+                countLikes = BusinessManagement.Popularity.countLikeArticle(article);
             }
 
             ViewBag.userConnected = user;
             ViewBag.article = article;
             ViewBag.comments = comments;
             ViewBag.popularity = popularity;
+            ViewBag.countLikes = countLikes;
             return View();
         }
     }
