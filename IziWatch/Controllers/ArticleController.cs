@@ -35,7 +35,7 @@ namespace IziWatch.Controllers
                     {
                         BusinessManagement.Article.UnlikeArticle(article, user);
                     }
-                    else if (Request["action"] == "comment")
+                    else if (Request["action"] == "Commenter")
                     {
                         DBO.Comment comment = new DBO.Comment();
                         comment.Title = Request["commentTitle"];
