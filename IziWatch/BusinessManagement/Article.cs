@@ -47,7 +47,9 @@ namespace IziWatch.BusinessManagement
             List<DBO.Article> filterArticles = new List<DBO.Article>();
             foreach (DBO.Article article in articles)
             {
-                
+                if (BusinessManagement.Popularity.GetPopularityByUserAndArticle(article, user).Liked) {
+                    filterArticles.Add(article);
+                }
             }
             return filterArticles;
         }

@@ -42,9 +42,21 @@
                                 <label><input type="checkbox" name="popular" value="true"> Les plus populaires</label>
                             }          
                         </div>
-                    </div>
-                </div>
 
+                        @if (ViewBag.userConnected != null)
+                        {
+                            <div class="checkbox">
+                                @if (ViewBag.favoritesCheck)
+                                {
+                                    <label><input type="checkbox" name="favorites" value="true" checked> Vos favoris</label>
+                                } else {
+                                    <label><input type="checkbox" name="favorites" value="true"> Vos favoris</label>
+                                }
+                            </div>
+                        }
+                </div>
+            </div>
+                
                 <br />
 
                 <div class="form-group" style="margin-bottom: 5px; font-weight: 700;">
