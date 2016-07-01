@@ -9,13 +9,14 @@
         @RenderSection("metatags", false)
     }
     <title>@ViewBag.Title</title>
+    <link rel="stylesheet" href="https://bootswatch.com/readable/bootstrap.css" />
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
 
     <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
 </head>
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="navbar navbar-default navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -25,16 +26,21 @@
                 </button>
                 @Html.ActionLink("IziWatch", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
             </div>
-            <div class="navbar-collapse collapse">
+            <div class="collapse navbar-collapse">
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("Admin", "Index", "Admin")</li>
-                    <li>@Html.ActionLink("Users", "Index", "Users")</li>
-                    <li>@Html.ActionLink("Articles", "Index", "Articles")</li>
-                    <li>@Html.ActionLink("Categories", "Index", "Categories")</li>
-                    <li>@Html.ActionLink("Comments", "Index", "Comments")</li>
-                    <li>@Html.ActionLink("Popularities", "Index", "Popularities")</li>
-                    <li>@Html.ActionLink("Socials", "Index", "Socials")</li>
-                    <li>@Html.ActionLink("SocialArticles", "Index", "SocialArticles")</li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Root <span class="caret"></span></a>
+                        <ul class="dropdown-menu" role="menu">
+                            <li>@Html.ActionLink("Users", "Index", "Users")</li>
+                            <li>@Html.ActionLink("Articles", "Index", "Articles")</li>
+                            <li>@Html.ActionLink("Categories", "Index", "Categories")</li>
+                            <li>@Html.ActionLink("Comments", "Index", "Comments")</li>
+                            <li>@Html.ActionLink("Popularities", "Index", "Popularities")</li>
+                            <li>@Html.ActionLink("Socials", "Index", "Socials")</li>
+                            <li>@Html.ActionLink("SocialArticles", "Index", "SocialArticles")</li>
+                        </ul>
+                    </li>
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>

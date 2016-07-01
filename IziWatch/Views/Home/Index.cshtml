@@ -4,22 +4,22 @@
     ViewBag.Title = "Accueil";
 }
 
-<div class="row" style="margin-top: 30px;">
+<div class="row" style="margin-top: 12px;">
     <div class="col-md-3">
 
         <form method="GET" action="/Home/Index" class="form-horizontal" style="border : 1px solid #dddddd; padding: 15px;">
             <fieldset>
                 <legend class="text-center" style="font-weight: 700; font-size: 19px; padding: 6px;">Filtres</legend>
                 <div class="form-group">
-                    <label class="col-lg-2 col-lg-offset-1 control-label">From</label>
-                    <div class="col-lg-8">
+                    <label class="col-lg-3 control-label">From</label>
+                    <div class="col-lg-9">
                         <input type="text" id="datepickerBeginDate" value="@ViewBag.beginDate" class="form-control" name="beginDate">
                     </div>
                 </div>
 
                 <div class="form-group">
-                    <label class="col-lg-2 col-lg-offset-1 control-label">To</label>
-                    <div class="col-lg-8">
+                    <label class="col-lg-3 control-label">To</label>
+                    <div class="col-lg-9">
                         <input type="text" id="datepickerEndDate" value="@ViewBag.endDate" class="form-control" name="endDate">
                     </div>
                 </div>
@@ -98,12 +98,12 @@
             {
 
                 <div class="col-md-4" style="margin-bottom: 10px;">
-                    <div class="thumbnail" style="padding: 0;">
+                    <div class="thumbnail" style="padding: 0; border-radius: 0;">
                         <a href="/Article/Details/@article.Id">
                             <img src="@article.Image" alt="article photo" class="img-responsive" style="height: 200px; margin: 0 auto;"/>
                         </a>
 
-                        <div class="text-center" style="margin-top:5px; font-style:italic;">
+                        <div class="text-center" style="margin-top:5px; font-size: 14px; font-style:italic;">
 
                             @{
                                 String categoryName = Category.GetCategory(article.CategoryId).Name;
@@ -116,7 +116,7 @@
                         <div style="display:table; height: 120px; padding: 10px;">
 
                             <div style="display:table-cell; vertical-align: middle; text-align: center;">
-                                <a style="font-weight: 600; font-size: 15px; color: black;" href="/Article/Details/@article.Id">@article.Title</a>
+                                <a style="font-weight: 600; font-size: 16px; color: black;" href="/Article/Details/@article.Id">@article.Title</a>
                             </div>
 
                         </div>
