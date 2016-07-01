@@ -2,5 +2,7 @@ packages
 .vs
 IziWatch/obj
 IziWatch/bin
+SyndicationService/obj
+SyndicationService/bin
 IziWatch/Web.config
 .DS_Store
