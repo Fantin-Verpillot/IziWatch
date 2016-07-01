@@ -12,6 +12,26 @@ namespace IziWatch.Controllers
         // GET: Admin
         public ActionResult Index()
         {
+
+            if (Request["action"] == "Synchroniser Facebook" && Request["tokenFacebook"] != null)
+            {
+                List<DBO.Social> socials = BusinessManagement.Social.GetListSocial();
+                List<DBO.Social> socialsFB = new List<DBO.Social>();
+                foreach(DBO.Social social in socials) {
+                    if (social.Type == "facebook")
+                        socialsFB.Add(social);
+                }
+
+                ViewBag.IsUpdated = BusinessManagement.FacebookSocialArticles.ExecuteSeveralRequest(socialsFB, Request["tokenFacebook"]);
+                ViewBag.SocialName = "Facebook";
+
+            }
+            else if (Request["action"] == "Synchroniser Twitter" && Request["tokenTwitter"] != null)
+            {
+                ViewBag.IsUpdated = true;
+                ViewBag.SocialName = "Twitter";
+            }
+
             return View();
         }
 

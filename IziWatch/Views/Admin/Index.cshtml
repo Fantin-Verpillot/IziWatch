@@ -3,7 +3,7 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Admin page</h2>
+<h2>Actions</h2>
 
 <hr />
 
@@ -18,7 +18,32 @@
 
 <br />
 <br />
+
+<h2>Synchronisation</h2>
+<hr />
+
+@if (ViewBag.IsUpdated != null){
+
+    if (ViewBag.IsUpdated)
+    {
+    <div class="row">
+        <div class="col-md-12">
+            <div class="alert alert-success" role="alert">Synchronisation @ViewBag.SocialName réussie.</div>
+        </div>
+    </div>
+    }
+    else
+    {
+    <div class="row">
+        <div class="col-md-12">
+            <div class="alert alert-danger" role="alert">Échec de synchronisation @ViewBag.SocialName.</div>
+        </div>
+    </div>
+    }
+}
+
 <br />
+
 
 <div class="row">
     <div class="col-md-10">
@@ -26,12 +51,12 @@
             <div class="form-group">
                 <label class="control-label col-sm-2">Token Facebook :</label>
                 <div class="col-sm-9">
-                    <input type="text" name="tokenFB" class="form-control">
+                    <input type="text" name="tokenFacebook" class="form-control">
                 </div>
             </div>
             <div class="form-group">
                 <div class="col-sm-offset-2 col-sm-9">
-                    <input type="submit" name="action" value="Synchroniser" class="btn btn-primary" />
+                    <input type="submit" name="action" value="Synchroniser Facebook" class="btn btn-primary" />
                 </div>
             </div>
         </form>
@@ -50,7 +75,7 @@
             </div>
             <div class="form-group">
                 <div class="col-sm-offset-2 col-sm-9">
-                    <input type="submit" name="action" value="Synchroniser" class="btn btn-warning" />
+                    <input type="submit" name="action" value="Synchroniser Twitter" class="btn btn-warning" />
                 </div>
             </div>
         </form>
