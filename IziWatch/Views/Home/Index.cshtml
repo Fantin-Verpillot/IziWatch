@@ -7,20 +7,30 @@
 <div class="row" style="margin-top: 12px;">
     <div class="col-md-3">
 
-        <form method="GET" action="/Home/Index" class="form-horizontal" style="border : 1px solid #dddddd; padding: 15px;">
+        <form method="GET" action="/Home/Index" class="form-horizontal" style="border : 1px solid #dddddd; padding: 15px; font-size: 15px;">
             <fieldset>
-                <legend class="text-center" style="font-weight: 700; font-size: 19px; padding: 6px;">Filtres</legend>
-                <div class="form-group">
-                    <label class="col-lg-3 control-label">From</label>
+                <legend class="text-center" style="font-weight: 700; font-size: 19px; padding-bottom: 7px;">Filtres</legend>
+                <div class="form-group" style="margin-bottom: 0; font-weight: 700;">
+                    <div class="col-lg-12">
+                        Trier par date :
+                    </div>
+                </div>
+
+                <div class="form-group" style="margin-top: 9px;">
+                    <label class="col-lg-1 control-label">
+                        <span class="glyphicon glyphicon-calendar" aria-hidden="true"></span>
+                    </label>
                     <div class="col-lg-9">
-                        <input type="text" id="datepickerBeginDate" value="@ViewBag.beginDate" class="form-control" name="beginDate">
+                        <input type="text" id="datepickerBeginDate" value="@ViewBag.beginDate" class="form-control" name="beginDate" placeholder="Date de début" style="font-size: 14px; height: 35px;">
                     </div>
                 </div>
 
                 <div class="form-group">
-                    <label class="col-lg-3 control-label">To</label>
+                    <label class="col-lg-1 control-label">
+                        <span class="glyphicon glyphicon-calendar" aria-hidden="true"></span>
+                    </label>
                     <div class="col-lg-9">
-                        <input type="text" id="datepickerEndDate" value="@ViewBag.endDate" class="form-control" name="endDate">
+                        <input type="text" id="datepickerEndDate" value="@ViewBag.endDate" class="form-control" name="endDate" placeholder="Date de fin" style="font-size: 14px; height: 35px;">
                     </div>
                 </div>
 
@@ -38,9 +48,10 @@
                             @if (ViewBag.popularityCheck)
                             {
                                 <label><input type="checkbox" name="popular" value="true" checked> Les plus populaires</label>
-                            } else {
+                            }
+                            else {
                                 <label><input type="checkbox" name="popular" value="true"> Les plus populaires</label>
-                            }          
+                            }
                         </div>
 
                         @if (ViewBag.userConnected != null)
@@ -49,14 +60,15 @@
                                 @if (ViewBag.favoritesCheck)
                                 {
                                     <label><input type="checkbox" name="favorites" value="true" checked> Vos favoris</label>
-                                } else {
+                                }
+                                else {
                                     <label><input type="checkbox" name="favorites" value="true"> Vos favoris</label>
                                 }
                             </div>
                         }
+                    </div>
                 </div>
-            </div>
-                
+
                 <br />
 
                 <div class="form-group" style="margin-bottom: 5px; font-weight: 700;">
@@ -83,53 +95,80 @@
                 </div>
 
                 <div class="form-group">
-                    <div class="col-lg-10 col-lg-offset-1">
+                    <div class="col-lg-12">
                         <input name="action" type="submit" class="btn btn-primary btn-block refresh" value="Actualiser">
                     </div>
                 </div>
             </fieldset>
         </form>
-     
+
     </div>
 
     <div class="col-md-9">
-        <div class="row">
-            @foreach (var article in ViewBag.articles)
-            {
 
-                <div class="col-md-4" style="margin-bottom: 10px;">
-                    <div class="thumbnail" style="padding: 0; border-radius: 0;">
+        @foreach (var article in ViewBag.articles)
+        {
+            <div class="row" style="margin-bottom: 15px; border: 1px solid #dddddd">
+
+                    <div class="col-md-3 no-padding">
                         <a href="/Article/Details/@article.Id">
-                            <img src="@article.Image" alt="article photo" class="img-responsive" style="height: 200px; margin: 0 auto;"/>
+                            <img style="background: linear-gradient(to bottom, rgba(0,0,0,0), rgba(0,0,0,0)), url('@article.Image') center center no-repeat; background-size: cover; width: 100%; height: 150px;" />
                         </a>
+                    </div>
 
-                        <div class="text-center" style="margin-top:5px; font-size: 14px; font-style:italic;">
+                    <div class="col-md-9" style="height: 150px; overflow-y: auto; padding: 15px;">
+                        @if (article.Title.Length > 65)
+                        {
+                        <a href="/Article/Details/@article.Id" style="font-weight: 600; font-size: 18px; color: black;">
+                            @article.Title.Substring(0, Math.Min(@article.Text.Length, 65))..
+                        </a>
+                        }
+                        else
+                        {
+                        <a href="/Article/Details/@article.Id" style="font-weight: 600; font-size: 18px; color: black;">
+                            @article.Title
+                        </a>
+                        }
 
-                            @{
-                                String categoryName = Category.GetCategory(article.CategoryId).Name;
-                                if (categoryName != null)
-                                {
-                                    @Category.GetCategory(article.CategoryId).Name
-                                }
-                            }
-                        </div>
-                        <div style="display:table; height: 120px; padding: 10px;">
+                        <p style="font-size: 14px;">
+                            @article.Text.Substring(0, Math.Min(@article.Text.Length, 140)) ...
+                            <a href="/Article/Details/@article.Id">
+                                (Lire la suite)
+                            </a>
+                        </p>
 
-                            <div style="display:table-cell; vertical-align: middle; text-align: center;">
-                                <a style="font-weight: 600; font-size: 16px; color: black;" href="/Article/Details/@article.Id">@article.Title</a>
+                        <div class="row" style="margin-top: 40px;">
+                            <div class="col-md-6">
+                                <p style="font-size: 13px;">
+                                    @{
+                                        String categoryName = Category.GetCategory(article.CategoryId).Name;
+                                        if (categoryName != null)
+                                        {
+                                            @Category.GetCategory(article.CategoryId).Name
+                                        }
+                                    }
+                                </p>
                             </div>
 
+                            <div class="col-md-6">
+                                <p style="font-size: 12px;" class="pull-right">
+                                    <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> @article.Views
+                                    | <span class="glyphicon glyphicon-heart" aria-hidden="true"></span> @IziWatch.BusinessManagement.Popularity.countLikeArticle(@article)
+                                    | <span class="glyphicon glyphicon-comment" aria-hidden="true"></span> @IziWatch.BusinessManagement.Comment.GetCommentsByArticle(@article).Count
+                                </p>
+                            </div>
                         </div>
 
-                        <div class="pull-right" style="position: relative; bottom: 23px; right: 4px; font-size: 12px;">
-                           <span class="glyphicon glyphicon-eye-open"aria-hidden="true"></span> @article.Views
-                           | <span class="glyphicon glyphicon-heart" aria-hidden="true"></span> @IziWatch.BusinessManagement.Popularity.countLikeArticle(@article)
-                           | <span class="glyphicon glyphicon-comment" aria-hidden="true"></span> @IziWatch.BusinessManagement.Comment.GetCommentsByArticle(@article).Count
-                        </div>
+
                     </div>
-                </div>
 
-            }
-        </div>
+
+
+
+            </div>
+
+        }
+
+
     </div>
 </div>
