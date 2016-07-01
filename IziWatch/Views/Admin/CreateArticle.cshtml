@@ -29,7 +29,14 @@
     <div class="form-group">
         <label class="control-label col-sm-2">Titre :</label>
         <div class="col-sm-3">
-            <input type="text" name="title" class="form-control" style="max-width: none;">
+            @if (ViewBag.postData && ViewBag.error != null)
+            {
+                <input type="text" name="title" class="form-control" value="@ViewBag.partialArticle.Title" style="max-width: none;">
+            }
+            else
+            {
+                <input type="text" name="title" class="form-control" style="max-width: none;">
+            }
         </div>
     </div>
 
@@ -37,9 +44,26 @@
         <label class="control-label col-sm-2">Catégorie :</label>
         <div class="col-sm-3">
             <select class="form-control" name="category" style="max-width: none;">
-                @foreach(var category in ViewBag.categories)
+                @if (ViewBag.postData && ViewBag.error != null)
                 {
-                    <option value="@category.Id">@category.Name</option>
+                    foreach (var category in ViewBag.categories)
+                    {
+                        if (category.Id == @ViewBag.partialArticle.CategoryId)
+                        {
+                            <option value="@category.Id" selected>@category.Name</option>
+                        }
+                        else
+                        {
+                            <option value="@category.Id">@category.Name</option>
+                        }
+                    }
+                }
+                else
+                {
+                    foreach (var category in ViewBag.categories)
+                    {
+                        <option value="@category.Id">@category.Name</option>
+                    }
                 }
             </select>
         </div>
@@ -48,7 +72,14 @@
     <div class="form-group">
         <label class="control-label col-sm-2">Image (URL) :</label>
         <div class="col-sm-8">
-            <input type="text" name="image" class="form-control" style="max-width: none;">
+            @if (ViewBag.postData && ViewBag.error != null)
+            {
+                <input type="text" name="image" class="form-control" value="@ViewBag.partialArticle.Image" style="max-width: none;">
+            }
+            else
+            {
+                <input type="text" name="image" class="form-control" style="max-width: none;">
+            }
         </div>
     </div>
 
@@ -56,7 +87,14 @@
     <div class="form-group">
         <label class="control-label col-sm-2">Texte :</label>
         <div class="col-sm-8">
-            <textarea class="form-control" name="text" rows="8" style="max-width: none;"></textarea>
+            @if (ViewBag.postData && ViewBag.error != null)
+            {
+                <textarea class="form-control" name="text" rows="8" style="max-width: none;">@ViewBag.partialArticle.Text</textarea>
+            }
+            else
+            {
+                <textarea class="form-control" name="text" rows="8" style="max-width: none;"></textarea>
+            }
         </div>
     </div>
 

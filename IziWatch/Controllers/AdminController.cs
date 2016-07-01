@@ -93,6 +93,7 @@ namespace IziWatch.Controllers
             ViewBag.socialArticleId = int.Parse(Request["socialArticleId"]);
             ViewBag.error = error;
             ViewBag.categories = BusinessManagement.Category.GetListCategory();
+            ViewBag.partialArticle = newArticle;
             ViewBag.postData = true;
             return View();
         }
@@ -126,6 +127,7 @@ namespace IziWatch.Controllers
             ViewBag.error = error;
             ViewBag.categories = BusinessManagement.Category.GetListCategory();
             ViewBag.postData = true;
+            ViewBag.partialArticle = newArticle;
             return View();
         }
 
