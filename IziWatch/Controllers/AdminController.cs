@@ -57,14 +57,22 @@ namespace IziWatch.Controllers
                 {
                     curSocial = BusinessManagement.Social.GetSocial(socialArticle.SocialId);
                     if (Request["pageIdentifier"] == curSocial.Identifier && curSocial.Type == "facebook")
+                    {
+                        if (socialArticle.Text.Length > 100)
+                            socialArticle.Text = socialArticle.Text.Substring(0, Math.Min(socialArticle.Text.Length, 80))
+                                + "..";
                         articlesFB.Add(socialArticle);
+                    }
                 }
+                ViewBag.checkedIdentifier = Request["pageIdentifier"];
             }
 
             ViewBag.socialsFB = socialsFB;
             ViewBag.articlesFB = articlesFB;
             return View();
         }
+
+
 
         public ActionResult CreateArticleTwitter()
         {
