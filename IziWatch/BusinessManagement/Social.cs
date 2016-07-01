@@ -7,6 +7,17 @@ namespace IziWatch.BusinessManagement
 {
     public class Social
     {
+        public static List<DBO.Social> GetSocialsByType(String type)
+        {
+            List<DBO.Social> socials = new List<DBO.Social>();
+            foreach (DBO.Social social in BusinessManagement.Social.GetListSocial())
+            {
+                if (social.Type == type)
+                    socials.Add(social);
+            }
+            return socials;
+        }
+
         public static bool CreateSocial(DBO.Social social)
         {
             return DataAccess.Social.CreateSocial(social);

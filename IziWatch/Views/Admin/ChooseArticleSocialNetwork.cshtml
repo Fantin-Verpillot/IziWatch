@@ -1,0 +1,73 @@
+﻿
+@{
+    ViewBag.Title = "ChooseArticleSocialNetwork";
+}
+
+@if (@ViewBag.socialType == "facebook")
+{
+    <h2>Créer un article social avec Facebook</h2>
+}
+else
+{
+    <h2>Créer un article social avec Twitter</h2>
+}
+
+<hr />
+
+<div class="row">
+    <div class="col-md-12">
+        <form class="form-inline" role="form" method="get" action="/Admin/ChooseArticleSocialNetwork">
+            <div class="form-group">
+                <input type="hidden" name="socialType" value="@ViewBag.socialType" />
+                <label for="page">Choix de la page :</label>
+                <select class="form-control" id="page" name="socialId">
+                    @foreach (var social in ViewBag.socials)
+                    {
+                        if (ViewBag.checkedSocialId == social.Id)
+                        {
+                            <option value="@social.Id" selected>@social.Account</option>
+                        }
+                        else
+                        {
+                            <option value="@social.Id">@social.Account</option>
+                        }
+                    }
+                </select>
+            </div>
+            <input type="submit" name="action" value="Rechercher" class="btn btn-primary">
+        </form>
+
+    </div>
+</div>
+
+<br />
+
+<div class="row">
+    @foreach (var socialArticle in ViewBag.socialArticles)
+    {
+        <div class="col-md-3" style="margin-bottom: 10px;">
+            <div class="thumbnail" style="padding: 0;">
+                @if (socialArticle.Image != "" && socialArticle.Image != null)
+                {
+                    <img src="@socialArticle.Image" alt="article photo" class="img-responsive" style="height: 250px;" />
+                }
+                else
+                {
+                    <img src="http://www.klim.com/c.3569702/sca-dev-denali/img/no_image_available.jpeg" alt="article photo" class="img-responsive" style="height: 250px;" />
+                }
+                <div style="display:table; height: 100px; padding: 10px;">
+
+                    <div style="display:table-cell; vertical-align: middle; text-align: center;">
+                        @socialArticle.Text.Substring(0, Math.Min(@socialArticle.Text.Length, 80)) ...
+                    </div>
+
+                </div>
+
+                <p class="text-center">
+                    <a href="/Admin/CreateArticleSocialNetwork?socialArticleId=@socialArticle.Id" class="btn btn-primary">Ajouter</a>
+                </p>
+            </div>
+        </div>
+    }
+</div>
+
