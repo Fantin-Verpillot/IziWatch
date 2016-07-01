@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 
 namespace IziWatch.DataAccess
@@ -141,6 +142,7 @@ namespace IziWatch.DataAccess
                 }
                 catch (Exception e)
                 {
+                    Debug.WriteLine(e.Message);
                     return null;
                 }
             }
