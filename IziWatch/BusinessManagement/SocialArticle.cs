@@ -7,6 +7,19 @@ namespace IziWatch.BusinessManagement
 {
     public class SocialArticle
     {
+        public static List<DBO.SocialArticle> GetSocialArticlesBySocialId(int socialId)
+        {
+            List<DBO.SocialArticle> resultSocial = new List<DBO.SocialArticle>();
+            foreach (DBO.SocialArticle socialArticle in BusinessManagement.SocialArticle.GetListSocialArticle())
+            {
+                if (socialArticle.SocialId == socialId)
+                {
+                    resultSocial.Add(socialArticle);
+                }
+            }
+            return resultSocial;
+        }
+
         public static bool CreateSocialArticle(DBO.SocialArticle socialArticle)
         {
             return DataAccess.SocialArticle.CreateSocialArticle(socialArticle);

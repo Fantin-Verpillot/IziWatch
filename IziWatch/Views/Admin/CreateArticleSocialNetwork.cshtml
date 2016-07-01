@@ -1,0 +1,83 @@
+﻿
+@{
+    ViewBag.Title = "CreateArticleSocialNetwork";
+}
+
+<h2>Créer un article</h2><hr />
+
+@if(ViewBag.postData)
+{
+    if(ViewBag.error != null)
+    {
+
+        <div class="alert alert-danger" role="alert">
+            <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+            <span class="sr-only">Error:</span>
+            @ViewBag.error
+        </div>
+    }
+    else
+    {
+        <div class="alert alert-success" role="alert">
+            Un nouvel article a été crée.
+        </div>
+    }
+}
+
+
+<form class="form-horizontal" role="form" action="/Admin/CreateArticleSocialNetwork" method="post">
+    <input type="hidden" name="socialArticleId" value="@ViewBag.socialArticleId" />
+    <div class="form-group">
+        <label class="control-label col-sm-2">Titre :</label>
+        <div class="col-sm-3">
+            <input type="text" name="title" class="form-control" style="max-width: none;">
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="control-label col-sm-2">Catégorie :</label>
+        <div class="col-sm-3">
+            <select class="form-control" name="category" style="max-width: none;">
+                @foreach(var category in ViewBag.categories)
+                {
+                    <option value="@category.Id">@category.Name</option>
+                }
+            </select>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="control-label col-sm-2">Image (URL) :</label>
+        <div class="col-sm-8">
+            @if(ViewBag.preImage != null)
+            {
+                <input type="text" name="image" style="max-width: none;" class="form-control" value="@ViewBag.preImage">
+            }
+            else
+            {
+                <input type="text" name="image" class="form-control" style="max-width: none;">
+            }
+        </div>
+    </div>
+
+
+    <div class="form-group">
+        <label class="control-label col-sm-2">Texte :</label>
+        <div class="col-sm-8">
+            @if(ViewBag.preText != null)
+            {
+            <textarea class="form-control" name="text" rows="8" style="max-width: none;">@ViewBag.preText</textarea>
+            }
+            else
+            {
+            <textarea class="form-control" name="text" rows="8" style="max-width: none;"></textarea>
+            }
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+            <input type="submit" name="action" value="Créer" class="btn btn-primary" />
+        </div>
+    </div>
+</form>

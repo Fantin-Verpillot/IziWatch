@@ -61,7 +61,9 @@ namespace IziWatch.BusinessManagement
             int mark;
             foreach (DBO.Article article in articles)
             {
-                mark = article.Views + 5 * BusinessManagement.Popularity.countLikeArticle(article);
+                mark = article.Views + 
+                    2 * BusinessManagement.Comment.countCommentArticle(article) +
+                    5 * BusinessManagement.Popularity.countLikeArticle(article);
                 articleMarks.Add(new Tuple<DBO.Article, int>(article, mark));
             }
             articleMarks.Sort((x, y) => y.Item2.CompareTo(x.Item2));

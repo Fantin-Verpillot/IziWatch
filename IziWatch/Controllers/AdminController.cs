@@ -9,10 +9,24 @@ namespace IziWatch.Controllers
 {
     public class AdminController : Controller
     {
+
+        public String checkArticle(DBO.Article article)
+        {
+            List<DBO.Category> categories = BusinessManagement.Category.GetListCategory();
+            String error = null;
+
+            if (article.Text == "" || article.Title == "" || article.Image == "")
+                error = "Vous devez remplir tous les champs";
+
+            if (error == null && BusinessManagement.Category.GetCategory(article.CategoryId) == null)
+                error = "La catégorie spécifiée est introuvable.";
+
+            return error;
+        }
+
         // GET: Admin
         public ActionResult Index()
         {
-
             if (Request["action"] == "Synchroniser Facebook" && Request["tokenFacebook"] != null)
             {
                 List<DBO.Social> socials = BusinessManagement.Social.GetListSocial();
@@ -36,20 +50,57 @@ namespace IziWatch.Controllers
         }
 
         [HttpGet]
-        public ActionResult CreateArticle()
+        public ActionResult CreateArticleSocialNetwork()
         {
             List<DBO.Category> categories = BusinessManagement.Category.GetListCategory();
-            if (Request["id"] != null)
+            String socialArticleId = "0";
+            if (Request["socialArticleId"] != null)
             {
                 int id;
-                if (Int32.TryParse(Request["id"], out id))
+                if (Int32.TryParse(Request["socialArticleId"], out id))
                 {
                     DBO.SocialArticle socialArticle = BusinessManagement.SocialArticle.GetSocialArticle(id);
                     ViewBag.preImage = socialArticle.Image;
                     ViewBag.preText = socialArticle.Text;
+                    socialArticleId = Request["socialArticleId"];
                 }
             }
+            ViewBag.socialArticleId = socialArticleId;
             ViewBag.categories = categories;
+            ViewBag.postData = false;
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult CreateArticleSocialNetwork(DBO.Article article)
+        {
+            DBO.Article newArticle = new DBO.Article()
+            {
+                Title = Request["title"],
+                Image = Request["image"],
+                CategoryId = int.Parse(Request["category"]),
+                Text = Request["text"],
+                Date = DateTime.Now
+            };
+
+            String error = checkArticle(newArticle);
+            if (error == null)
+            {
+                BusinessManagement.Article.CreateArticle(newArticle);
+                BusinessManagement.SocialArticle.DeleteSocialArticle(int.Parse(Request["socialArticleId"]));
+            }
+
+            ViewBag.socialArticleId = int.Parse(Request["socialArticleId"]);
+            ViewBag.error = error;
+            ViewBag.categories = BusinessManagement.Category.GetListCategory();
+            ViewBag.postData = true;
+            return View();
+        }
+
+        [HttpGet]
+        public ActionResult CreateArticle()
+        {
+            ViewBag.categories = BusinessManagement.Category.GetListCategory(); ;
             ViewBag.postData = false;
             return View();
         }
@@ -57,92 +108,44 @@ namespace IziWatch.Controllers
         [HttpPost]
         public ActionResult CreateArticle(DBO.Article article)
         {
-            List<DBO.Category> categories = BusinessManagement.Category.GetListCategory();
-            ViewBag.categories = categories;
-
-            List<String> errors = new List<String>();
-
-            if (Request["title"] == "")
-                errors.Add("Le titre est incorrecte.");
-            if (Request["image"] == "")
-                errors.Add("L'URL de l'image est incorrecte.");
-            if (Request["text"] == "")
-                errors.Add("Le texte est incorrecte.");
-            if (Request["date"] == "")
-                errors.Add("La date est incorrecte.");
-
-            if (errors.Count() == 0)
+            DBO.Article newArticle = new DBO.Article()
             {
-                BusinessManagement.Article.CreateArticle(new DBO.Article()
-                {
-                    Title = Request["title"],
-                    Image = Request["image"],
-                    CategoryId = int.Parse(Request["category"]),
-                    Text = Request["text"],
-                    Date = DateTime.Parse(Request["date"])
-                });
+                Title = Request["title"],
+                Image = Request["image"],
+                CategoryId = int.Parse(Request["category"]),
+                Text = Request["text"],
+                Date = DateTime.Now
+             };
+
+            String error = checkArticle(newArticle);
+            if (error == null)
+            {
+                BusinessManagement.Article.CreateArticle(newArticle);
             }
 
-            ViewBag.errors = errors;
+            ViewBag.error = error;
+            ViewBag.categories = BusinessManagement.Category.GetListCategory();
             ViewBag.postData = true;
             return View();
         }
 
 
-        public ActionResult CreateArticleFB()
+        public ActionResult ChooseArticleSocialNetwork()
         {
-            List<DBO.Social> socialsFB = new List<DBO.Social>();
-            List<DBO.SocialArticle> articlesFB = new List<DBO.SocialArticle>();
-            foreach (DBO.Social social in BusinessManagement.Social.GetListSocial())
+            string socialType = Request["socialType"] == null || Request["socialType"] == "" ? "facebook" : Request["socialType"];
+            List<DBO.Social> socials = BusinessManagement.Social.GetSocialsByType(socialType);
+            List<DBO.SocialArticle> socialArticles = new List<DBO.SocialArticle>();
+
+            if (Request["action"] == "Rechercher" && Request["SocialId"] != null)
             {
-                if (social.Type == "facebook")
-                    socialsFB.Add(social);
+                socialArticles = BusinessManagement.SocialArticle.GetSocialArticlesBySocialId(int.Parse(Request["SocialId"]));
             }
 
-            if (Request["action"] == "Rechercher" && Request["pageIdentifier"] != null)
-            {
-                DBO.Social curSocial;
-                foreach(DBO.SocialArticle socialArticle in BusinessManagement.SocialArticle.GetListSocialArticle())
-                {
-                    curSocial = BusinessManagement.Social.GetSocial(socialArticle.SocialId);
-                    if (Request["pageIdentifier"] == curSocial.Identifier && curSocial.Type == "facebook")
-                        articlesFB.Add(socialArticle);
-                }
-                ViewBag.checkedIdentifier = Request["pageIdentifier"];
-            }
-
-            ViewBag.socialsFB = socialsFB;
-            ViewBag.articlesFB = articlesFB;
-            return View();
-        }
-
-
-
-        public ActionResult CreateArticleTwitter()
-        {
-            List<DBO.Social> socialsTwitter = new List<DBO.Social>();
-            List<DBO.SocialArticle> articlesTwitter = new List<DBO.SocialArticle>();
-
-            foreach (DBO.Social social in BusinessManagement.Social.GetListSocial())
-            {
-                if (social.Type == "twitter")
-                    socialsTwitter.Add(social);
-            }
-
-            if (Request["action"] == "Rechercher" && Request["pageIdentifier"] != null)
-            {
-                DBO.Social curSocial;
-                foreach (DBO.SocialArticle socialArticle in BusinessManagement.SocialArticle.GetListSocialArticle())
-                {
-                    curSocial = BusinessManagement.Social.GetSocial(socialArticle.SocialId);
-                    if (Request["pageIdentifier"] == curSocial.Identifier && curSocial.Type == "twitter")
-                        articlesTwitter.Add(socialArticle);
-                }
-                ViewBag.checkedIdentifier = Request["pageIdentifier"];
-            }
-
-            ViewBag.articlesTwitter = articlesTwitter;
-            ViewBag.socialsTwitter = socialsTwitter;
+            ViewBag.socials = socials;
+            ViewBag.socialArticles = socialArticles;
+            
+            ViewBag.checkedSocialId = Request["SocialId"] == null ? 0 : int.Parse(Request["SocialId"]);
+            ViewBag.socialType = socialType;
             return View();
         }
 
