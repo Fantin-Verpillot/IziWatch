@@ -4,6 +4,15 @@
     ViewBag.Title = "Accueil";
 }
 
+@if(ViewBag.dateError)
+{
+    <div class="alert alert-danger" role="alert">
+        <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+        <span class="sr-only">Error:</span>
+        Le format de date est incorrect.
+    </div>
+}
+
 <div class="row" style="margin-top: 12px;">
     <div class="col-md-3">
 
