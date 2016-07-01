@@ -4,6 +4,7 @@ using IziWatch.DataAccess;
 
 namespace IziWatch.Controllers
 {
+    [Authorize(Roles = "Admin, Root")]
     public class ArticlesController : Controller
     {
         private IziWatchEntities db = new IziWatchEntities();
