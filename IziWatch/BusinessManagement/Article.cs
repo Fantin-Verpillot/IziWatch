@@ -42,6 +42,16 @@ namespace IziWatch.BusinessManagement
             return filterArticles;
         }
 
+        public static List<DBO.Article> FilterByFavorites(List<DBO.Article> articles, DBO.User user)
+        {
+            List<DBO.Article> filterArticles = new List<DBO.Article>();
+            foreach (DBO.Article article in articles)
+            {
+                
+            }
+            return filterArticles;
+        }
+
         public static List<DBO.Article> FilterByPopularity(List<DBO.Article> articles)
         {
             List<DBO.Article> filterArticles = new List<DBO.Article>();
