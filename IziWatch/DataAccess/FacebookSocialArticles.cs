@@ -13,7 +13,7 @@ namespace IziWatch.DataAccess
 
         public static string CreateRequest(DBO.Social s, string access_token)
         {
-            string UrlRequest = " https://graph.facebook.com/" + s.Identifier + "/feed?fields=message,picture,description,name&limit=10&access_token=" + access_token;
+            string UrlRequest = "https://graph.facebook.com/" + s.Identifier + "/feed?fields=message,picture,description,name&limit=10&access_token=" + access_token;
             return (UrlRequest);
         }
 
@@ -58,18 +58,22 @@ namespace IziWatch.DataAccess
             }
         }
 
-        static public void ExecuteRequest(DBO.Social s, string access_token)
+        static public bool ExecuteRequest(DBO.Social s, string access_token)
         {
             try
             {
                 string Request = CreateRequest(s, access_token);
                 DBO.FacebookSocialArticles Response = MakeRequest(Request);
+
+                if (Response == null)
+                    return false;
+
                 ProcessResponse(s, Response);
+                return true;
             }
             catch (Exception e)
             {
-                Console.WriteLine(e.Message);
-                Console.Read();
+                return false;
             }
         }
     }
