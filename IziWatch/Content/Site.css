@@ -82,4 +82,11 @@ textarea {
     color: black;
     background-color: white;
     border: none;
+    white-space:pre-wrap
 }
+
+.no-padding{
+   padding: 0 !important;
+   margin: 0 !important;
+}
+

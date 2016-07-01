@@ -40,7 +40,7 @@ namespace IziWatch.Controllers
                 ViewBag.SocialName = "Facebook";
 
             }
-            else if (Request["action"] == "Synchroniser Twitter" && Request["tokenTwitter"] != null)
+            else if (Request["action"] == "Synchroniser Twitter")
             {
                 ViewBag.IsUpdated = true;
                 ViewBag.SocialName = "Twitter";
