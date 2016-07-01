@@ -27,7 +27,7 @@ namespace IziWatch.Controllers
             }
             else
             {
-                if (user != null)
+                if (User.Identity.IsAuthenticated)
                 {
                     if (Request["action"] == "like")
                     {
@@ -54,7 +54,9 @@ namespace IziWatch.Controllers
                 countLikes = BusinessManagement.Popularity.countLikeArticle(article);
             }
 
-            ViewBag.userConnected = user;
+            if (User.Identity.IsAuthenticated)
+                ViewBag.userConnected = true;
+
             ViewBag.article = article;
             ViewBag.comments = comments;
             ViewBag.popularity = popularity;

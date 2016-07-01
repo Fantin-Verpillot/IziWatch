@@ -234,6 +234,7 @@
     <Compile Include="BusinessManagement\Comment.cs" />
     <Compile Include="BusinessManagement\FacebookSocialArticles.cs" />
     <Compile Include="BusinessManagement\TwitterSocialArticle.cs" />
+    <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="DataAccess\FacebookSocialArticles.cs" />
     <Compile Include="BusinessManagement\Popularity.cs" />
     <Compile Include="BusinessManagement\Social.cs" />
@@ -308,6 +309,11 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201607011457297_Init.cs" />
+    <Compile Include="Migrations\201607011457297_Init.Designer.cs">
+      <DependentUpon>201607011457297_Init.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
@@ -440,6 +446,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Base\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -451,6 +458,11 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201607011457297_Init.resx">
+      <DependentUpon>201607011457297_Init.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
