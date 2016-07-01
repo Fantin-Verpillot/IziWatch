@@ -2,9 +2,10 @@
 using System.ServiceModel.Syndication;
 using System.ServiceModel.Web;
 using DBO = IziWatch.DBO;
-using BusinessManagement = IziWatch.BusinessManagement;
 using System.Xml.Linq;
 using System;
+using System.Xml;
+using System.ServiceModel;
 
 namespace SyndicationService
 {
@@ -22,9 +23,12 @@ namespace SyndicationService
                     (
                         rssArticle.Title,
                         rssArticle.Text,
-                        null
+                        new Uri("http://localhost:63166/Article/Details/" + rssArticle.Id),
+                        rssArticle.Id.ToString(),
+                        rssArticle.Date
                     );
                 item.Categories.Add(new SyndicationCategory(rssArticle.CategoryName));
+
                 item.ElementExtensions.Add(new XElement("view", new XText(rssArticle.Views.ToString())));
                 item.ElementExtensions.Add(new XElement("like", new XText(rssArticle.Likes.ToString())));
                 item.ElementExtensions.Add(new XElement("comment", new XText(rssArticle.Comments.ToString())));

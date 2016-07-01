@@ -35,10 +35,54 @@ namespace IziWatch.Controllers
             return View();
         }
 
+        [HttpGet]
         public ActionResult CreateArticle()
         {
+            List<DBO.Category> categories = BusinessManagement.Category.GetListCategory();
+            if (Request["image"] != null && Request["text"] != null)
+            {
+                ViewBag.preImage = Request["image"];
+                ViewBag.preText = Request["text"];
+            }
+            ViewBag.categories = categories;
+            ViewBag.postData = false;
             return View();
         }
+
+        [HttpPost]
+        public ActionResult CreateArticle(DBO.Article article)
+        {
+            List<DBO.Category> categories = BusinessManagement.Category.GetListCategory();
+            ViewBag.categories = categories;
+
+            List<String> errors = new List<String>();
+
+            if (Request["title"] == "")
+                errors.Add("Le titre est incorrecte.");
+            if (Request["image"] == "")
+                errors.Add("L'URL de l'image est incorrecte.");
+            if (Request["text"] == "")
+                errors.Add("Le texte est incorrecte.");
+            if (Request["date"] == "")
+                errors.Add("La date est incorrecte.");
+
+            if (errors.Count() == 0)
+            {
+                BusinessManagement.Article.CreateArticle(new DBO.Article()
+                {
+                    Title = Request["title"],
+                    Image = Request["image"],
+                    CategoryId = int.Parse(Request["category"]),
+                    Text = Request["text"],
+                    Date = DateTime.Parse(Request["date"])
+                });
+            }
+
+            ViewBag.errors = errors;
+            ViewBag.postData = true;
+            return View();
+        }
+
 
         public ActionResult CreateArticleFB()
         {
@@ -59,6 +103,7 @@ namespace IziWatch.Controllers
                     if (Request["pageIdentifier"] == curSocial.Identifier && curSocial.Type == "facebook")
                         articlesFB.Add(socialArticle);
                 }
+                ViewBag.checkedIdentifier = Request["pageIdentifier"];
             }
 
             ViewBag.socialsFB = socialsFB;
@@ -66,17 +111,32 @@ namespace IziWatch.Controllers
             return View();
         }
 
+
+
         public ActionResult CreateArticleTwitter()
         {
-            List<DBO.Social> socials = BusinessManagement.Social.GetListSocial();
             List<DBO.Social> socialsTwitter = new List<DBO.Social>();
+            List<DBO.SocialArticle> articlesTwitter = new List<DBO.SocialArticle>();
 
-            foreach (DBO.Social social in socials)
+            foreach (DBO.Social social in BusinessManagement.Social.GetListSocial())
             {
                 if (social.Type == "twitter")
                     socialsTwitter.Add(social);
             }
 
+            if (Request["action"] == "Rechercher" && Request["pageIdentifier"] != null)
+            {
+                DBO.Social curSocial;
+                foreach (DBO.SocialArticle socialArticle in BusinessManagement.SocialArticle.GetListSocialArticle())
+                {
+                    curSocial = BusinessManagement.Social.GetSocial(socialArticle.SocialId);
+                    if (Request["pageIdentifier"] == curSocial.Identifier && curSocial.Type == "twitter")
+                        articlesTwitter.Add(socialArticle);
+                }
+                ViewBag.checkedIdentifier = Request["pageIdentifier"];
+            }
+
+            ViewBag.articlesTwitter = articlesTwitter;
             ViewBag.socialsTwitter = socialsTwitter;
             return View();
         }

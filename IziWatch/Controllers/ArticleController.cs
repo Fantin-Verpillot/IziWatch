@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Net;
 using System.Web.Mvc;
@@ -58,6 +59,7 @@ namespace IziWatch.Controllers
             ViewBag.comments = comments;
             ViewBag.popularity = popularity;
             ViewBag.countLikes = countLikes;
+            ViewBag.pageUrl = Request.Url;
             return View();
         }
     }

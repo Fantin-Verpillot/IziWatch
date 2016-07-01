@@ -1,7 +1,21 @@
 ﻿
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = "Détail d'un article";
     IziWatch.DBO.Article article = ViewBag.article;
+}
+
+@section metatags
+{
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="@article.Title" />
+    <meta name="twitter:description" content="@article.Text" />
+    <meta name="twitter:image" content="@article.Image" />
+
+    <meta property="og:url" content="@ViewBag.pageUrl" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="@article.Title" />
+    <meta property="og:description" content="@article.Text" />
+    <meta property="og:image" content="@article.Image" />
 }
 
 <div class="row">
@@ -29,9 +43,9 @@
 
 <div class="row" style="margin-top: 50px;">
     <div class="col-md-12">
-        <p style="font-size: 15px;">
+        <pre class="custom-pre">
             @article.Text
-        </p>
+        </pre>
     </div>
 </div>
 

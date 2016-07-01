@@ -87,7 +87,10 @@
 
                 <div class="col-md-4" style="margin-bottom: 10px;">
                     <div class="thumbnail" style="padding: 0;">
-                        <img src="@article.Image" alt="article photo" class="img-responsive" style="height: 200px;"/>
+                        <a href="/Article/Details/@article.Id">
+                            <img src="@article.Image" alt="article photo" class="img-responsive" style="height: 200px; margin: 0 auto;"/>
+                        </a>
+
                         <div class="text-center" style="margin-top:5px; font-style:italic;">
 
                             @{
@@ -98,11 +101,18 @@
                                 }
                             }
                         </div>
-                        <div style="display:table; height: 100px; padding: 10px;">
+                        <div style="display:table; height: 120px; padding: 10px;">
 
                             <div style="display:table-cell; vertical-align: middle; text-align: center;">
-                                <a style="font-size: 15px; color: black;" href="/Article/Details/@article.Id">@article.Title</a>
+                                <a style="font-weight: 600; font-size: 15px; color: black;" href="/Article/Details/@article.Id">@article.Title</a>
                             </div>
+
+                        </div>
+
+                        <div class="pull-right" style="position: relative; bottom: 23px; right: 4px; font-size: 12px;">
+                           <span class="glyphicon glyphicon-eye-open"aria-hidden="true"></span> @article.Views
+                           | <span class="glyphicon glyphicon-heart" aria-hidden="true"></span> @IziWatch.BusinessManagement.Popularity.countLikeArticle(@article)
+                           | <span class="glyphicon glyphicon-comment" aria-hidden="true"></span> @IziWatch.BusinessManagement.Comment.GetCommentsByArticle(@article).Count
                         </div>
                     </div>
                 </div>
