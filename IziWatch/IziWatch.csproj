@@ -202,6 +202,8 @@
     <Compile Include="BusinessManagement\Article.cs" />
     <Compile Include="BusinessManagement\Category.cs" />
     <Compile Include="BusinessManagement\Comment.cs" />
+    <Compile Include="BusinessManagement\FacebookSocialArticles.cs" />
+    <Compile Include="DataAccess\FacebookSocialArticles.cs" />
     <Compile Include="BusinessManagement\Popularity.cs" />
     <Compile Include="BusinessManagement\Social.cs" />
     <Compile Include="BusinessManagement\SocialArticle.cs" />
@@ -264,6 +266,7 @@
     <Compile Include="DBO\Article.cs" />
     <Compile Include="DBO\Category.cs" />
     <Compile Include="DBO\Comment.cs" />
+    <Compile Include="DBO\FacebookSocialArticles.cs" />
     <Compile Include="DBO\Popularity.cs" />
     <Compile Include="DBO\RssArticle.cs" />
     <Compile Include="DBO\Social.cs" />

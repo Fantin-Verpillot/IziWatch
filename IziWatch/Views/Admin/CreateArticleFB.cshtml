@@ -3,7 +3,36 @@
     ViewBag.Title = "CreateArticleFB";
 }
 
-<h2>Liste des comptes Facebook</h2>
+<h2>Créer un article social avec Facebook</h2>
 
 <hr />
+
+<div class="row">
+    <div class="col-md-12">
+        <form class="form-inline" role="form" method="get" action="/Admin/CreateArticleFB">
+            <div class="form-group">
+                <label for="page">Choix de la page :</label>
+                <select class="form-control" id="page" name="pageIdentifier">
+                    @foreach(var social in ViewBag.socialsFB)
+                    {
+                    <option value="@social.Identifier">@social.Account</option>
+                    }
+                </select>
+            </div>
+            <input type="submit" name="action" value="Rechercher" class="btn btn-primary" style="margin-top: 28px">
+        </form>
+
+    </div>
+</div>
+
+<hr />
+
+<div class="row">
+    <div class="row">
+        <div class="col-md-4">
+
+
+        </div>
+    </div>
+</div>
 

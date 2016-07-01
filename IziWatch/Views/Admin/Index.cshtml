@@ -3,12 +3,87 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Admin page</h2>
+<h2>Actions</h2>
 
 <hr />
 
-<p><a href="/Admin/CreateArticle">Créer un article vierge</a></p>
-<p><a href="/Admin/CreateArticleFB">Créer un article avec Facebook</a></p>
-<p><a href="/Admin/CreateArticleTwitter">Créer un article avec Twitter</a></p>
-<p><a href="/Admin/HandleAccounts">Gérer les comptes Facebook/Twitter</a></p>
+<div class="row">
+    <div class="col-md-12">
+        <p><a href="/Admin/CreateArticle">Créer un article vierge</a></p>
+        <p><a href="/Admin/CreateArticleFB">Créer un article social avec Facebook</a></p>
+        <p><a href="/Admin/CreateArticleTwitter">Créer un article social avec Twitter</a></p>
+        <p><a href="/Admin/HandleAccounts">Gérer les pages Facebook/Twitter</a></p>
+    </div>
+</div>
+
+<br />
+<br />
+
+<h2>Synchronisation</h2>
+<hr />
+
+@if (ViewBag.IsUpdated != null){
+
+    if (ViewBag.IsUpdated)
+    {
+    <div class="row">
+        <div class="col-md-12">
+            <div class="alert alert-success" role="alert">Synchronisation @ViewBag.SocialName réussie.</div>
+        </div>
+    </div>
+    }
+    else
+    {
+    <div class="row">
+        <div class="col-md-12">
+            <div class="alert alert-danger" role="alert">Échec de synchronisation @ViewBag.SocialName.</div>
+        </div>
+    </div>
+    }
+}
+
+<br />
+
+
+<div class="row">
+    <div class="col-md-10">
+        <form class="form-horizontal" role="form">
+            <div class="form-group">
+                <label class="control-label col-sm-2">Token Facebook :</label>
+                <div class="col-sm-9">
+                    <input type="text" name="tokenFacebook" class="form-control">
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-9">
+                    <input type="submit" name="action" value="Synchroniser Facebook" class="btn btn-primary" />
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+<div class="row">
+    <div class="col-md-10">
+        <form class="form-horizontal" role="form">
+            <div class="form-group">
+                <label class="control-label col-sm-2">Token Twitter :</label>
+                <div class="col-sm-9">
+                    <input type="text" name="tokenTwitter" class="form-control">
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-9">
+                    <input type="submit" name="action" value="Synchroniser Twitter" class="btn btn-warning" />
+                </div>
+            </div>
+        </form>
+    </div>
+
+</div>
+
+
+
+
 

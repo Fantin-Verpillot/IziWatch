@@ -40,15 +40,22 @@
                 <tr>
                     <th class="text-center">Id</th>
                     <th class="text-center">Nom de la page</th>
+                    <th class="text-center">Identifiant</th>
                     <th class="text-center">Actions</th>
                 </tr>
             </thead>
             <tbody class="text-center">
+                @foreach(var socialFB in ViewBag.socialsFB)
+                {
                 <tr class="info">
-                    <td>1</td>
-                    <td>Column content</td>
-                    <td>Column content</td>
+                    <td>@socialFB.Id</td>
+                    <td>@socialFB.Account</td>
+                    <td>@socialFB.Identifier</td>
+                    <td>
+                        <a href="/Admin/HandleAccounts?action=delete&id=@socialFB.Id" type="button" class="btn btn-danger btn-xs">Supprimer</a>
+                    </td>
                 </tr>
+                }
 
             </tbody>
         </table>
@@ -68,15 +75,22 @@
                 <tr>
                     <th class="text-center">Id</th>
                     <th class="text-center">Nom de la page</th>
+                    <th class="text-center">Identifiant</th>
                     <th class="text-center">Actions</th>
                 </tr>
             </thead>
             <tbody class="text-center">
+                @foreach(var socialTwitter in ViewBag.socialsTwitter)
+                {
                 <tr class="warning">
-                    <td>1</td>
-                    <td>Column content</td>
-                    <td>Column content</td>
+                    <td>@socialTwitter.Id</td>
+                    <td>@socialTwitter.Account</td>
+                    <td>@socialTwitter.Identifier</td>
+                    <td>
+                        <a href="/Admin/HandleAccounts?action=delete&id=@socialTwitter.Id" type="button" class="btn btn-danger btn-xs">Supprimer</a>
+                    </td>
                 </tr>
+                }
 
             </tbody>
         </table>
@@ -92,29 +106,29 @@
 
     <div class="col-md-6 col-md-offset-3">
         <div class="well text-center">
-            <form class="form-horizontal" method="post" action="">
+            <form class="form-horizontal" method="get" action="/Admin/HandleAccounts">
                 <fieldset>
 
                     <div class="form-group">
                         <label class="col-lg-4 control-label">Nom de la page :</label>
                         <div class="col-lg-6">
-                            <input type="text" name="" class="form-control">
+                            <input type="text" name="pageName" class="form-control">
                         </div>
                     </div>
 
                     <div class="form-group">
                         <label class="col-lg-4 control-label">ID de la page :</label>
                         <div class="col-lg-6">
-                            <input type="text" name="" class="form-control">
+                            <input type="text" name="pageIdentifier" class="form-control">
                         </div>
                     </div>
 
                     <div class="form-group">
                         <label class="col-lg-4 control-label">Réseau social :</label>
                         <div class="col-lg-4">
-                            <select class="form-control">
-                                <option>Facebook</option>
-                                <option>Twitter</option>
+                            <select class="form-control" name="social">
+                                <option value="facebook">Facebook</option>
+                                <option value="twitter">Twitter</option>
                             </select>
                         </div>
                     </div>
