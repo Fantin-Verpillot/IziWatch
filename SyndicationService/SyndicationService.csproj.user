@@ -5,8 +5,7 @@
       <FlavorProperties GUID="{3D9AD99F-2412-4246-B90B-4EAA41C64699}">
         <WcfProjectProperties>
           <PublishCopyOption>RunFiles</PublishCopyOption>
-          <PublishTargetLocation>
-          </PublishTargetLocation>
+          <PublishTargetLocation>http://localhost:8733/Articles</PublishTargetLocation>
           <PublishDeleteAllFiles>False</PublishDeleteAllFiles>
         </WcfProjectProperties>
       </FlavorProperties>
