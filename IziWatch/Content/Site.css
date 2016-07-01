@@ -73,3 +73,11 @@ textarea {
     font-size: 16px;
 
 }
+
+.custom-pre {
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-size: 17px;
+    color: black;
+    background-color: white;
+    border: none;
+}

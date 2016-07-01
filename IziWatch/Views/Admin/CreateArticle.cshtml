@@ -3,57 +3,91 @@
     ViewBag.Title = "CreateArticle";
 }
 
-<h2>Créer un article vierge</h2>
+<h2>Créer un article</h2>
 
 <hr />
 
-<form action="/Admin/CreateArticle" method="post">
-    <div class="form-horizontal">
-
-        <div class="form-group">
-            <label class="control-label col-md-2" for="Title">Title</label>
-            <div class="col-md-10">
-                <input class="form-control text-box single-line" id="Title" name="Title" type="text" value="" />
-                <span class="field-validation-valid text-danger" data-valmsg-for="Title" data-valmsg-replace="true"></span>
-            </div>
+@if(ViewBag.postData)
+{
+    if(ViewBag.errors.Count != 0)
+    {
+        foreach(var error in ViewBag.errors)
+        {
+        <div class="alert alert-danger" role="alert">
+            <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+            <span class="sr-only">Error:</span>
+            @error
         </div>
-
-        <div class="form-group">
-            <label class="control-label col-md-2" for="Image">Image (URL)</label>
-            <div class="col-md-10">
-                <input class="form-control text-box single-line" id="Image" name="Image" type="text" value="" />
-                <span class="field-validation-valid text-danger" data-valmsg-for="Image" data-valmsg-replace="true"></span>
-            </div>
+        }
+    }
+    else
+    {
+        <div class="alert alert-success" role="alert">
+            Un nouvel article a été crée.
         </div>
+    }
+}
 
-        <div class="form-group">
-            <label class="control-label col-md-2" for="CategoryId">CategoryId</label>
-            <div class="col-md-10">
-                <input class="form-control text-box single-line" data-val="true" data-val-number="The field CategoryId must be a number." data-val-required="The CategoryId field is required." id="CategoryId" name="CategoryId" type="number" value="" />
-                <span class="field-validation-valid text-danger" data-valmsg-for="CategoryId" data-valmsg-replace="true"></span>
-            </div>
+
+<form class="form-horizontal" role="form" action="/Admin/CreateArticle" method="post">
+    <div class="form-group">
+        <label class="control-label col-sm-2">Titre :</label>
+        <div class="col-sm-3">
+            <input type="text" name="title" class="form-control" style="max-width: none;">
         </div>
+    </div>
 
-        <div class="form-group">
-            <label class="control-label col-md-2" for="Text">Text</label>
-            <div class="col-md-10">
-                <input class="form-control text-box single-line" id="Text" name="Text" type="text" value="" />
-                <span class="field-validation-valid text-danger" data-valmsg-for="Text" data-valmsg-replace="true"></span>
-            </div>
+    <div class="form-group">
+        <label class="control-label col-sm-2">Catégorie :</label>
+        <div class="col-sm-3">
+            <select class="form-control" name="category" style="max-width: none;">
+                @foreach(var category in ViewBag.categories)
+                {
+                <option value="@category.Id">@category.Name</option>
+                }
+            </select>
         </div>
+    </div>
 
-        <div class="form-group">
-            <label class="control-label col-md-2" for="Date">Date</label>
-            <div class="col-md-10">
-                <input class="form-control text-box single-line" data-val="true" data-val-date="The field Date must be a date." data-val-required="The Date field is required." id="Date" name="Date" type="datetime" value="" />
-                <span class="field-validation-valid text-danger" data-valmsg-for="Date" data-valmsg-replace="true"></span>
-            </div>
+    <div class="form-group">
+        <label class="control-label col-sm-2">Image (URL) :</label>
+        <div class="col-sm-8">
+            @if(ViewBag.preImage != null)
+            {
+            <input type="text" name="image" style="max-width: none;" class="form-control" value="@ViewBag.preImage">
+            }
+            else
+            {
+            <input type="text" name="image" class="form-control" style="max-width: none;">
+            }
         </div>
+    </div>
 
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
-            </div>
+
+    <div class="form-group">
+        <label class="control-label col-sm-2">Texte :</label>
+        <div class="col-sm-8">
+            @if(ViewBag.preText != null)
+            {
+            <textarea class="form-control" name="text" rows="8" style="max-width: none;">@ViewBag.preText</textarea>
+            }
+            else
+            {
+            <textarea class="form-control" name="text" rows="8" style="max-width: none;"></textarea>
+            }
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="control-label col-sm-2">Date :</label>
+        <div class="col-sm-3">
+            <input type="text" id="datepickerCreateArticle" class="form-control" name="date" style="max-width: none;">
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+            <input type="submit" name="action" value="Créer" class="btn btn-primary" />
         </div>
     </div>
 </form>

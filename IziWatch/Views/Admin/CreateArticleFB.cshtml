@@ -41,20 +41,22 @@
             <div class="thumbnail" style="padding: 0;">
                 @if (article.Image != "" && article.Image != null)
                 {
-                <img src="@article.Image" alt="article photo" class="img-responsive" style="height: 200px;" />
+                <img src="@article.Image" alt="article photo" class="img-responsive" style="height: 250px;" />
                 }
                 else
                 {
-                <img src="https://library.britishcouncil.org.in/static-content/isbn/noimage.jpg" alt="article photo" class="img-responsive" style="height: 200px;" />
+                <img src="http://www.klim.com/c.3569702/sca-dev-denali/img/no_image_available.jpeg" alt="article photo" class="img-responsive" style="height: 250px;" />
                 }
                 <div style="display:table; height: 100px; padding: 10px;">
 
                     <div style="display:table-cell; vertical-align: middle; text-align: center;">
-                        @article.Text
+                        @article.Text.Substring(0, Math.Min(@article.Text.Length, 80)) ..
                     </div>
+
                 </div>
+
                 <p class="text-center">
-                    <a href="#" class="btn btn-primary">Poster</a>
+                    <a href="/Admin/CreateArticle?image=@article.Image&text=@article.Text" class="btn btn-primary">Ajouter</a>
                 </p>
             </div>
         </div>
