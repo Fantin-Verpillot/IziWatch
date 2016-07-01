@@ -49,16 +49,6 @@ namespace IziWatch.BusinessManagement
             {
                 
             }
-            int countOcc = 0;
-            foreach (Tuple<DBO.Article, int> articleMark in articleMarks)
-            {
-                filterArticles.Add(articleMark.Item1);
-                ++countOcc;
-                if (countOcc == 10)
-                {
-                    break;
-                }
-            }
             return filterArticles;
         }
 
