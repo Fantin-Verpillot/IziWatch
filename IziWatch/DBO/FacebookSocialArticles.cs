@@ -9,6 +9,7 @@ namespace IziWatch.DBO
     [DataContract]
     public class FacebookSocialArticles
     {
+
         [DataMember(Name = "data")]
         public Data[] data { get; set; }
 

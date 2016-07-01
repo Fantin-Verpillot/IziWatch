@@ -11,9 +11,9 @@ namespace IziWatch.DataAccess
     public class FacebookSocialArticles
     {
 
-        public static string CreateRequest(string page_id, string access_token)
+        public static string CreateRequest(DBO.Social s, string access_token)
         {
-            string UrlRequest = " https://graph.facebook.com/" + page_id + "/feed?fields=message,picture,description,name&limit=10&access_token=" + access_token;
+            string UrlRequest = " https://graph.facebook.com/" + s.Identifier + "/feed?fields=message,picture,description,name&limit=10&access_token=" + access_token;
             return (UrlRequest);
         }
 
@@ -30,10 +30,11 @@ namespace IziWatch.DataAccess
                         "Server error (HTTP {0}: {1}).",
                         response.StatusCode,
                         response.StatusDescription));
+
                     DataContractJsonSerializer jsonSerializer = new DataContractJsonSerializer(typeof(DBO.FacebookSocialArticles));
-                    object objResponse = jsonSerializer.ReadObject(response.GetResponseStream());
-                    DBO.FacebookSocialArticles jsonResponse
-                    = objResponse as DBO.FacebookSocialArticles;
+                    object objResponse                        = jsonSerializer.ReadObject(response.GetResponseStream());
+                    DBO.FacebookSocialArticles jsonResponse   = objResponse as DBO.FacebookSocialArticles;
+
                     return jsonResponse;
                 }
             }
@@ -44,25 +45,26 @@ namespace IziWatch.DataAccess
             }
         }
 
-        static public void ProcessResponse(DBO.FacebookSocialArticles Response)
+        static public void ProcessResponse(DBO.Social s, DBO.FacebookSocialArticles Response)
         {
             Data[] data = Response.data;
+
             foreach (Data d in data)
             {
                 DBO.SocialArticle sa = new DBO.SocialArticle { Text  = "name : " + d.name + "\n message : " + d.message,
-                                                               Image = d.picture, SocialId = 1};
+                                                               Image = d.picture, SocialId = s.Id};
 
                 BusinessManagement.SocialArticle.CreateSocialArticle(sa);
             }
         }
 
-        static public void ExecuteRequest(string page_id, string access_token)
+        static public void ExecuteRequest(DBO.Social s, string access_token)
         {
             try
             {
-                string Request = CreateRequest(page_id, access_token);
+                string Request = CreateRequest(s, access_token);
                 DBO.FacebookSocialArticles Response = MakeRequest(Request);
-                ProcessResponse(Response);
+                ProcessResponse(s, Response);
             }
             catch (Exception e)
             {
