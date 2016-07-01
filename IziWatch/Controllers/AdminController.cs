@@ -39,10 +39,15 @@ namespace IziWatch.Controllers
         public ActionResult CreateArticle()
         {
             List<DBO.Category> categories = BusinessManagement.Category.GetListCategory();
-            if (Request["image"] != null && Request["text"] != null)
+            if (Request["id"] != null)
             {
-                ViewBag.preImage = Request["image"];
-                ViewBag.preText = Request["text"];
+                int id;
+                if (Int32.TryParse(Request["id"], out id))
+                {
+                    DBO.SocialArticle socialArticle = BusinessManagement.SocialArticle.GetSocialArticle(id);
+                    ViewBag.preImage = socialArticle.Image;
+                    ViewBag.preText = socialArticle.Text;
+                }
             }
             ViewBag.categories = categories;
             ViewBag.postData = false;
