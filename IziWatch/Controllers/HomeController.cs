@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Web.Mvc;
+using System.Linq;
 
 namespace IziWatch.Controllers
 {
@@ -10,9 +11,12 @@ namespace IziWatch.Controllers
         [HttpGet]
         public ActionResult Index()
         {
+            // TODO : get connected user and test connection
+            DBO.User user = BusinessManagement.User.GetListUser().First();
             List<DBO.Article> articles = BusinessManagement.Article.GetListArticleByDate();
             List<DBO.Category> categories = BusinessManagement.Category.GetListCategory();
             bool dateError = false;
+            bool favoritesCheck = false;
             string filter = Request["action"];
             List<int> categoryIds = new List<int>();
             if (filter != null)
@@ -32,8 +36,11 @@ namespace IziWatch.Controllers
                 }
                 if (Request["favorites"] != null)
                 {
-                    //check and get userConnected
-                    //articles = BusinessManagement.Article.FilterByFavorites(articles, user);
+                    if (user != null)
+                    {
+                        articles = BusinessManagement.Article.FilterByFavorites(articles, user);
+                        favoritesCheck = true;
+                    }
                 }
                 DateTime beginDate;
                 DateTime endDate;
@@ -58,6 +65,8 @@ namespace IziWatch.Controllers
                 }
             }
 
+            ViewBag.favoritesCheck = favoritesCheck;
+            ViewBag.userConnected = user;
             ViewBag.dateError = dateError;
             ViewBag.articles = articles;
             ViewBag.categories = categories;
