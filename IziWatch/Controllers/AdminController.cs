@@ -23,13 +23,26 @@ namespace IziWatch.Controllers
         public ActionResult CreateArticleFB()
         {
             List<DBO.Social> socialsFB = new List<DBO.Social>();
+            List<DBO.SocialArticle> articlesFB = new List<DBO.SocialArticle>();
             foreach (DBO.Social social in BusinessManagement.Social.GetListSocial())
             {
                 if (social.Type == "facebook")
                     socialsFB.Add(social);
             }
 
+            if (Request["action"] == "Rechercher" && Request["pageIdentifier"] != null)
+            {
+                DBO.Social curSocial;
+                foreach(DBO.SocialArticle socialArticle in BusinessManagement.SocialArticle.GetListSocialArticle())
+                {
+                    curSocial = BusinessManagement.Social.GetSocial(socialArticle.SocialId);
+                    if (Request["pageIdentifier"] == curSocial.Identifier && curSocial.Type == "facebook")
+                        articlesFB.Add(socialArticle);
+                }
+            }
+
             ViewBag.socialsFB = socialsFB;
+            ViewBag.articlesFB = articlesFB;
             return View();
         }
 

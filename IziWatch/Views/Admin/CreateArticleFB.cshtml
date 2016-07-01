@@ -9,17 +9,17 @@
 
 <div class="row">
     <div class="col-md-12">
-        <form class="form-inline" role="form">
+        <form class="form-inline" role="form" method="get" action="/Admin/CreateArticleFB">
             <div class="form-group">
                 <label for="page">Choix de la page :</label>
-                <select class="form-control" id="page">
+                <select class="form-control" id="page" name="pageIdentifier">
                     @foreach(var social in ViewBag.socialsFB)
                     {
                     <option value="@social.Identifier">@social.Account</option>
                     }
                 </select>
             </div>
-            <button type="submit" class="btn btn-primary" style="margin-top: 28px">Valider</button>
+            <input type="submit" name="action" value="Rechercher" class="btn btn-primary" style="margin-top: 28px">
         </form>
 
     </div>
@@ -28,6 +28,11 @@
 <hr />
 
 <div class="row">
+    <div class="row">
+        <div class="col-md-4">
 
+
+        </div>
+    </div>
 </div>
 
