@@ -12,7 +12,7 @@ namespace IziWatch.Controllers
         {
             List<DBO.Article> articles = BusinessManagement.Article.GetListArticleByDate();
             List<DBO.Category> categories = BusinessManagement.Category.GetListCategory();
-
+            bool dateError = false;
             string filter = Request["action"];
             List<int> categoryIds = new List<int>();
             if (filter != null)
@@ -29,6 +29,11 @@ namespace IziWatch.Controllers
                 if (Request["popular"] != null)
                 {
                     articles = BusinessManagement.Article.FilterByPopularity(articles);
+                }
+                if (Request["favorites"] != null)
+                {
+                    //check and get userConnected
+                    //articles = BusinessManagement.Article.FilterByFavorites(articles, user);
                 }
                 DateTime beginDate;
                 DateTime endDate;
@@ -48,11 +53,12 @@ namespace IziWatch.Controllers
                 }
                 catch (Exception e)
                 {
-                    // TODO : handle error
+                    dateError = true;
                     Debug.WriteLine("[DEBUG][HOME][INDEX] - Error in date format.");
                 }
             }
 
+            ViewBag.dateError = dateError;
             ViewBag.articles = articles;
             ViewBag.categories = categories;
             ViewBag.categoryChecks = categoryIds;
