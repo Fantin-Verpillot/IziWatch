@@ -122,7 +122,9 @@
                         </div>
 
                         <div class="pull-right" style="position: relative; bottom: 23px; right: 4px; font-size: 12px;">
-                           @article.Views Vues | <span class="glyphicon glyphicon-heart" aria-hidden="true"></span> @IziWatch.BusinessManagement.Popularity.countLikeArticle(@article)
+                           <span class="glyphicon glyphicon-eye-open"aria-hidden="true"></span> @article.Views
+                           | <span class="glyphicon glyphicon-heart" aria-hidden="true"></span> @IziWatch.BusinessManagement.Popularity.countLikeArticle(@article)
+                           | <span class="glyphicon glyphicon-comment" aria-hidden="true"></span> @IziWatch.BusinessManagement.Comment.GetCommentsByArticle(@article).Count
                         </div>
                     </div>
                 </div>
