@@ -69,12 +69,12 @@
                 <ul class="nav navbar-nav">
                     @if (User.IsInRole("Admin"))
                     {
-                        <li>@Html.ActionLink("Admin", "Index", "Admin")</li>
+                        <li>@Html.ActionLink("Administration", "Index", "Admin")</li>
                     }
                     @if (User.IsInRole("Root"))
                     {
                         <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Root <span class="caret"></span></a>
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Accès aux données <span class="caret"></span></a>
                             <ul class="dropdown-menu" role="menu">
                                 <li>@Html.ActionLink("Users", "Index", "Users")</li>
                                 <li>@Html.ActionLink("Articles", "Index", "Articles")</li>
