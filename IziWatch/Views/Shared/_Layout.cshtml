@@ -16,11 +16,28 @@
     <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
 </head>
 <body>
-
+    <!--FACEBOOK SDK-->
     <script>
+        window.fbAsyncInit = function () {
+            FB.init({
+                appId: '1731706740416175',
+                xfbml: true,
+                version: 'v2.6'
+            });
+        };
+
+        (function (d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) { return; }
+            js = d.createElement(s); js.id = id;
+            js.src = "//connect.facebook.net/en_US/sdk.js";
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
+
+        // TWITTER
         window.twttr = (function (d, s, id) {
             var js, fjs = d.getElementsByTagName(s)[0],
-              t = window.twttr || {};
+            t = window.twttr || {};
             if (d.getElementById(id)) return t;
             js = d.createElement(s);
             js.id = id;
@@ -33,7 +50,10 @@
             };
 
             return t;
-        }(document, "script", "twitter-wjs"));</script>
+        }(document, "script", "twitter-wjs"));
+    </script>
+
+
 
     <div class="navbar navbar-default navbar-fixed-top">
         <div class="container">
@@ -48,11 +68,11 @@
             <div class="collapse navbar-collapse">
                 <ul class="nav navbar-nav">
                     @if (User.IsInRole("Admin"))
-                    { 
+                    {
                         <li>@Html.ActionLink("Admin", "Index", "Admin")</li>
                     }
                     @if (User.IsInRole("Root"))
-                    { 
+                    {
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Root <span class="caret"></span></a>
                             <ul class="dropdown-menu" role="menu">
