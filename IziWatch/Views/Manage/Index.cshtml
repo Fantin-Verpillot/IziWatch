@@ -53,12 +53,13 @@
                 ]
             </dd>
         *@
-        <dt>Authentification à 2 facteurs :</dt>
+        <!--dt>Authentification à 2 facteurs :</dt-->
+        <!--
         <dd>
             <p>
                 Il n'existe aucun fournisseur d'authentification à 2 facteurs configuré. Consultez <a href="http://go.microsoft.com/fwlink/?LinkId=403804">cet article</a>
                 pour des détails sur la configuration de cette application ASP.NET en vue de la prise en charge de l'authentification à 2 facteurs.
-            </p>
+            </p>-->
             @*@if (Model.TwoFactor)
                 {
                     using (Html.BeginForm("DisableTwoFactorAuthentication", "Manage", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
@@ -79,6 +80,6 @@
                         </text>
                     }
                 }*@
-        </dd>
+        <!--/dd-->  
     </dl>
 </div>
