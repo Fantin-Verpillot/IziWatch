@@ -19,6 +19,7 @@ namespace IziWatch.BusinessManagement
 
         public static bool ExecuteRequest(DBO.Social soc)
         {
+            BusinessManagement.SocialArticle.DeleteSocialArticlesByType("twitter");
             return DataAccess.TwitterSocialArticle.ExecuteRequest(soc);
         }
 

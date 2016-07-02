@@ -7,7 +7,6 @@ namespace IziWatch.BusinessManagement
 {
     public class SocialArticle
     {
-
         public static void DeleteSocialArticlesByType(string type)
         {
             List<DBO.SocialArticle> socialArticles = BusinessManagement.SocialArticle.GetListSocialArticle();

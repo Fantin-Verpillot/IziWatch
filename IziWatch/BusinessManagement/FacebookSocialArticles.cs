@@ -24,6 +24,7 @@ namespace IziWatch.BusinessManagement
 
         static public bool ExecuteRequest(DBO.Social s, string access_token)
         {
+            BusinessManagement.SocialArticle.DeleteSocialArticlesByType("facebook");
             return DataAccess.FacebookSocialArticles.ExecuteRequest(s, access_token);
         }
 
@@ -31,7 +32,7 @@ namespace IziWatch.BusinessManagement
         {
             foreach (DBO.Social s in list)
             {
-                if (!DataAccess.FacebookSocialArticles.ExecuteRequest(s, access_token))
+                if (!FacebookSocialArticles.ExecuteRequest(s, access_token))
                     return false;
             }
             return true;
