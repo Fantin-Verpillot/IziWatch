@@ -51,7 +51,7 @@ namespace IziWatch.DataAccess
 
             foreach (Data d in data)
             {
-                DBO.SocialArticle sa = new DBO.SocialArticle { Text  = "name : " + d.name + "\n message : " + d.message,
+                DBO.SocialArticle sa = new DBO.SocialArticle { Text  = d.name + d.message,
                                                                Image = d.picture, SocialId = s.Id};
 
                 BusinessManagement.SocialArticle.CreateSocialArticle(sa);
