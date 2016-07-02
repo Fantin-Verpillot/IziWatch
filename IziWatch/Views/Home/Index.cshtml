@@ -117,7 +117,7 @@
 
         @foreach (var article in ViewBag.articles)
         {
-            <div class="row box-shadow grow" style="margin-bottom: 15px;">
+            <div class="row box-shadow" style="margin-bottom: 15px;">
 
                     <div class="col-md-3 no-padding">
                         <a href="/Article/Details/@article.Id">
@@ -134,7 +134,7 @@
                         }
                         else
                         {
-                        <a href="/Article/Details/@article.Id" style="font-weight: 600; font-size: 18px; color: black;">
+                        <a href="/Article/Details/@article.Id" style="text-decoration: none !important;font-weight: 600; font-size: 18px; color: black;">
                             @article.Title
                         </a>
                         }
