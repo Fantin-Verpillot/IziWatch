@@ -20,6 +20,7 @@ namespace IziWatch.Controllers
             DBO.Popularity popularity = null;
             List<DBO.Comment> comments = new List<DBO.Comment>();
             int countLikes = 0;
+            bool commentError = false;
 
             if (article == null)
             {
@@ -44,7 +45,13 @@ namespace IziWatch.Controllers
                         comment.Text = Request["commentText"];
                         comment.ArticleId = article.Id;
                         comment.UserId = user.Id;
-                        BusinessManagement.Comment.CreateComment(comment);
+                        if (comment.Title == "" || comment.Text == "")
+                        {
+                            commentError = true;
+                        } else
+                        {
+                            BusinessManagement.Comment.CreateComment(comment);
+                        }
                     }
                     BusinessManagement.Article.ViewArticle(article, user);
                     popularity = BusinessManagement.Popularity.GetPopularityByUserAndArticle(article, user);
@@ -60,6 +67,7 @@ namespace IziWatch.Controllers
             ViewBag.popularity = popularity;
             ViewBag.countLikes = countLikes;
             ViewBag.pageUrl = Request.Url;
+            ViewBag.commentError = commentError;
             ViewBag.tweet_text = "https://twitter.com/intent/tweet?text=Hello%20world"; //+ article.Text.Substring(0, Math.Min(@article.Text.Length, 100));
             return View();
         }

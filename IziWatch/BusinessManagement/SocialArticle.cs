@@ -7,6 +7,19 @@ namespace IziWatch.BusinessManagement
 {
     public class SocialArticle
     {
+
+        public static void DeleteSocialArticlesByType(string type)
+        {
+            List<DBO.SocialArticle> socialArticles = BusinessManagement.SocialArticle.GetListSocialArticle();
+            foreach (DBO.SocialArticle socialArticle in socialArticles)
+            {
+                if (type == BusinessManagement.Social.GetSocial(socialArticle.SocialId).Type)
+                {
+                    BusinessManagement.SocialArticle.DeleteSocialArticle(socialArticle.Id);
+                }
+            }
+        }
+
         public static List<DBO.SocialArticle> GetSocialArticlesBySocialId(int socialId)
         {
             List<DBO.SocialArticle> resultSocial = new List<DBO.SocialArticle>();
