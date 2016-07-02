@@ -68,7 +68,7 @@ namespace IziWatch.Controllers
             ViewBag.countLikes = countLikes;
             ViewBag.pageUrl = Request.Url;
             ViewBag.commentError = commentError;
-            ViewBag.tweet_text = "https://twitter.com/intent/tweet?text=Hello%20world"; //+ article.Text.Substring(0, Math.Min(@article.Text.Length, 100));
+            ViewBag.tweet_text = "https://twitter.com/intent/tweet?text=" + article.Title.Substring(0, @article.Title.Length).Replace(" ", "%20");
             return View();
         }
     }
