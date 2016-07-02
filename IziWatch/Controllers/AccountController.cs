@@ -162,13 +162,21 @@ namespace IziWatch.Controllers
                 if (result.Succeeded)
                 {
                     await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
-                    
+
                     // Pour plus d'informations sur l'activation de la confirmation du compte et la réinitialisation du mot de passe, consultez http://go.microsoft.com/fwlink/?LinkID=320771
                     // Envoyer un message électronique avec ce lien
                     // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
                     // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
                     // await UserManager.SendEmailAsync(user.Id, "Confirmez votre compte", "Confirmez votre compte en cliquant <a href=\"" + callbackUrl + "\">ici</a>");
 
+                    DBO.User dboUser = new DBO.User()
+                    {
+                        Login = user.UserName,
+                        Password = model.Password,
+                        Email = user.Email,
+                        Role = 2
+                    };
+                    BusinessManagement.User.CreateUser(dboUser);
                     return RedirectToAction("Index", "Home");
                 }
                 AddErrors(result);

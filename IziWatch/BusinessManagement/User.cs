@@ -1,9 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
+using IziWatch.Models;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace IziWatch.BusinessManagement
 {
@@ -34,6 +33,68 @@ namespace IziWatch.BusinessManagement
             return users[users.Count - 1];
         }
 
+        public static bool CreateUserIdentityFromUser(DBO.User user)
+        {
+            ApplicationDbContext context = new ApplicationDbContext();
+            var roleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(context));
+            var UserManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(context));
+            String roleString = user.Role == 0 ? "Root" : user.Role == 1 ? "Admin" : "User";
+            var role = new IdentityRole();
+            role.Name = roleString;
+            roleManager.Create(role);
+
+            var userIdentity = new ApplicationUser
+            {
+                UserName = user.Login,
+                Email = user.Email
+            };
+            var result = UserManager.Create(userIdentity, user.Password);
+            if (result.Succeeded)
+            {
+                UserManager.AddToRole(userIdentity.Id, roleString);
+                return true;
+            }
+            return false;
+        }
+
+        public static bool UpdateUserIdentityFromUser(DBO.User user)
+        {
+            DBO.User oldUser = BusinessManagement.User.GetUser(user.Id);
+            string oldPassword = oldUser.Password;
+            string oldLogin = oldUser.Login;
+            ApplicationDbContext context = new ApplicationDbContext();
+            var roleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(context));
+            var UserManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(context));
+            String roleString = user.Role == 0 ? "Root" : user.Role == 1 ? "Admin" : "User";
+            var role = new IdentityRole();
+            role.Name = roleString;
+            roleManager.Create(role);
+
+            var userIdentity = UserManager.FindByName(oldLogin);
+            userIdentity.UserName = user.Login;
+            userIdentity.Email = user.Email;
+            UserManager.ChangePassword(userIdentity.Id, oldPassword, user.Password);
+            var result = UserManager.Update(userIdentity);
+
+            if (result.Succeeded)
+            {
+                string[] roleStrings = (string[])UserManager.GetRoles(userIdentity.Id);
+                UserManager.RemoveFromRoles(userIdentity.Id, roleStrings);
+                UserManager.AddToRole(userIdentity.Id, roleString);
+                return true;
+            }
+            return false;
+        }
+
+        public static bool DeleteIdentityFromUser(DBO.User user)
+        {
+            ApplicationDbContext context = new ApplicationDbContext();
+            var UserManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(context));
+            var userIdentity = UserManager.FindByName(user.Login);
+            var result = UserManager.Delete(userIdentity);
+            return result.Succeeded;
+        }
+
         public static bool CreateUser(DBO.User user)
         {
             bool res = DataAccess.User.CreateUser(user);
@@ -51,6 +112,7 @@ namespace IziWatch.BusinessManagement
                     popularity.UserId = newUser.Id;
                     BusinessManagement.Popularity.CreatePopularity(popularity);
                 }
+                CreateUserIdentityFromUser(user);
                 return true;
             }
             return false;
@@ -58,12 +120,22 @@ namespace IziWatch.BusinessManagement
 
         public static bool DeleteUser(long id)
         {
-            return DataAccess.User.DeleteUser(id);
+            bool res = DeleteIdentityFromUser(GetUser(id));
+            if (res)
+            {
+                return DataAccess.User.DeleteUser(id);
+            }
+            return false;
         }
 
         public static bool UpdateUser(DBO.User user)
         {
-            return DataAccess.User.UpdateUser(user);
+            bool res = UpdateUserIdentityFromUser(user);
+            if (res)
+            {
+                return DataAccess.User.UpdateUser(user);
+            }
+            return false;
         }
 
         public static DBO.User GetUser(long id)
