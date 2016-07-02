@@ -34,7 +34,10 @@ namespace IziWatch.DataAccess
             {
                 DBO.TwitterSocialArticle tsa = new DBO.TwitterSocialArticle();
                 tsa.text  = prime2.Text;
-                tsa.image = prime2.Media.First().MediaURL;
+                if (prime2.Media.Any())
+                    tsa.image = prime2.Media.First().MediaURL;
+                else
+                    tsa.image = "";
             
                 list.Add(tsa);
             }
@@ -50,6 +53,8 @@ namespace IziWatch.DataAccess
                 sa.Image             = tsa.image;
                 sa.Text              = tsa.text;
                 sa.SocialId          = soc.Id;
+
+                BusinessManagement.SocialArticle.CreateSocialArticle(sa);
             }
         }
 
