@@ -11,9 +11,7 @@ namespace IziWatch.Controllers
         [HttpGet]
         public ActionResult Index()
         {
-            // TODO : get connected user and test connection
-            Debug.WriteLine(User.Identity.Name);
-            DBO.User user = BusinessManagement.User.GetListUser().First();
+            DBO.User user = BusinessManagement.User.GetUserByUserIdentity(User);
             List<DBO.Article> articles = BusinessManagement.Article.GetListArticleByDate();
             List<DBO.Category> categories = BusinessManagement.Category.GetListCategory();
             bool dateError = false;

@@ -3,14 +3,15 @@ using System.Collections.Generic;
 using IziWatch.Models;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
+using System.Security.Principal;
 
 namespace IziWatch.BusinessManagement
 {
     public class User
     {
-        public static DBO.User GetUserByUserIdentity(String login)
+        public static DBO.User GetUserByUserIdentity(IPrincipal user)
         {
-            return GetUserByLogin(login);
+            return user.Identity.Name == "" ? null : GetUserByLogin(user.Identity.Name);
         }
 
         public static DBO.User GetUserByLogin(String login)

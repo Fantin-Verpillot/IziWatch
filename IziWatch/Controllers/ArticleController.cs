@@ -14,8 +14,7 @@ namespace IziWatch.Controllers
             if (id == null)
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
 
-            // TODO : get connected user and test connection
-            DBO.User user = BusinessManagement.User.GetListUser().First();
+            DBO.User user = BusinessManagement.User.GetUserByUserIdentity(User);
             DBO.Article article = BusinessManagement.Article.GetArticle((int)id);
             DBO.Popularity popularity = null;
             List<DBO.Comment> comments = new List<DBO.Comment>();
@@ -27,7 +26,7 @@ namespace IziWatch.Controllers
             }
             else
             {
-                if (User.Identity.IsAuthenticated)
+                if (user != null)
                 {
                     if (Request["action"] == "like")
                     {
@@ -54,9 +53,7 @@ namespace IziWatch.Controllers
                 countLikes = BusinessManagement.Popularity.countLikeArticle(article);
             }
 
-            if (User.Identity.IsAuthenticated)
-                ViewBag.userConnected = true;
-
+            ViewBag.userConnected = user;
             ViewBag.article = article;
             ViewBag.comments = comments;
             ViewBag.popularity = popularity;
