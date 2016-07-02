@@ -232,8 +232,12 @@ namespace IziWatch.Controllers
             if (result.Succeeded)
             {
                 var user = await UserManager.FindByIdAsync(User.Identity.GetUserId());
+
                 if (user != null)
                 {
+                    DBO.User dboUser = BusinessManagement.User.GetUserByLogin(user.UserName);
+                    dboUser.Password = model.NewPassword;
+                    BusinessManagement.User.UpdateUser(dboUser);
                     await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
                 }
                 return RedirectToAction("Index", new { Message = ManageMessageId.ChangePasswordSuccess });
