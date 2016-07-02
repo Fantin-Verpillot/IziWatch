@@ -4,7 +4,7 @@
     ViewBag.Title = "Accueil";
 }
 
-@if(ViewBag.dateError)
+@if (ViewBag.dateError)
 {
     <div class="alert alert-danger" role="alert">
         <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
@@ -119,64 +119,64 @@
         {
             <div class="row box-shadow" style="margin-bottom: 15px;">
 
-                    <div class="col-md-3 no-padding">
-                        <a href="/Article/Details/@article.Id">
-                            <img src="@article.Image" style="background: white; background-position: center; background-repeat: no-repeat; background-size: cover; width: 100%; height: 150px;" />
-                        </a>
-                    </div>
+                <div class="col-md-3 no-padding">
+                    <a href="/Article/Details/@article.Id">
+                        <img src="@article.Image" style="background: white; background-position: center; background-repeat: no-repeat; background-size: cover; width: 100%; height: 150px;" />
+                    </a>
+                </div>
 
-                    <div class="col-md-9" style="height: 150px; overflow-y: hidden; padding: 15px;">
-                        @if (article.Title.Length > 65)
-                        {
+                <div class="col-md-9" style="height: 150px; overflow-y: hidden; padding: 15px;">
+                    @if (article.Title.Length > 65)
+                    {
                         <a href="/Article/Details/@article.Id" style="font-weight: 600; font-size: 18px; color: black;">
                             @article.Title.Substring(0, Math.Min(@article.Text.Length, 65))..
                         </a>
-                        }
-                        else
-                        {
+                    }
+                    else
+                    {
                         <a href="/Article/Details/@article.Id" style="font-weight: 600; font-size: 18px; color: black;">
                             @article.Title
                         </a>
-                        }
+                    }
 
-                        <p style="font-size: 14px;">
-                            @article.Text.Substring(0, Math.Min(@article.Text.Length, 140)) ...
-                            <a href="/Article/Details/@article.Id">
-                                (Lire la suite)
-                            </a>
-                        </p>
+                    <p style="font-size: 14px;">
+                        @article.Text.Substring(0, Math.Min(@article.Text.Length, 140)) ...
+                        <a href="/Article/Details/@article.Id">
+                            (Lire la suite)
+                        </a>
+                    </p>
 
-                        <div class="row" style="margin-top: 40px;">
-                            <div class="col-md-6">
-                                <p style="font-size: 13px;">
-                                    @{
-                                        String categoryName = Category.GetCategory(article.CategoryId).Name;
-                                        if (categoryName != null)
-                                        {
-                                            @Category.GetCategory(article.CategoryId).Name
-                                        }
+                    <div class="row" style="margin-top: 40px;">
+                        <div class="col-md-6">
+                            <p style="font-size: 13px;">
+                                @{
+                                    String categoryName = Category.GetCategory(article.CategoryId).Name;
+                                    if (categoryName != null)
+                                    {
+                                        @Category.GetCategory(article.CategoryId).Name
                                     }
-                                </p>
-                            </div>
-
-                            <div class="col-md-6">
-                                <p style="font-size: 12px;" class="pull-right">
-                                    <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> @article.Views
-                                    | <span class="glyphicon glyphicon-heart" aria-hidden="true"></span> @IziWatch.BusinessManagement.Popularity.countLikeArticle(@article)
-                                    | <span class="glyphicon glyphicon-comment" aria-hidden="true"></span> @IziWatch.BusinessManagement.Comment.GetCommentsByArticle(@article).Count
-                                </p>
-                            </div>
+                                }
+                            </p>
                         </div>
 
-
+                        <div class="col-md-6">
+                            <p style="font-size: 12px;" class="pull-right">
+                                <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> @article.Views
+                                | <span class="glyphicon glyphicon-heart" aria-hidden="true"></span> @IziWatch.BusinessManagement.Popularity.countLikeArticle(@article)
+                                | <span class="glyphicon glyphicon-comment" aria-hidden="true"></span> @IziWatch.BusinessManagement.Comment.GetCommentsByArticle(@article).Count
+                            </p>
+                        </div>
                     </div>
+                </div>
 
-
+                <a class="twitter-share-button" href=@ViewBag.tweet_text>
+                    Tweet
+                </a>
 
 
             </div>
 
-        }
+                                    }
 
 
     </div>

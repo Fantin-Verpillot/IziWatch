@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Net;
@@ -59,6 +60,7 @@ namespace IziWatch.Controllers
             ViewBag.popularity = popularity;
             ViewBag.countLikes = countLikes;
             ViewBag.pageUrl = Request.Url;
+            ViewBag.tweet_text = "https://twitter.com/intent/tweet?text=Hello%20world"; //+ article.Text.Substring(0, Math.Min(@article.Text.Length, 100));
             return View();
         }
     }
