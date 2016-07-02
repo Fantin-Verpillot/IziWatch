@@ -16,7 +16,7 @@
 <div class="row" style="margin-top: 12px;">
     <div class="col-md-3">
 
-        <form method="GET" action="/Home/Index" class="form-horizontal" style="border : 1px solid #dddddd; padding: 15px; font-size: 15px;">
+        <form method="GET" action="/Home/Index" class="form-horizontal box-shadow" style="padding: 15px; font-size: 15px;">
             <fieldset>
                 <legend class="text-center" style="font-weight: 700; font-size: 19px; padding-bottom: 7px;">Filtres</legend>
                 <div class="form-group" style="margin-bottom: 0; font-weight: 700;">
@@ -117,7 +117,7 @@
 
         @foreach (var article in ViewBag.articles)
         {
-            <div class="row" style="margin-bottom: 15px; border: 1px solid #dddddd">
+            <div class="row box-shadow" style="margin-bottom: 15px;">
 
                     <div class="col-md-3 no-padding">
                         <a href="/Article/Details/@article.Id">
