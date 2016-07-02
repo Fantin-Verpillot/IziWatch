@@ -30,20 +30,13 @@ namespace IziWatch.Controllers
         {
             if (Request["action"] == "Synchroniser Facebook" && Request["tokenFacebook"] != null)
             {
-                List<DBO.Social> socials = BusinessManagement.Social.GetListSocial();
-                List<DBO.Social> socialsFB = new List<DBO.Social>();
-                foreach(DBO.Social social in socials) {
-                    if (social.Type == "facebook")
-                        socialsFB.Add(social);
-                }
-
-                ViewBag.IsUpdated = BusinessManagement.FacebookSocialArticles.ExecuteSeveralRequest(socialsFB, Request["tokenFacebook"]);
+                ViewBag.IsUpdated = BusinessManagement.FacebookSocialArticles.ExecuteSeveralRequest(BusinessManagement.Social.GetSocialsByType("facebook"), Request["tokenFacebook"]);
                 ViewBag.SocialName = "Facebook";
 
             }
             else if (Request["action"] == "Synchroniser Twitter")
             {
-                ViewBag.IsUpdated = true;
+                ViewBag.IsUpdated = BusinessManagement.TwitterSocialArticle.ExecuteSeveralRequest(BusinessManagement.Social.GetSocialsByType("twitter"));
                 ViewBag.SocialName = "Twitter";
             }
 
