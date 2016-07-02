@@ -20,7 +20,7 @@
 
 @if (ViewBag.commentError)
 {
-    <div class="alert alert-danger" role="alert">
+    <div class="alert alert-danger" role="alert" style="margin-top: 20px; margin-bottom: 0;">
         <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
         <span class="sr-only">Error:</span>
         Vous devez remplir tous les champs.
@@ -137,13 +137,16 @@
     <div class="row">
         <div class="col-md-7">
             <div class="comment">
-                <p class="username">@comment.Title (écrit par @IziWatch.BusinessManagement.User.GetUser(comment.UserId).Login)</p>
+                <p class="username">@comment.Title
+                    <span style="font-size: 14px; font-weight: normal;">(écrit par @IziWatch.BusinessManagement.User.GetUser(comment.UserId).Login)</span>
+
+                </p>
                 <p class="text">@comment.Text</p>
             </div>
         </div>
     </div>
 
-    <hr style="margin-top: 5px; margin-bottom: 5px; width: 70%;" />
+    <hr style="margin-top: 5px; margin-bottom: 5px; width: 80%;" />
 }
 
 
