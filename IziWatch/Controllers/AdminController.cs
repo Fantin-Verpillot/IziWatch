@@ -25,7 +25,7 @@ namespace IziWatch.Controllers
             return error;
         }
 
-        // GET: Admin
+        [HttpGet]
         public ActionResult Index()
         {
             if (Request["action"] == "Synchroniser Facebook" && Request["tokenFacebook"] != null)

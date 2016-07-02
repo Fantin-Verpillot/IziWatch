@@ -18,6 +18,15 @@
     <meta property="og:image" content="@article.Image" />
 }
 
+@if (ViewBag.commentError)
+{
+    <div class="alert alert-danger" role="alert">
+        <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+        <span class="sr-only">Error:</span>
+        Vous devez remplir tous les champs.
+    </div>
+}
+
 <div class="row">
     <div class="col-md-12">
         <h2 style="font-weight: 700;">@article.Title</h2>
