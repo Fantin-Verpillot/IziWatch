@@ -78,7 +78,13 @@ namespace IziWatch.BusinessManagement
 
             if (result.Succeeded)
             {
-                string[] roleStrings = (string[])UserManager.GetRoles(userIdentity.Id);
+                IList<String> identityRoles = UserManager.GetRoles(userIdentity.Id);
+                string[] roleStrings = new string[3];
+                int i = 0;
+                foreach (String identityRole in identityRoles)
+                {
+                    roleStrings[i] = identityRole;
+                }
                 UserManager.RemoveFromRoles(userIdentity.Id, roleStrings);
                 UserManager.AddToRole(userIdentity.Id, roleString);
                 return true;
