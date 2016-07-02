@@ -22,9 +22,7 @@
     <div class="col-md-12">
         <h2 style="font-weight: 700;">@article.Title</h2>
         <p style="font-size: 16px;">
-            @{
-                String categoryName = IziWatch.BusinessManagement.Category.GetCategory(article.CategoryId).Name;
-            }
+            @IziWatch.BusinessManagement.Category.GetCategory(article.CategoryId).Name
         </p>
     </div>
 </div>
@@ -46,24 +44,35 @@
 <br />
 
 <div class="row">
-    <div class="col-md-12">
+    <div class="col-md-6">
+        <!--
+        <a href="" class="btn btn-primary btn-xs" style="margin-left: 7px; font-size: 12px;">
+            <span class="glyphicon glyphicon-hand-right" aria-hidden="true"></span> Facebook
+        </a> | -->
+        <a class="twitter-share-button" href=@ViewBag.tweet_text>
+            Tweet
+        </a>
+    </div>
+    <div class="col-md-6">
         <div class="pull-right" style="font-size: 14px; font-weight: 700;">
                 Date de création : @article.Date.ToString().Split(' ')[0] | <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> @article.Views
                 @if (ViewBag.userConnected != null)
                 {
+                    <span> | </span>
                     if (ViewBag.popularity.Liked)
                     {
-                        <span> | </span><a href="/Article/Details/@article.Id?action=unlike" class="btn btn-warning pull-right btn-xs" style="margin-left: 7px;">
+                        <a href="/Article/Details/@article.Id?action=unlike" class="btn btn-warning pull-right btn-xs" style="margin-left: 7px; font-size: 12px;">
                             <span class="glyphicon glyphicon-heart-empty" aria-hidden="true"></span> Unlike (@ViewBag.countLikes)
                         </a>
                     }
                     else
                     {
-                        <span> | </span><a href="/Article/Details/@article.Id?action=like" class="btn btn-danger pull-right btn-xs" style="margin-left: 7px;">
+                        <a href="/Article/Details/@article.Id?action=like" class="btn btn-danger pull-right btn-xs" style="margin-left: 7px; font-size: 12px;">
                             <span class="glyphicon glyphicon-heart" aria-hidden="true"></span> Like (@ViewBag.countLikes)
                         </a>
                     }
                 }
+
         </div>
     </div>
 </div>
