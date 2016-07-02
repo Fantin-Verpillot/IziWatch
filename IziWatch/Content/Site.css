@@ -76,15 +76,6 @@ textarea {
 
 }
 
-.custom-pre {
-    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
-    font-size: 17px;
-    color: black;
-    background-color: white;
-    border: none;
-    white-space:pre-wrap
-}
-
 .no-padding{
    padding: 0 !important;
    margin: 0 !important;

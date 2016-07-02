@@ -49,16 +49,16 @@ else
             <div class="thumbnail" style="padding: 0;">
                 @if (socialArticle.Image != "" && socialArticle.Image != null)
                 {
-                    <img src="@socialArticle.Image" alt="article photo" class="img-responsive" style="height: 250px;" />
+                    <img src="@socialArticle.Image" alt="article photo" class="img-responsive" style="height: 250px; width: 100%;" />
                 }
                 else
                 {
-                    <img src="http://www.klim.com/c.3569702/sca-dev-denali/img/no_image_available.jpeg" alt="article photo" class="img-responsive" style="height: 250px;" />
+                    <img src="http://www.klim.com/c.3569702/sca-dev-denali/img/no_image_available.jpeg" alt="article photo" class="img-responsive" style="height: 250px; width: 100%;" />
                 }
                 <div style="display:table; height: 100px; padding: 10px;">
 
                     <div style="display:table-cell; vertical-align: middle; text-align: center;">
-                        @socialArticle.Text.Substring(0, Math.Min(@socialArticle.Text.Length, 80)) ...
+                        @socialArticle.Text.Substring(0, Math.Min(@socialArticle.Text.Length, 70)) ...
                     </div>
 
                 </div>
