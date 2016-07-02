@@ -31,12 +31,11 @@ namespace IziWatch
                 roleManager.Create(role);
 
                 //Here we create a Admin super user who will maintain the website                  
-
                 var user = new ApplicationUser();
                 user.UserName = "admin";
                 user.Email = "admin@epita.fr";
 
-                string userPWD = "Admin123*";
+                string userPWD = "password";
                 var chkUser = UserManager.Create(user, userPWD);
 
                 //Add default User to Role Admin   
@@ -54,6 +53,20 @@ namespace IziWatch
                 role.Name = "Root";
                 roleManager.Create(role);
 
+                //Here we create a Admin super user who will maintain the website                  
+                var user = new ApplicationUser();
+                user.UserName = "root";
+                user.Email = "root@epita.fr";
+
+                string userPWD = "password";
+                var chkUser = UserManager.Create(user, userPWD);
+
+                //Add default User to Role Admin   
+                if (chkUser.Succeeded)
+                {
+                    var result1 = UserManager.AddToRole(user.Id, "Root");
+
+                }
             }
 
             if (!roleManager.RoleExists("User"))
@@ -61,6 +74,20 @@ namespace IziWatch
                 var role = new IdentityRole();
                 role.Name = "User";
                 roleManager.Create(role);
+
+                //Here we create a Admin super user who will maintain the website                  
+                var user = new ApplicationUser();
+                user.UserName = "user";
+                user.Email = "user@epita.fr";
+
+                string userPWD = "password";
+                var chkUser = UserManager.Create(user, userPWD);
+
+                //Add default User to Role Admin   
+                if (chkUser.Succeeded)
+                {
+                    var result1 = UserManager.AddToRole(user.Id, "User");
+                }
             }
         }
     }

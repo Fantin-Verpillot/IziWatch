@@ -7,7 +7,7 @@ using System.Web.Mvc;
 
 namespace IziWatch.Controllers
 {
-    [Authorize(Roles = "Admin")]
+    [Authorize(Roles = "Admin, Root")]
     public class AdminController : Controller
     {
 

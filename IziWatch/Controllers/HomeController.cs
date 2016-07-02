@@ -12,6 +12,7 @@ namespace IziWatch.Controllers
         public ActionResult Index()
         {
             // TODO : get connected user and test connection
+            Debug.WriteLine(User.Identity.Name);
             DBO.User user = BusinessManagement.User.GetListUser().First();
             List<DBO.Article> articles = BusinessManagement.Article.GetListArticleByDate();
             List<DBO.Category> categories = BusinessManagement.Category.GetListCategory();

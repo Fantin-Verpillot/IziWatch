@@ -3,11 +3,30 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Web;
+using System.Web.Mvc;
 
 namespace IziWatch.BusinessManagement
 {
     public class User
     {
+        public static DBO.User GetUserByUserIdentity(String login)
+        {
+            return GetUserByLogin(login);
+        }
+
+        public static DBO.User GetUserByLogin(String login)
+        {
+            List<DBO.User> users = GetListUser();
+            foreach (DBO.User user in users)
+            {
+                if (user.Login == login)
+                {
+                    return user;
+                }
+            }
+            return null;
+        }
+
         public static DBO.User GetUserByMaxId()
         {
             List<DBO.User> users = GetListUser();

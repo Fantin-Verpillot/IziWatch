@@ -11,7 +11,7 @@ using IziWatch.DataAccess;
 
 namespace IziWatch.Controllers
 {
-    [Authorize(Roles = "Admin, Root")]
+    [Authorize(Roles = "Root")]
     public class SocialsController : Controller
     {
         private IziWatchEntities db = new IziWatchEntities();
